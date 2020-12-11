@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Product;
+import sg.edu.iss.test.service.CatalogueImplementation;
 import sg.edu.iss.test.service.CatalogueInterface;
 
 @Controller
@@ -21,7 +22,7 @@ public class CatalogueController {
 	private CatalogueInterface cservice;
 	
 	@Autowired
-	public void setCatalogue(CatalogueInterface catalogue) {
+	public void setCatalogue(CatalogueImplementation catalogue) {
 		this.cservice = catalogue;
 	}
 	
