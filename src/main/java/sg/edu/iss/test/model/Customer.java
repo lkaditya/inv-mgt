@@ -13,12 +13,13 @@ import lombok.Data;
 @Entity
 @Data
 public class Customer {
-@Id
-@GeneratedValue(strategy=GenerationType.AUTO)
-private long customerId;
-private String name;
-private int mobile;
-@OneToMany(mappedBy="customer")
-private List<RepairOrder>orders;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long customerId;
+	private String name;
+	private int mobile;
+	
+	@OneToMany(mappedBy="customer")
+	private List<RepairOrder>orders;
 
 }
