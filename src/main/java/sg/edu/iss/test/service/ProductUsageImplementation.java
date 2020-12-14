@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
@@ -11,6 +12,7 @@ import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.repo.ProductUsageRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 
+@Service
 public class ProductUsageImplementation implements ProductUsageInterface{
 
 	@Autowired
@@ -57,14 +59,26 @@ public class ProductUsageImplementation implements ProductUsageInterface{
 
 	@Override
 	public void addRepairOrder(RepairOrder rep) {
-		// TODO Auto-generated method stub
+		repairrepo.save(rep);
 		
 	}
 
 	@Override
 	public void deleteRepairOrder(RepairOrder rep) {
-		// TODO Auto-generated method stub
+		repairrepo.delete(rep);
 		
+	}
+
+	@Override
+	public List<RepairOrder> showAllRepairOrders() {
+		
+		return repairrepo.findAll();
+	}
+
+	@Override
+	public List<RepairOrder> showRepairOrderByDate(LocalDate start, LocalDate end) {
+		// TODO Auto-generated method stub
+		return repairrepo.findDateRangedRepairOrder(start, end);
 	}
 
 }

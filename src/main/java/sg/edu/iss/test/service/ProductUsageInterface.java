@@ -19,7 +19,8 @@ public interface ProductUsageInterface {
 	
 	public void addRepairOrder(RepairOrder rep);
 	public void deleteRepairOrder(RepairOrder rep);
-	
+	public List<RepairOrder> showAllRepairOrders();
+	public List<RepairOrder> showRepairOrderByDate(LocalDate start,LocalDate end);
 	
 	
 	

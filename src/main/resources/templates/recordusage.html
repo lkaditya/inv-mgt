@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Record List</title>
+</head>
+<body>
+  <header th:insert="layout/layout.html :: header"></header>
+  <div th:replace="layout/layout.html :: menu" ></div>
+  <h1>Record List</h1>
+  
+  	<form action="" th:object="${filter}" th:action="@{/repair/filter}"
+		method="POST" class="form-horizontal">
+		<fieldset>
+			StartDate: <input type="text" th:field="*{start}" placeholder="dd-MM-yyyy">
+		</fieldset>
+		<fieldset>
+			EndDate: <input type="text" th:field="*{end}" placeholder="dd-MM-yyyy">
+		</fieldset>		
+		<fieldset>
+			<button type="submit">Filter</button>
+		</fieldset>
+	</form>
+
+
+	<table>
+		<tr>
+			<th>RepairOrderId</th>
+			<th>CustomerID</th>
+			<th>Date</th>
+			<th>Edit Repair</th>
+			<th>Delete Repair</th>
+		</tr>
+		<tr th:each="rep:${repairlist}">
+			<td th:text="${rep.repairId}">ID</td>
+			<td th:text="${rep.customer}">ID</td>
+			<td th:text="${rep.repairDateTime}">ID</td>
+			<td><a href="EditRepair.html"
+				th:href="@{/repair/edit/}+${rep.repairId}">Edit</a></td>
+			<td><a href="DeleteRepair.html"
+				th:href="@{/repair/delete/}+${rep.repairId}">Delete</a></td>
+		</tr>
+	</table>
+	
+	<div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>
