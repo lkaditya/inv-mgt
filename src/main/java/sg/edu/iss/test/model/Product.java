@@ -1,13 +1,12 @@
 package sg.edu.iss.test.model;
 
-import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -22,34 +21,30 @@ public class Product {
 	private long id;
 	private String productName;
 	private String productDescription;
+	private String productType;
+	private String productCategory;
+	private String productSubCategory;
     @OneToOne(cascade = {CascadeType.ALL})  
-    @JoinColumn(name="SUPP_ID")
-	private Supplier supplier;
-	private long qoh;
-	private double price;
-	private long rol;
-	private Date dolr;
-
-	public Product(String productName, String productDescription, Supplier s, long qoh, double price, long rol,
-			Date dolr) {
+    @JoinColumn(name="inventory_id")
+	private Inventory inventory;
+    @ManyToOne
+    private Supplier supplier;
+    @ManyToOne
+    private Brand brand;
+    @ManyToOne
+    private Returned returned;
+	public Product(String productName, String productDescription, String productType, String productCategory,
+			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand, Returned returned) {
 		super();
 		this.productName = productName;
 		this.productDescription = productDescription;
-		this.supplier = s;
-		this.qoh = qoh;
-		this.price = price;
-		this.rol = rol;
-		this.dolr = dolr;
-	}
-
-	public Product(String productName, String productDescription, long qoh, double price, long rol, Date dolr) {
-		super();
-		this.productName = productName;
-		this.productDescription = productDescription;
-		this.qoh = qoh;
-		this.price = price;
-		this.rol = rol;
-		this.dolr = dolr;
+		this.productType = productType;
+		this.productCategory = productCategory;
+		this.productSubCategory = productSubCategory;
+		this.inventory = inventory;
+		this.supplier = supplier;
+		this.brand = brand;
+		this.returned = returned;
 	}
 
 }
