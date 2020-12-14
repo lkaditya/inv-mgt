@@ -77,8 +77,14 @@ public class ProductUsageImplementation implements ProductUsageInterface{
 
 	@Override
 	public List<RepairOrder> showRepairOrderByDate(LocalDate start, LocalDate end) {
-		// TODO Auto-generated method stub
+
 		return repairrepo.findDateRangedRepairOrder(start, end);
+	}
+
+	@Override
+	public List<RepairOrder> showRepairOrderByKeyword(String keyword) {
+
+		return repairrepo.findRepairOrderByKeyword(keyword);
 	}
 
 }

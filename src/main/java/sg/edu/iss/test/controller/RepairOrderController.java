@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import sg.edu.iss.test.model.Filter;
+import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageInterface;
@@ -31,15 +31,23 @@ public class RepairOrderController {
 	public String showRecord(Model model) {
 		List<RepairOrder> group=uservice.showAllRepairOrders();
 		model.addAttribute("repairlist",group);
-		Filter f= new Filter();
+		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
 		
 		return "recordusage";
 	}
 	
 	@RequestMapping(value="/filter",method=RequestMethod.POST)
-	public String showFilteredRecord(@ModelAttribute("filter") Filter filter,BindingResult bindingResult,Model model) {
+	public String showFilteredRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
 		List<RepairOrder> group=uservice.showRepairOrderByDate(filter.getStart(), filter.getEnd());
+		model.addAttribute("repairlist",group);
+		
+		return "recordusage";
+	}
+	
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public String showRelevantRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
+		List<RepairOrder> group=uservice.showRepairOrderByKeyword(filter.getKeyword());
 		model.addAttribute("repairlist",group);
 		
 		return "recordusage";

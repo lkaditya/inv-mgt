@@ -13,4 +13,11 @@ public interface RepairOrderRepository extends JpaRepository<RepairOrder, Long> 
 
 	@Query("select x from RepairOrder x where x.repairDateTime<=:end and x.repairDateTime>=:start ")
 	List<RepairOrder> findDateRangedRepairOrder(@Param("start")LocalDate start,@Param("end")LocalDate end);
+
+	@Query("select x from RepairOrder x where x.repairDateTime like CONCAT('%',:key,'%') or x.customer.customerId like CONCAT('%',:key,'%') or x.repairId like CONCAT('%',:key,'%')")
+	List<RepairOrder> findRepairOrderByKeyword(@Param("key")String key);
+	
+
+	
+
 }
