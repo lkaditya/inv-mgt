@@ -1,5 +1,6 @@
 package sg.edu.iss.test.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -23,7 +24,7 @@ private long repairId;
 private Customer customer;
 @OneToMany(mappedBy="rep")
 private List<ProductUsage> productUsageList;
-private LocalDateTime repairDateTime;
+private LocalDate repairDate;
 
 
 
