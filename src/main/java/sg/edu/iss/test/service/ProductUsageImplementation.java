@@ -58,7 +58,7 @@ public class ProductUsageImplementation implements ProductUsageInterface{
 	}
 
 	@Override
-	public void addRepairOrder(RepairOrder rep) {
+	public void saveRepairOrder(RepairOrder rep) {
 		repairrepo.save(rep);
 		
 	}
@@ -85,6 +85,11 @@ public class ProductUsageImplementation implements ProductUsageInterface{
 	public List<RepairOrder> showRepairOrderByKeyword(String keyword) {
 
 		return repairrepo.findRepairOrderByKeyword(keyword);
+	}
+
+	@Override
+	public RepairOrder findRepairOrderById(Long id) {
+		return repairrepo.findById(id).get();
 	}
 
 }

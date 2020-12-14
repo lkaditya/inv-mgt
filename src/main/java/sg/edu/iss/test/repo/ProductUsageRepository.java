@@ -15,7 +15,7 @@ public interface ProductUsageRepository extends JpaRepository<ProductUsage, Long
 	@Query("Select x From ProductUsage x where x.rep.repairId=:inputid")
 	List<ProductUsage> findAllProductUsageByRepairId(@Param("inputid")long repId);	
 
-	@Query("Select x From ProductUsage x where x.rep.repairDateTime=:date and x.product.id=:inputid")
+	@Query("Select x From ProductUsage x where x.rep.repairDate=:date and x.product.id=:inputid")
 	List<ProductUsage> findAllProductUsageByDate(@Param("inputid")long productId,@Param("date")LocalDate date);
 	
 	@Query("Select x From ProductUsage x where x.product.id=:inputid")

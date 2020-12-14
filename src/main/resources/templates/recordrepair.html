@@ -33,7 +33,8 @@
 			<th>Delete Repair</th>
 		</tr>
 		<tr th:each="rep:${repairlist}">
-			<td th:text="${rep.repairId}">ID</td>
+			<td><a href="RepairDetails.html"
+				th:href="@{/repair/showspecific/}+${rep.repairId}"><span th:utext="${rep.repairId}"></span></a></td>
 			<td th:text="${rep.customer}">ID</td>
 			<td th:text="${rep.repairDateTime}">ID</td>
 			<td><a href="EditRepair.html"

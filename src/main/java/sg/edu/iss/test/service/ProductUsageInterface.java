@@ -17,11 +17,12 @@ public interface ProductUsageInterface {
 	public List<ProductUsage> showProductUsageByDate(Product product,LocalDate start);
 	public List<ProductUsage> showProductUsageByProduct(Product product);
 	
-	public void addRepairOrder(RepairOrder rep);
+	public void saveRepairOrder(RepairOrder rep);
 	public void deleteRepairOrder(RepairOrder rep);
 	public List<RepairOrder> showAllRepairOrders();
 	public List<RepairOrder> showRepairOrderByDate(LocalDate start,LocalDate end);
 	public List<RepairOrder> showRepairOrderByKeyword(String keyword);
+	public RepairOrder findRepairOrderById(Long id);
 	
 	
 	
