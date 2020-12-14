@@ -72,7 +72,7 @@ public class RepairOrderController {
 	public String editSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
-		return "recordform";
+		return "recordrepairform";
 	}
 	
 	@RequestMapping(value="/saverepair",method=RequestMethod.POST)

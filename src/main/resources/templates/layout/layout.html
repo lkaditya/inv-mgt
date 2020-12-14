@@ -15,11 +15,11 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right">
-      <li class="active"><a href="#" th:href="@{/}">Browse Catalog</a></li>
+      <li><a href="#" th:href="@{/}">Manage Customer</a></li>
       <li><a href="#" th:href="@{/catalogue/list}">Manage Product</a></li>
-      <li><a href="#" th:href="@{/login}">Manage Inventory</a></li>
+      <li class="active"><a href="#" th:href="@{/login}">Manage Inventory</a></li>
       <li><a href="#" th:href="@{/login}">Manage User</a></li>
-      <li><a href="#" th:href="@{/products}">Record Usage</a></li>
+      <li><a href="#" th:href="@{/repair/showrecord}">Record Usage</a></li>
       <!-- 
       <li th:if="${not #lists.isEmpty(session.usession)}">
       <a href="#" th:utext="${session.usession.userName}"  >
