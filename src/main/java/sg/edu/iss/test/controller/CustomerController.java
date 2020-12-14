@@ -30,7 +30,7 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/showcustomerform", method = RequestMethod.GET)
 	public String showForm(Model model) {
-		Customer customer = new Customer ();
+		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
 		return "customerform";
 	}
