@@ -57,6 +57,7 @@ class EtoeApplicationTests {
 	@Test
 	void loadRepairOrder() {
 		RepairOrder rep1=new RepairOrder();
+		RepairOrder rep2=new RepairOrder();
 		Customer a= cusrepo.findCustomerByName("Alpha").get(0);
 		Customer b= cusrepo.findCustomerByName("Beta").get(0);
 		Customer c= cusrepo.findCustomerByName("Charlie").get(0);
@@ -65,13 +66,17 @@ class EtoeApplicationTests {
 		LocalDate d1=LocalDate.now();
 		rep1.setRepairDate(d1);
 		repairrepo.save(rep1);
+		rep2.setCustomer(b);
+		LocalDate d2=LocalDate.of(2020, 12, 13);
+		rep2.setRepairDate(d2);
+		repairrepo.save(rep2);
 	}
 	
 	@Test 
 	void test1() {
 		//List<RepairOrder> group=uservice.showAllRepairOrders();
-		LocalDate a= LocalDate.of(2020, 12, 15);
-		List<RepairOrder>group= uservice.showRepairOrderByDate(a,a);
+		//LocalDate a= LocalDate.of(2020, 12, 15);
+		List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
 		System.out.println(group.size());
 	}
 	

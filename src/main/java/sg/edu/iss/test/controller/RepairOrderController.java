@@ -21,6 +21,10 @@ import sg.edu.iss.test.service.ProductUsageInterface;
 @RequestMapping("/repair")
 public class RepairOrderController {
 	
+	//To-Do: put the customer interface for editting the the repair order
+	//@Autowired
+	//private CustomerInterface custservice;
+	
 	@Autowired
 	private ProductUsageInterface uservice;
 	
@@ -36,6 +40,7 @@ public class RepairOrderController {
 		model.addAttribute("repairlist",group);
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
+		//model.addAttribute("highlight","active");
 
 		
 		return "recordrepair";
