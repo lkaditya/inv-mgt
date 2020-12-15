@@ -32,5 +32,6 @@ public class User {
 		this.role = role;
 	}
     
+	//hz test 2
 
 }
