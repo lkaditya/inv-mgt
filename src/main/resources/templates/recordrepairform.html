@@ -8,9 +8,9 @@
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Record List-><span th:utext="${repairrecord}"></span></h1>
+  <h1>Record List-><span th:utext="${repairrecord.repairId}"></span></h1>
 
-<form action="" th:object="${repairrecord}" th:action="@{/repair/saverepair}"
+<form action="" th:object="${repairrecord}" th:action="@{/repair/save}"
 		method="POST" class="form-horizontal">
 		<fieldset>
 			RepairOrder <input type="text" th:field="*{repairId}" readonly>
@@ -19,7 +19,7 @@
 			Customer: <input type="text" th:field="*{customer.name}" >
 		</fieldset>
 		<fieldset>
-			Date: <input type="text" th:field="*{repairDate}" placeholder="dd-MM-yyyy">
+			Date: <input type="text" th:field="*{repairDate}" placeholder="yyyy-MM-dd" >
 		</fieldset>		
 		<fieldset>
 			<button type="submit">Save</button>

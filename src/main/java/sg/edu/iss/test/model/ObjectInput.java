@@ -1,22 +1,21 @@
 package sg.edu.iss.test.model;
 
-import java.time.LocalDate;
+
 //for filtering or search purpose (sending parameter from page to controller)
 public class ObjectInput {
-	
-	private LocalDate start;
-	private LocalDate end;
+	private String start;
+	private String end;
 	private String keyword;
-	public LocalDate getStart() {
+	public String getStart() {
 		return start;
 	}
-	public void setStart(LocalDate start) {
+	public void setStart(String start) {
 		this.start = start;
 	}
-	public LocalDate getEnd() {
+	public String getEnd() {
 		return end;
 	}
-	public void setEnd(LocalDate end) {
+	public void setEnd(String end) {
 		this.end = end;
 	}
 	public String getKeyword() {

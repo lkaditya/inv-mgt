@@ -11,16 +11,26 @@
   <h1>Record List</h1>
   
   	<form action="" th:object="${filter}" th:action="@{/repair/filter}"
-		method="POST" class="form-horizontal">
+		method="post" class="form-horizontal">
+		<table>
+		<tr>
+		<td>
 		<fieldset>
-			StartDate: <input type="text" th:field="*{start}" placeholder="dd-MM-yyyy">
+			StartDate: <input type="text" th:field="*{start}" placeholder="yyyy-MM-dd" >
 		</fieldset>
+		</td>
+		<td>
 		<fieldset>
-			EndDate: <input type="text" th:field="*{end}" placeholder="dd-MM-yyyy">
-		</fieldset>		
+			EndDate: <input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" >
+		</fieldset>	
+		</td>
+		<td>	
 		<fieldset>
 			<button type="submit">Filter</button>
 		</fieldset>
+		</td>
+		</tr>
+		</table>
 	</form>
 
 
@@ -35,8 +45,8 @@
 		<tr th:each="rep:${repairlist}">
 			<td><a href="RepairDetails.html"
 				th:href="@{/repair/showspecific/}+${rep.repairId}"><span th:utext="${rep.repairId}"></span></a></td>
-			<td th:text="${rep.customer}">ID</td>
-			<td th:text="${rep.repairDateTime}">ID</td>
+			<td th:text="${rep.customer.name}">ID</td>
+			<td th:text="${rep.repairDate}">ID</td>
 			<td><a href="EditRepair.html"
 				th:href="@{/repair/edit/}+${rep.repairId}">Edit</a></td>
 			<td><a href="DeleteRepair.html"

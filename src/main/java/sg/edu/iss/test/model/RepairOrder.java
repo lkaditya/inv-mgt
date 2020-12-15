@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 
 @Entity
@@ -24,6 +26,7 @@ private long repairId;
 private Customer customer;
 @OneToMany(mappedBy="rep")
 private List<ProductUsage> productUsageList;
+@DateTimeFormat (pattern="yyyy-MM-dd")
 private LocalDate repairDate;
 
 

@@ -1,6 +1,7 @@
 package sg.edu.iss.test;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.CustomerRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
+import sg.edu.iss.test.service.ProductUsageImplementation;
+import sg.edu.iss.test.service.ProductUsageInterface;
 
 @SpringBootTest
 class EtoeApplicationTests {
@@ -22,6 +25,14 @@ class EtoeApplicationTests {
 	CustomerRepository cusrepo;
 	@Autowired
 	RepairOrderRepository repairrepo;
+	
+	@Autowired
+	private ProductUsageInterface uservice;
+	
+	@Autowired
+	public void setProductUsage(ProductUsageImplementation usage) {
+		this.uservice=usage;
+	}
 	
 
 	@Test
@@ -54,9 +65,14 @@ class EtoeApplicationTests {
 		LocalDate d1=LocalDate.now();
 		rep1.setRepairDate(d1);
 		repairrepo.save(rep1);
+	}
 	
-
-	
+	@Test 
+	void test1() {
+		//List<RepairOrder> group=uservice.showAllRepairOrders();
+		LocalDate a= LocalDate.of(2020, 12, 15);
+		List<RepairOrder>group= uservice.showRepairOrderByDate(a,a);
+		System.out.println(group.size());
 	}
 	
 

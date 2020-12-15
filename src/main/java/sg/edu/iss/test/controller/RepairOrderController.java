@@ -1,5 +1,6 @@
 package sg.edu.iss.test.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,7 @@ public class RepairOrderController {
 		model.addAttribute("repairlist",group);
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
+
 		
 		return "recordrepair";
 	}
@@ -43,17 +45,26 @@ public class RepairOrderController {
 	public String showSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
-		ObjectInput f= new ObjectInput();
-		model.addAttribute("filter",f);
+
 		
 		return "recordrepairdetails";
 	}
 	
 	//link when filter of date is clicked
-	@RequestMapping(value="/filter",method=RequestMethod.POST)
+	@RequestMapping(value="/filter")
 	public String showFilteredRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
-		List<RepairOrder> group=uservice.showRepairOrderByDate(filter.getStart(), filter.getEnd());
+		
+		String start=filter.getStart();
+		//System.out.println(start);
+		String end=filter.getEnd();
+		//System.out.println(end);
+		LocalDate a= LocalDate.of(Integer.parseInt(start.split("-")[0]), Integer.parseInt(start.split("-")[1]), Integer.parseInt(start.split("-")[2]));
+		LocalDate b= LocalDate.of(Integer.parseInt(end.split("-")[0]), Integer.parseInt(end.split("-")[1]), Integer.parseInt(end.split("-")[2]));
+		
+		List<RepairOrder> group=uservice.showRepairOrderByDate(a, b);
+		System.out.println("how many group size= "+group.size());
 		model.addAttribute("repairlist",group);
+
 		
 		return "recordrepair";
 	}
@@ -68,22 +79,21 @@ public class RepairOrderController {
 	}
 	
 	//link for each edit repair to be clicked
-	@RequestMapping(value="/editrepair/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/edit/{id}",method=RequestMethod.GET)
 	public String editSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
 		return "recordrepairform";
 	}
 	
-	@RequestMapping(value="/saverepair",method=RequestMethod.POST)
-	public String saveRecord(@ModelAttribute("repair") RepairOrder rep,BindingResult bindingResult,Model model) {
-	
+	@RequestMapping(value="/save",method=RequestMethod.POST)
+	public String saveRecord(@ModelAttribute("${repairrecord}") RepairOrder rep,BindingResult bindingResult,Model model) {
 		uservice.saveRepairOrder(rep);
 		return "forward:/repair/showrecord";
 	}
 	
 	//link for each delete repair to be clicked
-	@RequestMapping(value="/deleterepair/{id}",method=RequestMethod.GET)
+	@RequestMapping(value="/delete/{id}",method=RequestMethod.GET)
 	public String deleteSpecificRecord(@PathVariable("id") Long id,Model model) {
 		RepairOrder a=uservice.findRepairOrderById(id);
 		uservice.deleteRepairOrder(a);
