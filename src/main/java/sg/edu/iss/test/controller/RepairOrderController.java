@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.ObjectInput;
+import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageInterface;
@@ -50,10 +51,14 @@ public class RepairOrderController {
 	public String showSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("productusage",uservice.findRepairOrderById(id).getProductUsageList());
+		ObjectInput f= new ObjectInput();
+		model.addAttribute("filter",f);
 
 		
 		return "recordrepairdetails";
 	}
+	
 	
 	//link when filter of date is clicked
 	@RequestMapping(value="/filter")
@@ -83,6 +88,15 @@ public class RepairOrderController {
 		return "recordrepair";
 	}
 	
+	//link when hidden search button is clicked
+	@RequestMapping(value="/detailsearch/{id}",method=RequestMethod.POST)
+	public String showUsageDetailRecord(@ModelAttribute("filter") ObjectInput filter,@PathVariable("id") Long id,BindingResult bindingResult,Model model) {
+		List<ProductUsage> group=uservice.showProductUsageByKeyword(filter.getKeyword());
+		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("productusage",group);
+		
+		return "recordrepairdetails";
+	}
 	//link for each edit repair to be clicked
 	@RequestMapping(value="/edit/{id}",method=RequestMethod.GET)
 	public String editSpecificRecord(@PathVariable("id") Long id,Model model) {

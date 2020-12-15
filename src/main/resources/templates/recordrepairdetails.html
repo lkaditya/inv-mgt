@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Record List</title>
+</head>
+<body>
+  <header th:insert="layout/layout.html :: header"></header>
+  <div th:replace="layout/layout.html :: menu" ></div>
+  <h1><a href="RepairDetails.html"
+				th:href="@{/repair/showrecord}">Record List</a>-><span th:utext="${repairrecord.repairId}"></span></h1>
+  	
+	<form action="" th:object="${filter}" th:action="@{/repair/detailsearch/}+${repairrecord.repairId}" method="post" class="form-horizontal">
+		<fieldset>
+			Search: <input type="text" th:field="*{keyword}" placeholder="search keyword here" required >
+		</fieldset>
+		<fieldset>
+		<button type="submit" hidden=true></button>
+		</fieldset>
+	</form>
+
+
+	<table>
+		<tr>
+			<th>ProductId</th>
+			<th>name</th>
+			<th>Usage Item</th>
+			
+			
+		</tr>
+		<tr th:each="prod:${productusage}">
+			<td><a href="RepairDetails.html"
+				th:href="@{/repair/showspecific/}+${prod.product.id}"><span th:utext="${prod.product.id}"></span></a></td>
+			<td th:text="${prod.product.productName}">ID</td>
+			<td th:text="${prod.quantity}">ID</td>
+		</tr>
+	</table>
+	
+	<div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>

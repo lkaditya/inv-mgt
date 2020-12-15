@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import sg.edu.iss.test.model.Customer;
+import sg.edu.iss.test.model.Product;
+import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.CustomerRepository;
+import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
 import sg.edu.iss.test.service.ProductUsageImplementation;
@@ -28,6 +31,9 @@ class EtoeApplicationTests {
 	
 	@Autowired
 	private ProductUsageInterface uservice;
+	
+	@Autowired
+	private ProductRepository prorepo;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
@@ -70,7 +76,22 @@ class EtoeApplicationTests {
 		LocalDate d2=LocalDate.of(2020, 12, 13);
 		rep2.setRepairDate(d2);
 		repairrepo.save(rep2);
+		
+		int i=1;
+		long l=i;
+		Product p= prorepo.findById((l)).get();
+		int i2=3;
+		long l2=i2;
+		Product q= prorepo.findById((l2)).get();
+		ProductUsage pu1= new ProductUsage(p, rep1, 10);
+		ProductUsage pu2= new ProductUsage(q, rep1, 5);
+		ProductUsage pu3= new ProductUsage(q, rep2, 7);
+		uservice.addProductUsage(pu1);
+		uservice.addProductUsage(pu2);
+		uservice.addProductUsage(pu3);
+		
 	}
+
 	
 	@Test 
 	void test1() {

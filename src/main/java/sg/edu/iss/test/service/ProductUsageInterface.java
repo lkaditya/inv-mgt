@@ -15,7 +15,7 @@ public interface ProductUsageInterface {
 	public List<ProductUsage> showAllProductUsage();
 	public List<ProductUsage> showRelevantProductUsage(RepairOrder rep);
 	public List<ProductUsage> showProductUsageByDate(Product product,LocalDate start);
-	public List<ProductUsage> showProductUsageByProduct(Product product);
+	public List<ProductUsage> showProductUsageByKeyword(String keyword);
 	
 	public void saveRepairOrder(RepairOrder rep);
 	public void deleteRepairOrder(RepairOrder rep);
