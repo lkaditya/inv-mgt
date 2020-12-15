@@ -9,7 +9,20 @@
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Listing</h1>
-  <table>
+
+  <form action="/catalogue/findByFilter"  method="post" style="float: left">
+    <span>Product Name</span>
+    <input type="text" name="productName" >
+    <span>Supplier Name</span>
+    <input type="text" name="supplierName" >
+    <span>Brand Name</span>
+    <input type="text" name="brandName" >
+    <input class="btn btn-default" type="submit" value="filter">
+  </form>
+
+  <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
+
+  <table  class="table table-bordered table-hover">
  <tr>
    <th>ID</th>
    <th>NAME</th>
@@ -18,9 +31,9 @@
    <th>SUPPLIER ADDRESS</th>
    <th>SUPPLIER PHONE</th>
    <th>SUPPLIER EMAIL</th>
-   <th>PRICE</th>
+   <th>BRAND</th>
  </tr>
- <tr th:each="product:${plist}">
+ <tr th:each="product:${products}">
    <td th:text="${product.id}">ID</td> 
    <td th:text="${product.productName}">ID</td>
    <td th:text="${product.productDescription}">ID</td>
@@ -28,9 +41,53 @@
    <td th:text="${product.supplier.supplierAddress}">ID</td>
    <td th:text="${product.supplier.phone}">ID</td>
    <td th:text="${product.supplier.email}">ID</td>
-   <td th:text="${product.price}">ID</td>
+   <td th:text="${product.brand.brandName}">ID</td>
  </tr>
 </table>
+  <div>How many to show?</div>
+  <a th:href="@{'/catalogue/findByFilter?size='+2+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}}">2</a>
+  <a th:href="@{'/catalogue/findByFilter?size='+5+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}}">5</a>
+  <a th:href="@{'/catalogue/findByFilter?size='+10+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}}">10</a>
+  <nav aria-label="Page navigation">
+
+    <ul  class="pagination">
+
+      <li>
+        <a th:if="${products.getNumber() ne 0}" th:href="@{'/catalogue/findByFilter?page='+${products.getNumber()-1}+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}"  aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+
+        <a th:if="${products.getNumber() eq 0}" th:href="@{'/catalogue/findByFilter?page='+0+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}"  aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+
+
+      <li th:unless="${pageCount eq -1}" class="pagination" th:each="i : ${#numbers.sequence(0, pageCount)}">
+        <a th:href="@{'/catalogue/findByFilter?page='+${i}+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}" th:text="${i+1}"></a>
+
+      </li>
+
+      <li th:if="${pageCount eq -1}" class="pagination" >
+        <a th:href="@{'/catalogue/findByFilter?page='+0+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}" th:utext="${1}" ></a>
+
+      </li>
+
+      <li>
+        <a th:if="${products.getNumber() eq (pageCount)}" th:href="@{'/catalogue/findByFilter?page='+${products.getNumber()}+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}"   aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+
+        <a th:if="${products.getNumber() ne (pageCount)}" th:href="@{'/catalogue/findByFilter?page='+${products.getNumber()+1}+'&productName='+${condition.productName}+'&supplierName='+${condition.supplierName}+'&brandName='+${condition.brandName}+'&size='+${size}}"   aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+        </a>
+      </li>
+
+
+    </ul>
+  </nav>
+
+
   <div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>
