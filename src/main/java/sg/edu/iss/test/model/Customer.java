@@ -20,13 +20,15 @@ public class Customer {
 	private int mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
+	
 	public Customer() {
 		super();
 	}
+	
 	public Customer(String name, int mobile) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
-}
-
+	}
+	
 }
