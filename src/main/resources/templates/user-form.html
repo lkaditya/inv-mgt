@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Admin Form</title> 
+<title>User Form</title> 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -10,21 +10,24 @@
 	<header th:insert="layout/layout.html :: header"> </header>
 	<div th:replace="layout/layout.html :: menu"></div>
 
-	<h1>Admin Form</h1>
-	<form action="#" th:object="${admin}" th:action="@{/admin/saveadmin}"
+	<h1>User Form</h1>
+	<form action="#" th:object="${user}" th:action="@{/admin/saveuser}"
 		method="post">
 		<fieldset>
 			<input type="hidden" th:field="*{id}">
 		</fieldset>
 		<fieldset>
-			Admin Name <input type="text" th:field="*{userName}">
+			User Name <input type="text" th:field="*{userName}">
 			<p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
 		</fieldset>
 		<fieldset>
 			Password <input type="password" th:field="*{password}">
 			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 		</fieldset>
-
+		<fieldset>
+			RoleType(Capital) <input type="text" th:field="*{role}">
+			<p th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></p>
+		</fieldset>
 		<fieldset>
 			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
 				type="reset" value="Reset" />
