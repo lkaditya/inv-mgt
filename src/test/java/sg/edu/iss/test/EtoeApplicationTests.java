@@ -64,10 +64,10 @@ class EtoeApplicationTests {
 	void loadRepairOrder() {
 		RepairOrder rep1=new RepairOrder();
 		RepairOrder rep2=new RepairOrder();
-		Customer a= cusrepo.findCustomerByName("Alpha").get(0);
-		Customer b= cusrepo.findCustomerByName("Beta").get(0);
-		Customer c= cusrepo.findCustomerByName("Charlie").get(0);
-		Customer d= cusrepo.findCustomerByName("Delta").get(0);
+		Customer a= cusrepo.findCustomerByName("Alpha");
+		Customer b= cusrepo.findCustomerByName("Beta");
+		Customer c= cusrepo.findCustomerByName("Charlie");
+		Customer d= cusrepo.findCustomerByName("Delta");
 		rep1.setCustomer(a);
 		LocalDate d1=LocalDate.now();
 		rep1.setRepairDate(d1);

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Admins Listing</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:insert="layout/layout.html :: header"> </header>
+	<div th:replace="layout/layout.html :: menu"></div>
+
+	<h1>Admins Listing</h1>
+	<!-- Add Hyperlink -->
+	<a href="AddAdmin.html" th:href="@{/admin/addadmin}"class="btn btn-primary btn-lg" role="button">Add Admin</a>
+
+	<h2>Admin List</h2>
+	<table class="table table-bordered table-hover">
+		<tr >
+		
+			<th >Admin Id</th>
+			<th >Admin Name</th>
+			<th >Password</th>
+			<th >Edit Admin</th>   
+			<th >Delete Admin</th>   
+			
+		</tr>
+		<tr th:each=" admin:${admins}">
+			<td th:text=${admin.id}>Id</td>
+			<td th:text=${admin.userName}>Admin Name</td>
+			<td th:text=${admin.password}>Password</td>
+			<td><a href="EditAdmin.html"
+				th:href="@{/admin/editadmin/}+${admin.id}">Edit</a></td>
+			<td><a href="DeleteAdmin.html"
+				th:href="@{/admin/deleteadmin/}+${admin.id}">Delete</a></td>
+		</tr>
+	</table>
+ <br/>
+	<div th:replace="layout/layout.html :: footer"></div>
+	
+</body>
+</html>

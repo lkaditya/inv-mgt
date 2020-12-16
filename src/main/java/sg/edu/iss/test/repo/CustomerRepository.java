@@ -8,5 +8,5 @@ import sg.edu.iss.test.model.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
-	List<Customer>findCustomerByName(String name);
+	public Customer findCustomerByName(String name);
 }
