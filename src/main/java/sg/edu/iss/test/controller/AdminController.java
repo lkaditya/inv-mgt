@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
@@ -22,106 +23,59 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.edu.iss.test.model.Admin;
-import sg.edu.iss.test.model.Mechanic;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
-import sg.edu.iss.test.service.AdminServiceImplementation;
-import sg.edu.iss.test.service.MechanicServiceImplementation;
+import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.ProductServiceImplementation;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
+import sg.edu.iss.test.service.UserServiceImplementation;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Autowired
-	private MechanicServiceImplementation mechanicServices;
+
 	@Autowired
 	private SupplierServiceImplementation supplierServices;
 	@Autowired
-	private AdminServiceImplementation adminServices;
+	private UserServiceImplementation userServices;
 	@Autowired
 	private ProductServiceImplementation productServices;
 
-	@RequestMapping(value = "/viewmechanics")
-	public String listMechanic(Model model) {
-		model.addAttribute("mechanics", mechanicServices.findAllMechanics());
-		return "mechanics";
-	}  
-	@RequestMapping(value = "/addmechanic")
-	public String addMechanic(Model model) {
-		model.addAttribute("mechanic", new Mechanic());
-		return "mechanic-form";
+	@RequestMapping("/viewusers")
+	public String ListUsers(Model model) {
+		model.addAttribute("users", userServices.findAllUsers());
+		return "users";
 	}
-	@RequestMapping(value = "/editmechanic/{id}")
-	public String editMechanic(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("mechanic", mechanicServices.findMechanicById(id));
-		return "mechanic-form";
+
+	@RequestMapping(value = "/adduser")
+	public String addUser(Model model) {
+		model.addAttribute("user", new User());
+		return "user-form";
+	}
+
+	@RequestMapping(value = "/edituser/{id}")
+	public String editUser(@PathVariable("id") Long id, Model model) {
+		User user = userServices.findUserById(id);
+		model.addAttribute("user", user);
+		return "user-form";
 	}
 	
-	@RequestMapping(value = "/savemechanic")
-	public String saveMechanic(@ModelAttribute("mechanic") @Valid Mechanic mechanic, 
+	@RequestMapping(value = "/saveuser")
+	public String saveUser(@ModelAttribute("user") @Valid User user, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
-			return "mechanic-form";
+			return "user-form";
 		}
-		mechanicServices.saveMechanic(mechanic);
-		return "forward:/admin/viewmechanics";
-	}
-	@RequestMapping(value = "/deletemechanic/{id}")
-	public String deleteMechanic(@PathVariable("id") Long id) {
-		Mechanic mechanic = mechanicServices.findMechanicById(id);
-		mechanicServices.deleteMechanic(mechanic);
-		return "forward:/admin/viewmechanics";
-	}
-	
-//	@RequestMapping(value = "/list")
-//	public String list(Model model) {
-//		model.addAttribute("mechanics", mechanicServices.findAllMechanics());
-//		return "mechanics";
-//	} 
-//	
-	@RequestMapping("/viewadmins")
-	public String ListAdmins(Model model) {
-		model.addAttribute("admins", adminServices.findAllAdmins());
-		return "admins";
+		 userServices.saveUser(user);
+		return "forward:/admin/viewusers";
 	}
 
-	@RequestMapping(value = "/addadmin")
-	public String addAdmin(Model model) {
-		model.addAttribute("admin", new Admin());
-		return "admin-form";
-	}
-	
-//	@RequestMapping(value = "/edit/{id}")
-//	public String editMechanic(@PathVariable("id") Long id, Model model) {
-//		model.addAttribute("member", mechanicServices.findMechanicById(id));
-//		return "mechanic-form";
-//	}
-//	
-	@RequestMapping(value = "/editadmin/{id}")
-	public String editadmin(@PathVariable("id") Long id, Model model) {
-		Admin admin = adminServices.findAdminById(id);
-		model.addAttribute("admin", admin);
-		return "admin-form";
-	}
-	
-	@RequestMapping(value = "/saveadmin")
-	public String saveAdmin(@ModelAttribute("admin") @Valid Admin admin, 
-			BindingResult bindingResult,  Model model) {
-		if (bindingResult.hasErrors()) {
-			return "admin-form";
-		}
-		adminServices.saveAdmin(admin);
-		return "forward:/admin/viewadmins";
-	}
-
-
-	@RequestMapping(value = "/deleteadmin/{id}")
-	public String deleteadmin(@PathVariable("id") Long id) {
-		Admin admin = adminServices.findAdminById(id);
-		adminServices.deleteAdmin(admin);
-		return "redirect:/admin/viewadmins";
+	@RequestMapping(value = "/deleteuser/{id}")
+	public String deleteuser(@PathVariable("id") Long id) {
+		User user = userServices.findUserById(id);
+		userServices.deleteUser(user);
+		return "forward:/admin/viewusers";
 	}
     
 	
