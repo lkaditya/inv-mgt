@@ -9,25 +9,32 @@
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Inventory Listing</h1>
-    <h3 	
-  		th:utext="'Welcome '+${session.usession.userName}" 
-  		style ="text-align:right">Welcome</h3>
+
   <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
 
   <table class="table table-bordered table-hover">
  <tr>
-   <th>ID</th>
-   <th>QUANTITY ON HAND</th>
-   <th>WHOLESALE</th>
-   <th>PRICE OF RETAIL</th>   
-   <th>PRICE OF PARTNER</th>
+   <th>Inventory Id</th>
+   <th>Quantity on hand</th>
+   <th>Wholesale</th>
+   <th>Price of retail</th>   
+   <th>Price of partner</th>
+   <th>Edit Inventory</th>
+   <th>Delete Inventory</th>
+   <th>Add to return list</th>
  </tr>
  <tr th:each="inventory:${ilist}">
    <td th:text="${inventory.id}">ID</td> 
    <td th:text="${inventory.qoh}">ID</td>
    <td th:text="${inventory.wholesale}">ID</td>
    <td th:text="${inventory.por}">ID</td>
-   <td th:text="${inventory.pop}">ID</td>      
+   <td th:text="${inventory.pop}">ID</td>
+   <td><a href="Editinventory.html"
+				th:href="@{/inventory/edit/}+${inventory.id}">Edit</a></td>
+   <td><a href="Deleteinventory.html"
+				th:href="@{/inventory/delete/}+${inventory.id}">Delete</a></td>  
+   <td><a href="Returninventory.html"
+				th:href="@{/inventory/return/}+${inventory.id}">Return</a></td>      
  </tr>
 </table>
   <div th:replace="layout/layout.html :: footer"></div>

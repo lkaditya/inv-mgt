@@ -11,6 +11,7 @@ public interface InventoryInterface {
 	public List<Inventory> list();
 	public Inventory findInventoryById(Long id);
 	public void deleteInventory(Inventory inventory);
+	void returnInventory(Inventory inventory);
 	
 
 }

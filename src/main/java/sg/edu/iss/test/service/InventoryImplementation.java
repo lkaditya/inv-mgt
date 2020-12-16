@@ -48,7 +48,11 @@ public class InventoryImplementation implements InventoryInterface  {
 	}
 
 
-
+	@Override
+	public void returnInventory(Inventory inventory) {
+		// TODO Auto-generated method stub
+		
+	}
 
 	
 	
