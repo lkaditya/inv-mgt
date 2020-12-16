@@ -49,5 +49,5 @@ public class UserImplementation implements UserInterface {
 	public User findByName(String name) {
 		return urepo.findUserByUserName(name);
 	}
-
+    
 }
