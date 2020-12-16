@@ -45,12 +45,14 @@ public class AdminController {
 	@RequestMapping("/viewusers")
 	public String ListUsers(Model model) {
 		model.addAttribute("users", userServices.findAllUsers());
+		model.addAttribute("control","user");
 		return "users";
 	}
 
 	@RequestMapping(value = "/adduser")
 	public String addUser(Model model) {
 		model.addAttribute("user", new User());
+		model.addAttribute("control","user");
 		return "user-form";
 	}
 
@@ -58,6 +60,7 @@ public class AdminController {
 	public String editUser(@PathVariable("id") Long id, Model model) {
 		User user = userServices.findUserById(id);
 		model.addAttribute("user", user);
+		model.addAttribute("control","user");
 		return "user-form";
 	}
 	
@@ -65,6 +68,7 @@ public class AdminController {
 	public String saveUser(@ModelAttribute("user") @Valid User user, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
+			model.addAttribute("control","user");
 			return "user-form";
 		}
 		 userServices.saveUser(user);
@@ -82,16 +86,19 @@ public class AdminController {
 	@RequestMapping(value = "/viewsuppliers")
 	public String listsuppliers(Model model) {
 		model.addAttribute("suppliers", supplierServices.findAllSuppliers());
+		model.addAttribute("control","supplier");
 		return "suppliers";
 	}
 	@RequestMapping(value = "/addsupplier")
 	public String addSupplier(Model model) {
 		model.addAttribute("supplier", new Supplier());
+		model.addAttribute("control","supplier");
 		return "supplier-form";
 	}
 	@RequestMapping(value = "/editsupplier/{id}")
 	public String editSupplier(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("supplier", supplierServices.findSupplierById(id));
+		model.addAttribute("control","supplier");
 		return "supplier-form";
 	}
 	@RequestMapping(value = "/savesupplier")

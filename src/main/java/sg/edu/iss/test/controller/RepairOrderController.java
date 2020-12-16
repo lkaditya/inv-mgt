@@ -42,7 +42,7 @@ public class RepairOrderController {
 		model.addAttribute("repairlist",group);
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
-		//model.addAttribute("highlight","active");
+		model.addAttribute("control","record");
 
 		
 		return "recordrepair";
@@ -55,6 +55,7 @@ public class RepairOrderController {
 		model.addAttribute("productusage",uservice.findRepairOrderById(id).getProductUsageList());
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
+		model.addAttribute("control","record");
 
 		
 		return "recordrepairdetails";
@@ -75,6 +76,7 @@ public class RepairOrderController {
 		List<RepairOrder> group=uservice.showRepairOrderByDate(a, b);
 		System.out.println("how many group size= "+group.size());
 		model.addAttribute("repairlist",group);
+		model.addAttribute("control","record");
 
 		
 		return "recordrepair";
@@ -85,6 +87,7 @@ public class RepairOrderController {
 	public String showRelevantRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
 		List<RepairOrder> group=uservice.showRepairOrderByKeyword(filter.getKeyword());
 		model.addAttribute("repairlist",group);
+		model.addAttribute("control","record");
 		
 		return "recordrepair";
 	}
@@ -95,6 +98,7 @@ public class RepairOrderController {
 		List<ProductUsage> group=uservice.showProductUsageByKeyword(filter.getKeyword());
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
 		model.addAttribute("productusage",group);
+		model.addAttribute("control","record");
 		
 		return "recordrepairdetails";
 	}
@@ -103,6 +107,7 @@ public class RepairOrderController {
 	public String editSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("control","record");
 		return "recordrepairform";
 	}
 	

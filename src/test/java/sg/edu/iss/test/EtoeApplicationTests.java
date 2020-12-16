@@ -46,7 +46,8 @@ class EtoeApplicationTests {
 
 	@Test
 	void contextLoads() {
-		User u1 = new User("dilbert", "password", RoleType.ADMIN);
+		//User u1 = new User("dilbert", "password", RoleType.ADMIN);
+		User u1= new User("frank", "password", RoleType.ADMIN); 
 		urepo.save(u1);
 		
 	}

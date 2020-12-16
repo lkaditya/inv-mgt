@@ -9,31 +9,18 @@
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Record List</h1>
-  
-  	<form action="" th:object="${filter}" th:action="@{/repair/filter}"
+
+	<form action="" th:object="${filter}" th:action="@{/repair/filter}"
 		method="post" class="form-horizontal">
-		<table>
-		<tr>
-		<td>
-		<fieldset>
-			StartDate: <input type="text" th:field="*{start}" placeholder="yyyy-MM-dd" required >
-		</fieldset>
-		</td>
-		<td>
-		<fieldset>
-			EndDate: <input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required >
-		</fieldset>	
-		</td>
-		<td>	
-		<fieldset>
-			<button type="submit">Filter</button>
-		</fieldset>
-		</td>
-		</tr>
-		</table>
+		<span> StartDate: </span> 
+		<input type="text" th:field="*{start}"
+			placeholder="yyyy-MM-dd" required> 
+		<span> EndDate: </span> 
+		<input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required>
+		<button type="submit">Filter</button>
 	</form>
-	
-	<form action="" th:object="${filter}" th:action="@{/repair/search}" method="post" class="form-horizontal">
+
+	<form action="" th:object="${filter}" th:action="@{/repair/search}" method="post" class="form-horizontal" style="float: right">
 		<fieldset>
 			Search: <input type="text" th:field="*{keyword}" placeholder="search keyword here" required >
 		</fieldset>
@@ -43,7 +30,7 @@
 	</form>
 
 
-	<table>
+	<table class="table table-bordered table-hover">
 		<tr>
 			<th>RepairOrderId</th>
 			<th>Customer</th>
