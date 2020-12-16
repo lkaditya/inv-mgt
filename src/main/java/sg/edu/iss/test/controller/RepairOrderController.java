@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.service.CustomerInterface;
 import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageInterface;
 
@@ -23,8 +24,8 @@ import sg.edu.iss.test.service.ProductUsageInterface;
 public class RepairOrderController {
 	
 	//To-Do: put the customer interface for editting the the repair order
-	//@Autowired
-	//private CustomerInterface custservice;
+	@Autowired
+	private CustomerInterface custservice;
 	
 	@Autowired
 	private ProductUsageInterface uservice;
