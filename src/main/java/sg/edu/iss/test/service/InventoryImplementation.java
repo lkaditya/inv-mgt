@@ -1,6 +1,7 @@
 package sg.edu.iss.test.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,31 +31,39 @@ public class InventoryImplementation implements InventoryInterface  {
 	}
 
 	@Override
-	public Inventory findInventoryById(Long id) {
+	public Optional<Inventory> findInventoryById(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		Optional<Inventory> byId = irepo.findById(id);
+		return byId;
 	}
 
-	@Override
-	public void deleteInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void saveInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	@Override
 	public void returnInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteInventory(long productId) {
+		prepo.deleteById(productId);
+//		irepo.deleteById(inventoryId);
 		
 	}
 
-	
+	@Transactional
+	public void saveInventory(Inventory inventory) {
+		// TODO Auto-generated method stub
+		irepo.save(inventory);
+	}
+//
+//
+//	@Override
+//	public void returnInventory(Long inventory) {
+//		// TODO Auto-generated method stub
+//		irepo.deleteById(inventory.getId());
+
+
 	
 
 }

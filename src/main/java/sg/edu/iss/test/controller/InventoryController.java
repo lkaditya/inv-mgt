@@ -1,6 +1,7 @@
 package sg.edu.iss.test.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -43,7 +44,7 @@ public class InventoryController {
 		return "redirect:/inventory/list";
 	}
 
-	@RequestMapping(value = "/list",method=RequestMethod.GET)
+	@RequestMapping(value = "/list")
 	public String list(Model model) {
 		List<Inventory> ilist = iservice.list();
 		model.addAttribute("ilist", ilist);
@@ -53,20 +54,22 @@ public class InventoryController {
 	
 	@RequestMapping(value= "/edit/{id}")
 	public String editForm(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("inventory", 
-				iservice.findInventoryById(id));
+		Optional<Inventory> inventoryById = iservice.findInventoryById(id);
+		model.addAttribute("inventory", inventoryById
+				);
 		return "inventoryform";
 	}
 	
-	@RequestMapping(value = "/delete/{id}")
-	public String deleteInventory(@PathVariable("id") Long id) {
-		iservice.deleteInventory(iservice.findInventoryById(id));
-		return "forward:/inventory/list";
+	@RequestMapping(value = "/delete")
+	public String deleteInventory(Long productID) {
+
+		iservice.deleteInventory(productID);
+		return "redirect:/inventory/list";
 	}
-	
-	@RequestMapping(value = "/return/{id}")
-	public String returnInventory(@PathVariable("id") Long id) {
-		iservice.returnInventory(iservice.findInventoryById(id));
-		return "forward:/returned/list";
-	}
+//
+//	@RequestMapping(value = "/return/{id}")
+//	public String returnInventory(@PathVariable("id") Long id) {
+//		iservice.returnInventory(iservice.findInventoryById(id));
+//		return "forward:/returned/list";
+//	}
 }
