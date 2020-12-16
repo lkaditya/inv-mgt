@@ -1,7 +1,7 @@
 package sg.edu.iss.test;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +34,9 @@ class EtoeApplicationTests {
 	
 	@Autowired
 	private ProductRepository prorepo;
+	
+	@Autowired
+	private UserRepository userrepo;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
@@ -97,7 +100,8 @@ class EtoeApplicationTests {
 	void test1() {
 		//List<RepairOrder> group=uservice.showAllRepairOrders();
 		//LocalDate a= LocalDate.of(2020, 12, 15);
-		List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
+		//List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
+		ArrayList<User>group= (ArrayList<User>)userrepo.findAll();
 		System.out.println(group.size());
 	}
 	
