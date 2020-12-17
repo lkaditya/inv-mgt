@@ -13,6 +13,7 @@ import sg.edu.iss.test.service.UserImplementation;
 import sg.edu.iss.test.service.UserInterface;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired 

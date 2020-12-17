@@ -14,6 +14,7 @@ import sg.edu.iss.test.service.CustomerImplementation;
 import sg.edu.iss.test.service.CustomerInterface;
 
 @Controller
+@RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
