@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Returned;
+import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.ReturnedRepository;
 
@@ -21,6 +22,9 @@ public class ReturnedImplementation implements ReturnedInterface{
 	
 	@Autowired
 	ReturnedRepository rrepo;
+	
+	@Autowired
+	InventoryRepository irepo;
 
 	@Transactional
 	public void save(Returned returned) {
@@ -50,6 +54,15 @@ public class ReturnedImplementation implements ReturnedInterface{
 		return rrepo.findById(id).get();
 	}
 
+
+	@Override
+	public void update( Long qt, Long Id) {
+		Inventory inventory = irepo.findById(Id).get();
+		inventory.setQoh(qt);
+		irepo.save(inventory);
+			
+	}
+	
 
 	
 
