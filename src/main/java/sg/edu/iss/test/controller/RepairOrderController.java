@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.ObjectInput;
+import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.service.CustomerInterface;
 import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageInterface;
 
@@ -22,8 +24,8 @@ import sg.edu.iss.test.service.ProductUsageInterface;
 public class RepairOrderController {
 	
 	//To-Do: put the customer interface for editting the the repair order
-	//@Autowired
-	//private CustomerInterface custservice;
+	@Autowired
+	private CustomerInterface custservice;
 	
 	@Autowired
 	private ProductUsageInterface uservice;
@@ -40,7 +42,7 @@ public class RepairOrderController {
 		model.addAttribute("repairlist",group);
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
-		//model.addAttribute("highlight","active");
+		model.addAttribute("control","record");
 
 		
 		return "recordrepair";
@@ -50,10 +52,15 @@ public class RepairOrderController {
 	public String showSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("productusage",uservice.findRepairOrderById(id).getProductUsageList());
+		ObjectInput f= new ObjectInput();
+		model.addAttribute("filter",f);
+		model.addAttribute("control","record");
 
 		
 		return "recordrepairdetails";
 	}
+	
 	
 	//link when filter of date is clicked
 	@RequestMapping(value="/filter")
@@ -69,6 +76,7 @@ public class RepairOrderController {
 		List<RepairOrder> group=uservice.showRepairOrderByDate(a, b);
 		System.out.println("how many group size= "+group.size());
 		model.addAttribute("repairlist",group);
+		model.addAttribute("control","record");
 
 		
 		return "recordrepair";
@@ -79,15 +87,27 @@ public class RepairOrderController {
 	public String showRelevantRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
 		List<RepairOrder> group=uservice.showRepairOrderByKeyword(filter.getKeyword());
 		model.addAttribute("repairlist",group);
+		model.addAttribute("control","record");
 		
 		return "recordrepair";
 	}
 	
+	//link when hidden search button is clicked
+	@RequestMapping(value="/detailsearch/{id}",method=RequestMethod.POST)
+	public String showUsageDetailRecord(@ModelAttribute("filter") ObjectInput filter,@PathVariable("id") Long id,BindingResult bindingResult,Model model) {
+		List<ProductUsage> group=uservice.showProductUsageByKeyword(filter.getKeyword());
+		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("productusage",group);
+		model.addAttribute("control","record");
+		
+		return "recordrepairdetails";
+	}
 	//link for each edit repair to be clicked
 	@RequestMapping(value="/edit/{id}",method=RequestMethod.GET)
 	public String editSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
+		model.addAttribute("control","record");
 		return "recordrepairform";
 	}
 	

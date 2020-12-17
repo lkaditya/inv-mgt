@@ -33,6 +33,7 @@ public class CatalogueController {
 	public String showForm(Model model) {
 		Product product = new Product();
 		model.addAttribute("product", product);
+		model.addAttribute("control", "product");
 		return "catalogueform";
 	}
 	
@@ -59,6 +60,7 @@ public class CatalogueController {
 		model.addAttribute("pageCount",productByFliter.getTotalPages()-1);
 		model.addAttribute("condition", productQuery);
 		model.addAttribute("size", size);
+		model.addAttribute("control", "product");
 		return "catalogue";
 	}
 }

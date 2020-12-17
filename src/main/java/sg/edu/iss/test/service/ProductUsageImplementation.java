@@ -52,9 +52,8 @@ public class ProductUsageImplementation implements ProductUsageInterface{
 	}
 
 	@Override
-	public List<ProductUsage> showProductUsageByProduct(Product product) {
-		long productId=product.getId();
-		return produserepo.findAllProductUsageByProduct(productId);
+	public List<ProductUsage> showProductUsageByKeyword(String keyword) {
+		return produserepo.findProductUsageByKeyword(keyword);
 	}
 
 	@Override
