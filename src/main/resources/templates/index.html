@@ -15,7 +15,7 @@
   <table class="table table-bordered table-hover">
  <tr>
    <th>Inventory Id</th>
-   <th>Product Id</th>
+   <th>Product Name</th>
    <th>Quantity on hand</th>
    <th>Wholesale</th>
    <th>Price of retail</th>   
@@ -25,7 +25,7 @@
  </tr>
  <tr th:each="inventory:${ilist}">
    <td th:text="${inventory.id}">ID</td>
-   <td th:text="${inventory.product.id}">ID</td>
+   <td th:text="${inventory.product.productName}">ID</td>
    <td th:text="${inventory.qoh}">ID</td>
    <td th:text="${inventory.wholesale}">ID</td>
    <td th:text="${inventory.por}">ID</td>

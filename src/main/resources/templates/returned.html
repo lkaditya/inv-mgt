@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Returned Page</title>
+</head>
+<body>
+  <header th:insert="layout/layout.html :: header"></header>
+  <div th:replace="layout/layout.html :: menu" ></div>
+  <h1>Returned Listing</h1>
+
+  <a th:href="@{/returned/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
+
+  <table class="table table-bordered table-hover">
+ <tr>
+   <th>Returned Id</th>
+   <th>Product Name</th>
+   <th>Quantity</th>
+   <th>Reason</th>
+   <th>Supplier</th>   
+   <th>Actions</th>
+ </tr>
+ <tr th:each="returned:${rlist}">
+   <td th:text="${returned.id}">ID</td>
+   <td th:text="${returned.product.productName}">ID</td>
+   <td th:text="${returned.qt}">ID</td>
+   <td th:text="${returned.reason}">ID</td>
+   <td th:text="${returned.supplier.supplierName}">ID</td>
+   <td><a href="Editreturned.html"
+		th:href="@{/returned/edit/}+${returned.id}">Edit /</a>
+		<a href="Editreturned.html"
+   		th:href="@{/returned/delete/}+${returned.id}">Delete </a>
+	</td>
+  
+ </tr>
+</table>
+  <div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>

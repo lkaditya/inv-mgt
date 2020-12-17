@@ -2,6 +2,7 @@ package sg.edu.iss.test.model;
 
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,17 +23,22 @@ public class Returned {
 	//quantity
 	private long qt;
 	private String reason;	
+    @ManyToOne(cascade = {CascadeType.ALL})  
+	private Product product;
 	@OneToMany(mappedBy = "returned")
-	private Collection <Product> products;
-    @ManyToOne  
+	private Collection <Inventory> inventories;
+    @ManyToOne(cascade = {CascadeType.ALL})  
 	private Supplier supplier;
-	public Returned(long qt, String reason, Collection<Product> products, Supplier supplier) {
+	public Returned(long qt, String reason, Product product, Collection<Inventory> inventories, Supplier supplier) {
 		super();
 		this.qt = qt;
 		this.reason = reason;
-		this.products = products;
+		this.product = product;
+		this.inventories = inventories;
 		this.supplier = supplier;
 	}
+    
+
     
     
 }
