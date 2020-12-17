@@ -42,5 +42,11 @@ public class UserController {
 			return "login";
 	}
 	
+	@RequestMapping(path = "/logout")
+	public String logout() {
+		return "logout";
+	}
+	
+	
 	
 }
