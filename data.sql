@@ -58,5 +58,11 @@ INSERT INTO product VALUES(8,"Engine","this is attached to the bottom of the eng
 INSERT INTO product VALUES(9,"Engine","this consists of pistons that are connected to the crankshaft via connecting rods and set it in motion. ","Rotating assembly",NULL,"Turbocharger gasket",9,9,NULL,9);
 INSERT INTO product VALUES(10,"Engine","this includes a camshaft with valves and their actuators, pulleys, and a chain or a belt.","Valvetrain",NULL,"Valve stem seals ",10,10,NULL,10);
 
+INSERT INTO `inventory`.`customer` VALUES (1, 98765431, 'Esther');
+INSERT INTO `inventory`.`customer` VALUES (2, 98765432, 'Suria');
+INSERT INTO `inventory`.`customer` VALUES (3, 98765433, 'Tin');
+INSERT INTO `inventory`.`customer` VALUES (4, 98765434, 'Cher Wah');
+INSERT INTO `inventory`.`customer` VALUES (5, 98765435, 'Yuan Kwan');
+INSERT INTO `inventory`.`customer` VALUES (6, 98765436, 'Liu Fan');
 
 
