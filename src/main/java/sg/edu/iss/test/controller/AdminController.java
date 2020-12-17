@@ -28,7 +28,7 @@ import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.ProductServiceImplementation;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
-import sg.edu.iss.test.service.UserServiceImplementation;
+import sg.edu.iss.test.service.UserImplementation;
 
 @Controller
 @RequestMapping("/admin")
@@ -38,13 +38,13 @@ public class AdminController {
 	@Autowired
 	private SupplierServiceImplementation supplierServices;
 	@Autowired
-	private UserServiceImplementation userServices;
+	private UserImplementation userServices;
 	@Autowired
 	private ProductServiceImplementation productServices;
 
 	@RequestMapping("/viewusers")
 	public String ListUsers(Model model) {
-		model.addAttribute("users", userServices.findAllUsers());
+		model.addAttribute("users", userServices.listAllUser());
 		model.addAttribute("control","user");
 		return "users";
 	}
@@ -58,7 +58,7 @@ public class AdminController {
 
 	@RequestMapping(value = "/edituser/{id}")
 	public String editUser(@PathVariable("id") Long id, Model model) {
-		User user = userServices.findUserById(id);
+		User user = userServices.findById(id);
 		model.addAttribute("user", user);
 		model.addAttribute("control","user");
 		return "user-form";
@@ -71,13 +71,13 @@ public class AdminController {
 			model.addAttribute("control","user");
 			return "user-form";
 		}
-		 userServices.saveUser(user);
+		 userServices.updateUser(user);
 		return "forward:/admin/viewusers";
 	}
 
 	@RequestMapping(value = "/deleteuser/{id}")
 	public String deleteuser(@PathVariable("id") Long id) {
-		User user = userServices.findUserById(id);
+		User user = userServices.findById(id);
 		userServices.deleteUser(user);
 		return "forward:/admin/viewusers";
 	}

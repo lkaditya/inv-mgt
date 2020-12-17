@@ -50,4 +50,7 @@ public class UserImplementation implements UserInterface {
 		return urepo.findUserByUserName(name);
 	}
     
+	public User findById(Long id) {
+		return urepo.findUserById(id);
+	}
 }
