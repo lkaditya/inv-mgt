@@ -1,17 +1,20 @@
 package sg.edu.iss.test;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import sg.edu.iss.test.model.Customer;
+import sg.edu.iss.test.model.Product;
+import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.CustomerRepository;
+import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
 import sg.edu.iss.test.service.ProductUsageImplementation;
@@ -30,6 +33,12 @@ class EtoeApplicationTests {
 	private ProductUsageInterface uservice;
 	
 	@Autowired
+	private ProductRepository prorepo;
+	
+	@Autowired
+	private UserRepository userrepo;
+	
+	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
 		this.uservice=usage;
 	}
@@ -37,7 +46,8 @@ class EtoeApplicationTests {
 
 	@Test
 	void contextLoads() {
-		User u1 = new User("dilbert", "password", RoleType.ADMIN);
+		//User u1 = new User("dilbert", "password", RoleType.ADMIN);
+		User u1= new User("frank", "password", RoleType.ADMIN); 
 		urepo.save(u1);
 		
 	}
@@ -70,13 +80,29 @@ class EtoeApplicationTests {
 		LocalDate d2=LocalDate.of(2020, 12, 13);
 		rep2.setRepairDate(d2);
 		repairrepo.save(rep2);
+		
+		int i=1;
+		long l=i;
+		Product p= prorepo.findById((l)).get();
+		int i2=3;
+		long l2=i2;
+		Product q= prorepo.findById((l2)).get();
+		ProductUsage pu1= new ProductUsage(p, rep1, 10);
+		ProductUsage pu2= new ProductUsage(q, rep1, 5);
+		ProductUsage pu3= new ProductUsage(q, rep2, 7);
+		uservice.addProductUsage(pu1);
+		uservice.addProductUsage(pu2);
+		uservice.addProductUsage(pu3);
+		
 	}
+
 	
 	@Test 
 	void test1() {
 		//List<RepairOrder> group=uservice.showAllRepairOrders();
 		//LocalDate a= LocalDate.of(2020, 12, 15);
-		List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
+		//List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
+		ArrayList<User>group= (ArrayList<User>)userrepo.findAll();
 		System.out.println(group.size());
 	}
 	
