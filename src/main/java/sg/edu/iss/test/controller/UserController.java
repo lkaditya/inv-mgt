@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.test.model.User;
-import sg.edu.iss.test.service.UserImplementation;
-import sg.edu.iss.test.service.UserInterface;
+import sg.edu.iss.test.service.UserService;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
 	@Autowired 
-	UserInterface uservice;
+	UserService uservice;
 	
 	@Autowired
-	public void setUserImplementation(UserImplementation uimpl) {
+	public void setUserImplementation(UserService uimpl) {
 		this.uservice = uimpl;
 	}
 	
