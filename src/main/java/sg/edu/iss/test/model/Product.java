@@ -1,5 +1,6 @@
 package sg.edu.iss.test.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.*;
@@ -29,8 +30,11 @@ public class Product {
 	private Brand brand;
     @ManyToOne(cascade = {CascadeType.ALL})  
 	private Returned returned;
+	@OneToMany(mappedBy = "product")
+	private Collection <Cart> carts;
 	public Product(String productName, String productDescription, String productType, String productCategory,
-			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand, Returned returned) {
+			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand, Returned returned,
+			Collection<Cart> carts) {
 		super();
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -41,6 +45,7 @@ public class Product {
 		this.supplier = supplier;
 		this.brand = brand;
 		this.returned = returned;
+		this.carts = carts;
 	}
-
+	
 }

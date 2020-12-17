@@ -12,7 +12,7 @@ public interface ReturnedInterface {
 	public Optional<Returned> findReturnedById(Long id);
 	public void delete(Returned returned);
 	public Returned findById(Long id);
-	
+	public void update( Long qt, Long id );
 
 	
 }

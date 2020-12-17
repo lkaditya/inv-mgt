@@ -39,8 +39,10 @@ public class ReturnedController {
 		return "returnedform";
 	}
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("returned") Returned returned, BindingResult bindingResult, Model model) {
+	@RequestMapping(value = "/save")
+	public String save(@ModelAttribute("returned") Returned returned, BindingResult bindingResult, Model model, String productid) {
+		Long a = returned.getProduct().getId();
+		rservice.update(returned.getQt(),(Long.parseLong(productid)));
 		rservice.save(returned);
 		return "redirect:/returned/list";
 	}
