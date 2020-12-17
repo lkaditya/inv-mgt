@@ -33,14 +33,14 @@ public class UserController {
 	
 	@RequestMapping(path = "/authenticate")
 	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
-		if(uservice.authenticate(user)) 
-		{
-			User u = uservice.findByName(user.getUserName());
-			session.setAttribute("usession", u);
+//		if(uservice.authenticate(user)) 
+//		{
+//			User u = uservice.findByName(user.getUserName());
+//			session.setAttribute("usession", u);
 			return "welcome";
-		}
-		else
-			return "login";
+//		}
+//		else
+//			return "login";
 	}
 	
 	@RequestMapping(path = "/logout")
