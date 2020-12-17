@@ -35,14 +35,14 @@ INSERT INTO inventory VALUES(8,850,900,300,30,800);
 INSERT INTO inventory VALUES(9,9500,1000,300,30,9000);
 INSERT INTO inventory VALUES(10,1050,1100,300,30,1000);
 
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('1', 'password', '0', 'sharon');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('1', 'password', '0', 'xinyue');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('1', 'password', '0', 'huiling');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('2', 'password', '1', 'kevin');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('1', 'password', '1', 'keqian');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('2', 'password', '1', 'lirang');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('1', 'password', '1', 'dongyang');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES ('2', 'password', '1', 'huaizhong');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (1, 'password', 0, 'sharon');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (2, 'password', 0, 'xinyue');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (3, 'password', 0, 'huiling');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (4, 'password', 1, 'kevin');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (5, 'password', 1, 'keqian');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (6, 'password', 1, 'lirang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (7, 'password', 1, 'dongyang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (8, 'password', 1, 'huaizhong');
 
 INSERT INTO product VALUES(1,"TYRES","Tyres for SUVs and crossovers are intended to ensure safety and driving comfort on any type of road surface or in the off-road conditions.","Double coin DASP+XL","WinterTyres","Off-Road/4x4/SUV",1,1,NULL,1);
 INSERT INTO product VALUES(2,"TYRES","They have a durable design and a special tread pattern that guarantees high manoeuvrability in harsh conditions. ","Ziarelli MS45 175/65 R14 107H",NULL,"Off-Road/4x4/SUV",2,2,NULL,2);
