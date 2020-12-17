@@ -22,11 +22,13 @@
 		<table>
 		<tr>
 		<th>Product Id</th>
+		<th>Product Name</th>
 		<th>Usage Quantity</th>
 		</tr>
-		<tr th:each="prod:*{usage}">
-		<td th:text="*{usage.product.id}">fill</td>
-		<td th:text="*{usage.quantity}">fill</td>
+		<tr th:each="prod:${cart.usage}">
+		<td th:text="${prod.product.id}">fill</td>
+		<td th:text="${prod.product.productName}">fill</td>
+		<td th:text="${prod.quantity}">fill</td>
 		</tr>
 		</table>
 		<fieldset>

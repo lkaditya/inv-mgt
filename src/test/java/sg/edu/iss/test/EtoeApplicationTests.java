@@ -2,17 +2,22 @@ package sg.edu.iss.test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
+import sg.edu.iss.test.repo.CartRepository;
 import sg.edu.iss.test.repo.CustomerRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
@@ -37,6 +42,9 @@ class EtoeApplicationTests {
 	
 	@Autowired
 	private UserRepository userrepo;
+	
+	@Autowired
+	private CartRepository cartrepo;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
@@ -103,6 +111,16 @@ class EtoeApplicationTests {
 		//LocalDate a= LocalDate.of(2020, 12, 15);
 		//List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
 		ArrayList<User>group= (ArrayList<User>)userrepo.findAll();
+		System.out.println(group.size());
+	}
+	
+	@Test
+	@Transactional
+	void test2query() {
+		String username="frank";
+		Cart c= cartrepo.findCartByUserName(username);
+		System.out.println(c.getId());
+		List<ProductUsage> group= c.getUsage();
 		System.out.println(group.size());
 	}
 	

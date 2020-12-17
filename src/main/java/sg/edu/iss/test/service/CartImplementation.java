@@ -2,6 +2,7 @@ package sg.edu.iss.test.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.repo.CartRepository;
@@ -18,6 +19,7 @@ public class CartImplementation implements CartService {
 	
 
 	@Override
+	@Transactional
 	public Cart showAllCartByUserName(String username) {
 		Cart c= cartrepo.findCartByUserName(username);
 		return c;

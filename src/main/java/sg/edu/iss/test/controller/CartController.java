@@ -5,12 +5,12 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Inventory;
@@ -21,7 +21,7 @@ import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.InventoryInterface;
 import sg.edu.iss.test.service.ProductUsageService;
 
-@RestController
+@Controller
 @RequestMapping("/cart")
 public class CartController {
 	
@@ -39,13 +39,15 @@ public class CartController {
 	@Autowired
 	private InventoryInterface inventoryservice;
 	
-	@RequestMapping(value="/show",method=RequestMethod.GET)
+	@RequestMapping(value="/show")
+	//TODO: don't forget implement session later, remove the hardcoded user name
 	public String showCart(Model model,HttpSession session) {
-		String username=(String) session.getAttribute("username");
+		//String username=(String) session.getAttribute("username");
+		//later put session
+		String username="frank";
 		Cart c= cartservice.showAllCartByUserName(username);
-		RepairOrder rep= new RepairOrder();
+		System.out.println(c.getCustomer().getName());
 		model.addAttribute("cart",c);
-		model.addAttribute("repairrecord",rep);
 		model.addAttribute("control","cart");
 		return "cartpageform";
 	}
@@ -55,9 +57,9 @@ public class CartController {
 	public String saverepair(@ModelAttribute("${cart}")Cart cart,BindingResult bindingResult ,Model model) {
 		RepairOrder rep = new RepairOrder();
 		rep.setCustomer(cart.getCustomer());
-		rep.setProductUsageList(cart.getUsage());
 		rep.setRepairDate(cart.getDate());
-		uservice.saveRepairOrder(rep);
+		
+		
 		List<ProductUsage>details=cart.getUsage();
 		for(ProductUsage i:details) {
 			i.setRep(rep);
@@ -69,7 +71,9 @@ public class CartController {
 			long used=currentAmount-i.getQuantity(); 
 			a.setQoh(currentAmount-used);
 			inventoryservice.saveInventory(a);
-		}		
+		}
+		rep.setProductUsageList(details);
+		uservice.saveRepairOrder(rep);
 		return "recordrepair";
 	}
 	
