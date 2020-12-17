@@ -18,7 +18,7 @@ import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
 import sg.edu.iss.test.service.ProductUsageImplementation;
-import sg.edu.iss.test.service.ProductUsageInterface;
+import sg.edu.iss.test.service.ProductUsageService;
 
 @SpringBootTest
 class EtoeApplicationTests {
@@ -30,7 +30,7 @@ class EtoeApplicationTests {
 	RepairOrderRepository repairrepo;
 	
 	@Autowired
-	private ProductUsageInterface uservice;
+	private ProductUsageService uservice;
 	
 	@Autowired
 	private ProductRepository prorepo;

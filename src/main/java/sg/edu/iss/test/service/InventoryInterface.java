@@ -14,5 +14,7 @@ public interface InventoryInterface {
 	public void deleteInventory(long productId);
 	void returnInventory(Inventory inventory);
 	
+	public Inventory findInventoryByProductName(String name);
+	
 
 }

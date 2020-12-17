@@ -7,7 +7,7 @@ import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 
-public interface ProductUsageInterface {
+public interface ProductUsageService {
 	
 	public void addProductUsage(ProductUsage prod);
 	public void deleteProductUsage(ProductUsage prod);

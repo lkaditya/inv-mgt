@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Inventory cart form</title>
+</head>
+<body>
+  <header th:insert="layout/layout.html :: header"></header>
+  <div th:replace="layout/layout.html :: menu" ></div>
+  <h1>Inventory Cart</h1>
+
+<form action="" th:object="${cart}" th:action="@{/cart/save}"
+		method="POST" class="form-horizontal">
+		<fieldset>
+			Customer: <input type="text" th:field="*{customer.name}" >
+		</fieldset>
+		<fieldset>
+			Date: <input type="text" th:field="*{date}" placeholder="yyyy-MM-dd" >
+		</fieldset>	
+		
+		<table>
+		<tr>
+		<th>Product Id</th>
+		<th>Usage Quantity</th>
+		</tr>
+		<tr th:each="prod:*{usage}">
+		<td th:text="*{usage.product.id}">fill</td>
+		<td th:text="*{usage.quantity}">fill</td>
+		</tr>
+		</table>
+		<fieldset>
+			<button type="submit">Save</button>
+		</fieldset>
+	</form>
+  
+  
+  <div th:replace="layout/layout.html :: footer"></div>
+
+</body>
+</html>

@@ -13,7 +13,7 @@ import sg.edu.iss.test.repo.ProductUsageRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 
 @Service
-public class ProductUsageImplementation implements ProductUsageInterface{
+public class ProductUsageImplementation implements ProductUsageService{
 
 	@Autowired
 	private ProductUsageRepository produserepo;

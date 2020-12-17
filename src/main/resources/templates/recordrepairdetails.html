@@ -23,16 +23,17 @@
 
 	<table class="table table-bordered table-hover">
 		<tr>
-			<th>ProductId</th>
-			<th>name</th>
+			<th>Product Id</th>
+			<th>Name</th>
+			<th>Description</th>
 			<th>Usage Item</th>
 			
 			
 		</tr>
 		<tr th:each="prod:${productusage}">
-			<td><a href="RepairDetails.html"
-				th:href="@{/repair/showspecific/}+${prod.product.id}"><span th:utext="${prod.product.id}"></span></a></td>
+			<td th:text="${prod.product.id}">ID</td>
 			<td th:text="${prod.product.productName}">ID</td>
+			<td th:text="${prod.product.productDescription}">ID</td>
 			<td th:text="${prod.quantity}">ID</td>
 		</tr>
 	</table>

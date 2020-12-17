@@ -63,6 +63,11 @@ public class InventoryImplementation implements InventoryInterface  {
 //		// TODO Auto-generated method stub
 //		irepo.deleteById(inventory.getId());
 
+	@Override
+	public Inventory findInventoryByProductName(String name) {
+		return irepo.findInventoryByName(name);
+	}
+
 
 	
 
