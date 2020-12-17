@@ -9,6 +9,14 @@
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Inventory Listing</h1>
+	<form  th:action="@{/inventory/search}" method="post" class="form-horizontal" style="float: left">
+		<fieldset>
+			Search: <input type="text" name="keyword" placeholder="search keyword here" required >
+		</fieldset>
+		<fieldset>
+		<button type="submit" hidden=true></button>
+		</fieldset>
+	</form>
 
   <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
 
@@ -36,7 +44,7 @@
 		<a href="Editinventory.html"
    		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
 		<a href="Returninventory.html"
-		th:href="@{/inventory/return/}+${inventory.id}">Return</a>
+		th:href="@{/returned/showform/}">Return</a>
 	</td>
   
  </tr>
