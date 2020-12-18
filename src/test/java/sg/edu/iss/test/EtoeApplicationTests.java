@@ -54,13 +54,13 @@ class EtoeApplicationTests {
 	
 	@Test
 	void loadCustomers() {
-		Customer a=new Customer("Alpha",34562283);
+		Customer a=new Customer("Alpha",34562283, null, null);
 		cusrepo.save(a);
-		Customer b=new Customer("Beta",84349210);
+		Customer b=new Customer("Beta",84349210, null, null);
 		cusrepo.save(b);
-		Customer c=new Customer("Charlie",23894012);
+		Customer c=new Customer("Charlie",23894012, null, null);
 		cusrepo.save(c);
-		Customer d=new Customer("Delta",99749329);
+		Customer d=new Customer("Delta",99749329, null, null);
 		cusrepo.save(d);	
 	}
 	
@@ -70,8 +70,6 @@ class EtoeApplicationTests {
 		RepairOrder rep2=new RepairOrder();
 		Customer a= cusrepo.findCustomerByName("Alpha");
 		Customer b= cusrepo.findCustomerByName("Beta");
-		Customer c= cusrepo.findCustomerByName("Charlie");
-		Customer d= cusrepo.findCustomerByName("Delta");
 		rep1.setCustomer(a);
 		LocalDate d1=LocalDate.now();
 		rep1.setRepairDate(d1);

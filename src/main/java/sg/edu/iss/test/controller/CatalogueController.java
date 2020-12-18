@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import sg.edu.iss.test.model.Product;
+import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductQuery;
 import sg.edu.iss.test.service.CatalogueImplementation;
 import sg.edu.iss.test.service.CatalogueInterface;
@@ -33,7 +34,6 @@ public class CatalogueController {
 	public String showForm(Model model) {
 		Product product = new Product();
 		model.addAttribute("product", product);
-		model.addAttribute("control", "product");
 		return "catalogueform";
 	}
 	
