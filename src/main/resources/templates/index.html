@@ -3,6 +3,31 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+	    // Hide the row initially.
+	    tr[i].style.display = "none";
+
+	    td = tr[i].getElementsByTagName("td");
+	    for (var j = 0; j < td.length; j++) {
+	      cell = tr[i].getElementsByTagName("td")[j];
+	      if (cell) {
+	        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+	          tr[i].style.display = "";
+	          break;
+	        } 
+	      }
+	    }
+	}
+}
+</script>
 <title>Inventory Page</title>
 </head>
 <body>
@@ -10,9 +35,7 @@
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Inventory Listing</h1>
 	<form  th:action="@{/inventory/search}" method="post" class="form-horizontal" style="float: left">
-		<fieldset>
-			Search: <input type="text" name="keyword" placeholder="search keyword here" required >
-		</fieldset>
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for inventory.." title="Type in a name">
 		<fieldset>
 		<button type="submit" hidden=true></button>
 		</fieldset>
@@ -20,7 +43,7 @@
 
   <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
 
-  <table class="table table-bordered table-hover">
+  <table class="table table-bordered table-hover" id="myTable">
  <tr>
    <th>Inventory Id</th>
    <th>Product Name</th>

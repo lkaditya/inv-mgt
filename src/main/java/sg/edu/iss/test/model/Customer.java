@@ -1,5 +1,6 @@
 package sg.edu.iss.test.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -20,15 +21,15 @@ public class Customer {
 	private int mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
-	
-	public Customer() {
-		super();
-	}
-	
-	public Customer(String name, int mobile) {
+	@OneToMany(mappedBy = "customer")
+	private Collection <Cart> carts;
+	public Customer(String name, int mobile, List<RepairOrder> orders, Collection<Cart> carts) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
+		this.orders = orders;
+		this.carts = carts;
 	}
+	
 	
 }
