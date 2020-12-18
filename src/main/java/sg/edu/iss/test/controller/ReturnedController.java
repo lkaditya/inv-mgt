@@ -61,9 +61,9 @@ public class ReturnedController {
 		Long qt = returned.getQt();
 		Inventory inventory = rservice.update(qt, InventoryId);
 
-		if (inventory.getQoh()<20){
-			mailService.sendSimpleMail("test","send email....");
-		}
+//		if (inventory.getQoh()<20){
+//			mailService.sendSimpleMail("test","send email....");
+//		}
 
 		rservice.save(returned);
 		return "redirect:/returned/list";
