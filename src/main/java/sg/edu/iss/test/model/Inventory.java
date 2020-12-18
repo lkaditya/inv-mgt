@@ -1,11 +1,14 @@
 package sg.edu.iss.test.model;
 
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -29,10 +32,10 @@ public class Inventory {
 	private String pop;
     @OneToOne(mappedBy = "inventory")
     private Product product;
-    @ManyToOne(cascade = {CascadeType.ALL})
-	private Returned returned;
+    @OneToMany(mappedBy="inventory")
+    private Collection<Returned> returned;
 	public Inventory(long id, long qoh, long rol, String wholesale, String por, String pop, Product product,
-			Returned returned) {
+			Collection<Returned> returned) {
 		super();
 		this.id = id;
 		this.qoh = qoh;
@@ -43,22 +46,9 @@ public class Inventory {
 		this.product = product;
 		this.returned = returned;
 	}
-	public Inventory(long qoh, long rol, String wholesale, String por, String pop, Product product, Returned returned) {
-		super();
-		this.qoh = qoh;
-		this.rol = rol;
-		this.wholesale = wholesale;
-		this.por = por;
-		this.pop = pop;
-		this.product = product;
-		this.returned = returned;
-	}
-	@Override
-	public String toString() {
-		return "Inventory [id=" + id + ", qoh=" + qoh + ", rol=" + rol + ", wholesale=" + wholesale + ", por=" + por
-				+ ", pop=" + pop + ", product=" + product + ", returned=" + returned + "]";
-	}    
-
+    
+    
+    
 	
 	
 }

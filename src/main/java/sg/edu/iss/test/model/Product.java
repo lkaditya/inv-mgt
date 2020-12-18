@@ -1,8 +1,5 @@
 package sg.edu.iss.test.model;
 
-import java.util.Collection;
-import java.util.List;
-
 import javax.persistence.*;
 
 import lombok.Data;
@@ -28,13 +25,8 @@ public class Product {
 	private Supplier supplier;
     @ManyToOne(cascade = {CascadeType.ALL})
 	private Brand brand;
-    @ManyToOne(cascade = {CascadeType.ALL})  
-	private Returned returned;
-	@OneToMany(mappedBy = "product")
-	private Collection <Cart> carts;
 	public Product(String productName, String productDescription, String productType, String productCategory,
-			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand, Returned returned,
-			Collection<Cart> carts) {
+			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand) {
 		super();
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -44,8 +36,7 @@ public class Product {
 		this.inventory = inventory;
 		this.supplier = supplier;
 		this.brand = brand;
-		this.returned = returned;
-		this.carts = carts;
+
 	}
 	
 }

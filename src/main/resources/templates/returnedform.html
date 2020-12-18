@@ -12,14 +12,10 @@
    <h1>Returned form</h1>
    <form action="" th:object="${returned}" th:action="@{/returned/save}"
       method="POST" class="form-horizontal" >
+      
       <fieldset>
-         <input type="hidden" th:field="*{id}" />         
-      </fieldset>
-      <fieldset>
-         <input type="hidden" th:field="*{supplier.id}" />         
-      </fieldset>
-      <fieldset>
-         <input type="hidden" th:field="*{product.id}" />         
+         <input type="hidden" name="InventoryId" th:value="${InventoryId}"  />
+         <input type="hidden" th:field="*{id}" />
       </fieldset>
       
       <fieldset>
@@ -29,9 +25,9 @@
          Reason: <input type="text" th:field="*{reason}">
       </fieldset>
       <fieldset>
-         Supplier: <input type="text" th:field="*{supplier.supplierName}">
+         Supplier: <input type="text" name="supplierName" th:value="${name}" >
       </fieldset>
-
+      
       <fieldset>
       	 <button type="reset" >  Reset  </button>
       	 &nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 

@@ -38,7 +38,6 @@ public class ReturnedImplementation implements ReturnedInterface{
 
 	@Override
 	public Optional<Returned> findReturnedById(Long id) {
-		// TODO Auto-generated method stub
 		Optional<Returned> byId = rrepo.findById(id);
 		return byId;
 	}
@@ -50,17 +49,17 @@ public class ReturnedImplementation implements ReturnedInterface{
 
 	@Override
 	public Returned findById(Long id) {
-		// TODO Auto-generated method stub
 		return rrepo.findById(id).get();
 	}
 
 
 	@Override
-	public void update( Long qt, Long Id) {
-		Inventory inventory = irepo.findById(Id).get();
-		inventory.setQoh(qt);
+	public Inventory update( Long qt, Long Id) {
+		Inventory inventory = irepo.findById(Id).orElse(null);
+		long l = inventory.getQoh() - qt;
+		inventory.setQoh(l);
 		irepo.save(inventory);
-			
+		return inventory;
 	}
 	
 

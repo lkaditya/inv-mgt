@@ -67,7 +67,7 @@ function myFunction() {
 		<a href="Editinventory.html"
    		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
 		<a href="Returninventory.html"
-		th:href="@{/returned/showform/}">Return</a>
+           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return</a>
 	</td>
   
  </tr>

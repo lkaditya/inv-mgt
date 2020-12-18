@@ -54,10 +54,10 @@ function myFunction() {
  </tr>
  <tr th:each="returned:${rlist}">
    <td th:text="${returned.id}">ID</td>
-   <td th:text="${returned.product.productName}">ID</td>
+   <td th:text="${returned.inventory.product.productName}">ID</td>
    <td th:text="${returned.qt}">ID</td>
    <td th:text="${returned.reason}">ID</td>
-   <td th:text="${returned.supplier.supplierName}">ID</td>
+   <td th:text="${returned.inventory.product.supplier.supplierName}">ID</td>
    <td><a href="Editreturned.html"
 		th:href="@{/returned/edit/}+${returned.id}">Edit /</a>
 		<a href="Editreturned.html"
