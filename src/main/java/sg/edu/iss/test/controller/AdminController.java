@@ -43,8 +43,8 @@ public class AdminController {
 
 	@RequestMapping(value = "/viewusers")
 	public String ListUsers(Model model) {
-//		model.addAttribute("users", userServices.listAllUser());
-//		model.addAttribute("control","user");
+		model.addAttribute("users", userServices.findAllUsers());
+		model.addAttribute("control","user");
 		return "users";
 	}
 
