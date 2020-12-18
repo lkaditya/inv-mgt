@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Customer;
+import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
@@ -19,6 +20,7 @@ import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.CartRepository;
 import sg.edu.iss.test.repo.CustomerRepository;
+import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
@@ -45,6 +47,9 @@ class EtoeApplicationTests {
 	
 	@Autowired
 	private CartRepository cartrepo;
+	
+	@Autowired
+	private InventoryRepository invrepo;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
@@ -122,6 +127,13 @@ class EtoeApplicationTests {
 		System.out.println(c.getId());
 		List<ProductUsage> group= c.getUsage();
 		System.out.println(group.size());
+		System.out.println(group.get(0).getProduct().getProductName());
+	}
+	
+	@Test
+	void InventoryTest() {
+		Inventory a= invrepo.findInventoryByName("Crankcase");
+		System.out.println(a.getQoh());
 	}
 	
 

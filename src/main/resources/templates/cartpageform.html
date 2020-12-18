@@ -10,13 +10,16 @@
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Inventory Cart</h1>
 
-<form action="" th:object="${cart}" th:action="@{/cart/save}"
+<form action="" th:object="${usages}" th:action="@{/cart/save}"
 		method="POST" class="form-horizontal">
 		<fieldset>
-			Customer: <input type="text" th:field="*{customer.name}" >
+			Customer: <input type="text" th:field="*{cart.customer.name}" >
 		</fieldset>
 		<fieldset>
-			Date: <input type="text" th:field="*{date}" placeholder="yyyy-MM-dd" >
+			Date: <input type="text" th:field="*{cart.date}" placeholder="yyyy-MM-dd" >
+		</fieldset>	
+		<fieldset>
+			user: <input type="text" th:field="*{cart.user.userName}" >
 		</fieldset>	
 		
 		<table>
@@ -25,10 +28,22 @@
 		<th>Product Name</th>
 		<th>Usage Quantity</th>
 		</tr>
-		<tr th:each="prod:${cart.usage}">
+		<tr th:each="prod, itemStat:${usages.usages}">
+		
+		<td>
+		<input type="text" th:name="|usages[${itemStat.index}].product.id|" th:value="${prod.getProduct().getId()}" readonly/>
+		</td>
+		<td>
+		<input type="text" th:name="|usages[${itemStat.index}].product.productName|" th:value="${prod.getProduct().getProductName()}" readonly/>
+		</td>
+		<td>
+		<input type="text" th:name="|usages[${itemStat.index}].quantity|" th:value="${prod.getQuantity()}"/>
+		</td>
+		 <!--
 		<td th:text="${prod.product.id}">fill</td>
 		<td th:text="${prod.product.productName}">fill</td>
 		<td th:text="${prod.quantity}">fill</td>
+		 -->
 		</tr>
 		</table>
 		<fieldset>

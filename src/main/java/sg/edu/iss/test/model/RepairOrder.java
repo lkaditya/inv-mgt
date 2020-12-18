@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,7 +25,7 @@ public class RepairOrder {
 private long repairId;
 @ManyToOne
 private Customer customer;
-@OneToMany(mappedBy="rep")
+@OneToMany(cascade=CascadeType.ALL, mappedBy="rep")
 private List<ProductUsage> productUsageList;
 @DateTimeFormat (pattern="yyyy-MM-dd")
 private LocalDate repairDate;
