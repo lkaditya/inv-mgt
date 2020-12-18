@@ -1,7 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>  
+
 <meta charset="ISO-8859-1">
+<meta name= "viewport" content="width=device=width, initial-scale=1.0">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing: border-box;
+}
+
+ .container{
+margin:auto;
+width: 500px;
+max-width: 90%
+}
+	
+.container form{
+width:100%;
+height: 100%;
+padding: 20px;
+background: white;
+border-radius: 4px;
+box-shadow: 0 8px 16px rgba(0,0,0,0,.3);
+}
+
+.container form h1{
+text-align: left;
+margin-bottom: 24px;
+}
+</style>
+
+
 <title>Supplier Form</title> 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -9,42 +40,63 @@
 <body>
 	<header th:insert="layout/layout.html :: header"> </header>
 	<div th:replace="layout/layout.html :: menu"></div>   
-
-	<h1>Supplier Form</h1>
+<div class="container">
+	
 	<form action="#" th:object="${supplier}" th:action="@{/admin/savesupplier}"
 		method="post">
+		<h1>Supplier Form</h1>
+		<div class="form-group">
+		
 		<fieldset>
 			<input type="hidden" th:field="*{id}">
 		</fieldset>
+	
+		</div>
+		<div class="form-group">
+		
 		<fieldset>
 			Supplier Name <input type="text" th:field="*{supplierName}">
 			<p th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}"></p>
 		</fieldset>
+			</div>
+		<div class="form-group">
 		<fieldset>
-			Supplier Address <input type="text" th:field="*{supplierAddress}">
+			Supplier Address <input type="text" th:field="*{supplierAddress}" >
 			<p th:if="${#fields.hasErrors('supplierAddress')}" th:errors="*{supplierAddress}"></p>
 		</fieldset>
+		</div>
+		
+		<div class="form-group">
+		
 		<fieldset>
-			Supplier Phone <input type="text" th:field="*{phone}">
+		
+			Supplier Phone <input type="text" th:field="*{phone}" >
 			<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+		
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
-			Supplier Email <input type="text" th:field="*{email}">
+			Supplier Email <input type="text" th:field="*{email}" >
 			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
-			Supplier Minimum Order Quantity <input type="text" th:field="*{MOQ}">
+			Min. Order Qty<input type="text" th:field="*{MOQ}" >
 			<p th:if="${#fields.hasErrors('MOQ')}" th:errors="*{MOQ}"></p>
 		</fieldset>
+		</div>
 		
-		
-
+	<div class="form-group">
 		<fieldset>
 			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
 				type="reset" value="Reset" />
 		</fieldset>
-
+</div>
 	</form>
+	
+	</div>
 	<br />
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>

@@ -2,26 +2,89 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<meta name= "viewport" content="width=device=width, initial-scale=1.0">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<title>Login Page</title>
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing: border-box;
+}
+
+ .container{
+margin:auto;
+width: 500px;
+max-width: 90%
+}
+	
+.container form{
+width:100%;
+height: 100%;
+padding: 20px;
+background: white;
+border-radius: 4px;
+box-shadow: 0 8px 16px rgba(0,0,0,0,.3);
+}
+
+.container form h1{
+text-align: center;
+margin-bottom: 24px;
+}
+.container form.form-control{
+width:100%;
+height:40px;
+background: white;
+border-radius:4px;
+border: 1px solid silver;
+margin: 10px 0 18px 0;
+padding: 0 10px;
+}
+
+.container form button {
+margin-left: 50%;
+transform: translateX(-50%);
+width: 120px;
+height: 34px;
+border: none;
+outline: none;
+color: white;
+background: #6495ED;
+cursor: pointer;
+text-transform: uppercase;
+border-radius: 4px;
+transition: 3s;
+}
+</style>
+<title>Login Page</title>	
 </head>
 <body>
+
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Login form</h1>
-
+  <div class="container">
+  
 <form action="" th:object="${user}" th:action="@{/authenticate}" method="post">
+<h1>Login Form</h1>
+  
+<div class="form-group">
         <fieldset>
-			Name: <input type="text" th:field="*{userName}">
+			User Name: <input type="text" th:field="*{userName}" class="form-control">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
-			Password: <input type="password" th:field="*{password}">
+			Password: <input type="password" th:field="*{password}" class="form-control">
 		</fieldset>
+		</div>
+		<br>
 		<fieldset>
-			<button type="submit" >Log In</button>
+			<button type="submit" class="btn" >Log In </button>
 		</fieldset>
-		
+		<br>
+		<br>
 </form>
+
+</div>
   <div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>

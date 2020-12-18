@@ -2,6 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<meta name= "viewport" content="width=device=width, initial-scale=1.0">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing: border-box;
+}
+
+ .container{
+margin:auto;
+width: 500px;
+max-width: 90%
+}
+	
+.container form{
+width:100%;
+height: 100%;
+padding: 20px;
+background: white;
+border-radius: 4px;
+box-shadow: 0 8px 16px rgba(0,0,0,0,.3);
+}
+
+.container form h1{
+text-align: left;
+margin-bottom: 24px;
+}
+</style>
+<title>Catalogue Form</title> 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -9,9 +38,11 @@
 
 	<header th:insert="layout/layout.html :: header"></header>
 	<div th:replace="layout/layout.html :: menu"></div>
-	<h1>Form</h1>
+	<div class="container">
+	
 	<form action="" th:object="${product}" th:action="@{/catalogue/save}"
-		method="POST" class="form-horizontal">
+		method="POST" >
+		<h1>Form</h1>
 		<fieldset>
 			<input type="hidden" th:field="*{id}" />
 			<input type="hidden"
@@ -21,65 +52,101 @@
 			<input type="hidden"
 				   th:field="*{inventory.id}" />
 		</fieldset>
+		<div class="form-group">
+	
 		<fieldset>
 			Name: <input type="text" th:field="*{productName}">
 		</fieldset>
+		</div>
+		
+		<div class="form-group">
 		<fieldset>
 			Description: <input type="text" th:field="*{productDescription}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Type: <input type="text" th:field="*{productType}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Category: <input type="text" th:field="*{productCategory}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			SubCategory: <input type="text" th:field="*{productSubCategory}">
 		</fieldset>
-
-
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Supplier Name: <input type="text" th:field="*{supplier.supplierName}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Supplier Address: <input type="text" th:field="*{supplier.supplierAddress}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Supplier Phone: <input type="text" th:field="*{supplier.phone}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Supplier Email: <input type="email" th:field="*{supplier.email}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Supplier MOQ: <input type="text" th:field="*{supplier.MOQ}">
 		</fieldset>
+		</div>
+		
 
 <!--		//brand-->
+<div class="form-group">
 		<fieldset>
 			Brand Name: <input type="text" th:field="*{brand.brandName}">
 		</fieldset>
+		</div>
+		
 <!--     inventory-->
+<div class="form-group">
 		<fieldset>
 			quantity on hand: <input type="text" th:field="*{inventory.qoh}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Reorder Level: <input type="text" th:field="*{inventory.rol}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			Wholesale: <input type="text" th:field="*{inventory.wholesale}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			price of retail: <input type="text" th:field="*{inventory.por}">
 		</fieldset>
+		</div>
+		<div class="form-group">
 		<fieldset>
 			price of partner: <input type="text" th:field="*{inventory.pop}">
 		</fieldset>
+		</div>
+		
 
 
 		<fieldset>
 			<button type="submit">Save</button>
 		</fieldset>
 	</form>
+	</div>
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Suppliers Listing</title>
+<title>Supplier List</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -10,11 +10,11 @@
 	<header th:insert="layout/layout.html :: header"> </header>
 	<div th:replace="layout/layout.html :: menu"></div>
 
-	<h1>Suppliers Listing</h1>
+	<h1>Supplier List</h1>
 	<!-- Add Hyperlink -->
-	<a href="AddSupplier.html" th:href="@{/admin/addsupplier}"class="btn btn-primary btn-lg" role="button">Add Supplier</a>
+	<a href="AddSupplier.html" th:href="@{/admin/addsupplier}"class="btn btn-primary btn-sm" role="button">Add Supplier</a>
 
-	<h2>Supplier List</h2>
+
 	<table class="table table-bordered table-hover">
 		<tr >
 			<th >Supplier Id</th>

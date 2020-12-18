@@ -10,17 +10,17 @@
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Listing</h1>
 
-  <form action="/catalogue/findByFilter"  method="post" style="float: left">
+  <form action="	"  method="post" style="float: left">
     <span>Product Name</span>
     <input type="text" name="productName" >
     <span>Supplier Name</span>
     <input type="text" name="supplierName" >
     <span>Brand Name</span>
     <input type="text" name="brandName" >
-    <input class="btn btn-default" type="submit" value="filter">
+    <input class="btn btn-sm" type="submit" value="filter">
   </form>
 
-  <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
+  <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-sm"  style="float: right" role="button">Add</a>
 
   <table  class="table table-bordered table-hover">
  <tr>
