@@ -2,7 +2,6 @@ package sg.edu.iss.test.service;
 
 import java.util.ArrayList;
 
-import sg.edu.iss.test.model.Admin;
 import sg.edu.iss.test.model.User;
 
 public interface UserService {

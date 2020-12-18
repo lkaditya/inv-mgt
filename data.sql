@@ -35,6 +35,14 @@ INSERT INTO inventory VALUES(8,850,900,300,30,800);
 INSERT INTO inventory VALUES(9,9500,1000,300,30,9000);
 INSERT INTO inventory VALUES(10,1050,1100,300,30,1000);
 
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (1, 'password', 0, 'sharon');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (2, 'password', 0, 'xinyue');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (3, 'password', 0, 'huiling');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (4, 'password', 1, 'kevin');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (5, 'password', 1, 'keqian');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (6, 'password', 1, 'lirang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (7, 'password', 1, 'dongyang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (8, 'password', 1, 'huaizhong');
 
 INSERT INTO product VALUES(1,"TYRES","Tyres for SUVs and crossovers are intended to ensure safety and driving comfort on any type of road surface or in the off-road conditions.","Double coin DASP+XL","WinterTyres","Off-Road/4x4/SUV",1,1,NULL,1);
 INSERT INTO product VALUES(2,"TYRES","They have a durable design and a special tread pattern that guarantees high manoeuvrability in harsh conditions. ","Ziarelli MS45 175/65 R14 107H",NULL,"Off-Road/4x4/SUV",2,2,NULL,2);
@@ -49,3 +57,12 @@ INSERT INTO product VALUES(7,"Engine","this seals the joint between the cylinder
 INSERT INTO product VALUES(8,"Engine","this is attached to the bottom of the engine block.","Crankcase",NULL,"Timing chain guides",8,8,NULL,8);
 INSERT INTO product VALUES(9,"Engine","this consists of pistons that are connected to the crankshaft via connecting rods and set it in motion. ","Rotating assembly",NULL,"Turbocharger gasket",9,9,NULL,9);
 INSERT INTO product VALUES(10,"Engine","this includes a camshaft with valves and their actuators, pulleys, and a chain or a belt.","Valvetrain",NULL,"Valve stem seals ",10,10,NULL,10);
+
+INSERT INTO `inventory`.`customer` VALUES (1, 98765431, 'Esther');
+INSERT INTO `inventory`.`customer` VALUES (2, 98765432, 'Suria');
+INSERT INTO `inventory`.`customer` VALUES (3, 98765433, 'Tin');
+INSERT INTO `inventory`.`customer` VALUES (4, 98765434, 'Cher Wah');
+INSERT INTO `inventory`.`customer` VALUES (5, 98765435, 'Yuan Kwan');
+INSERT INTO `inventory`.`customer` VALUES (6, 98765436, 'Liu Fan');
+
+

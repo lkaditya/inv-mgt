@@ -16,7 +16,7 @@ import sg.edu.iss.test.repo.UserRepository;
 public class UserServiceImplementation implements UserService {
 	@Autowired
 	private UserRepository userRepository;
-    
+
 	@Transactional
 	public User findUserById(Long id) {
 		return userRepository.findById(id).get();

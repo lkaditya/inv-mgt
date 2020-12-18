@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import sg.edu.iss.test.model.User;
-import sg.edu.iss.test.service.UserImplementation;
-import sg.edu.iss.test.service.UserInterface;
+import sg.edu.iss.test.service.UserService;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired 
-	UserInterface uservice;
+	UserService uservice;
 	
 	@Autowired
-	public void setUserImplementation(UserImplementation uimpl) {
+	public void setUserImplementation(UserService uimpl) {
 		this.uservice = uimpl;
 	}
 	
@@ -32,15 +32,21 @@ public class UserController {
 	
 	@RequestMapping(path = "/authenticate")
 	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
-		if(uservice.authenticate(user)) 
-		{
-			User u = uservice.findByName(user.getUserName());
-			session.setAttribute("usession", u);
+//		if(uservice.authenticate(user)) 
+//		{
+//			User u = uservice.findByName(user.getUserName());
+//			session.setAttribute("usession", u);
 			return "welcome";
-		}
-		else
-			return "login";
+//		}
+//		else
+//			return "login";
 	}
+	
+	@RequestMapping(path = "/logout")
+	public String logout() {
+		return "logout";
+	}
+	
 	
 	
 }
