@@ -2,12 +2,7 @@ package sg.edu.iss.test.model;
 
 import java.util.Collection;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,23 +11,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity	
 public class Returned {
+	public Returned(long qt, String reason, String supplierName, Inventory inventory) {
+		this.qt = qt;
+		this.reason = reason;
+		this.supplierName = supplierName;
+		this.inventory = inventory;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	//quantity
 	private long qt;
-	private String reason;	
-	@OneToMany(mappedBy = "returned")
-	private Collection <Product> products;
-    @ManyToOne  
-	private Supplier supplier;
-	public Returned(long qt, String reason, Collection<Product> products, Supplier supplier) {
-		super();
-		this.qt = qt;
-		this.reason = reason;
-		this.products = products;
-		this.supplier = supplier;
-	}
+	private String reason;
+	private String supplierName;
+	@ManyToOne(cascade = {CascadeType.ALL})
+	private Inventory inventory;
+//    @ManyToOne
+//	private Supplier supplier;
+
     
     
 }

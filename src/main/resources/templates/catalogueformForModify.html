@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+	<header th:insert="layout/layout.html :: header"></header>
+	<div th:replace="layout/layout.html :: menu"></div>
+	<h1>Form</h1>
+	<form action="" th:object="${product}" th:action="@{/catalogue/save}"
+		method="POST" class="form-horizontal">
+		<fieldset>
+			<input type="hidden" th:field="*{id}" />
+			<input type="hidden"
+				   th:field="*{supplier.id}" />
+			<input type="hidden"
+				   th:field="*{brand.id}" />
+			<input type="hidden"
+				   th:field="*{inventory.id}" />
+		</fieldset>
+		<fieldset>
+			Name: <input type="text" th:value="*{productName}" name="productName">
+		</fieldset>
+		<fieldset>
+			Description: <input type="text" th:value="*{productDescription}" name="productDescription">
+		</fieldset>
+		<fieldset>
+			Type: <input type="text" th:value="*{productType}" name="productType">
+		</fieldset>
+		<fieldset>
+			Category: <input type="text" th:value="*{productCategory}" name="productCategory">
+		</fieldset>
+		<fieldset>
+			SubCategory: <input type="text" th:value="*{productSubCategory}" name="productSubCategory">
+		</fieldset>
+
+
+		<fieldset>
+			Supplier Name: <input type="text" th:field="*{supplier.supplierName}">
+		</fieldset>
+		<fieldset>
+			Supplier Address: <input type="text" th:field="*{supplier.supplierAddress}">
+		</fieldset>
+		<fieldset>
+			Supplier Phone: <input type="text" th:field="*{supplier.phone}">
+		</fieldset>
+		<fieldset>
+			Supplier Email: <input type="email" th:field="*{supplier.email}">
+		</fieldset>
+		<fieldset>
+			Supplier MOQ: <input type="text" th:field="*{supplier.MOQ}">
+		</fieldset>
+
+		<!--		//brand-->
+		<fieldset>
+			Brand Name: <input type="text" th:field="*{brand.brandName}">
+		</fieldset>
+		<!--     inventory-->
+		<fieldset>
+			quantity on hand: <input type="text" th:field="*{inventory.qoh}">
+		</fieldset>
+		<fieldset>
+			Reorder Level: <input type="text" th:field="*{inventory.rol}">
+		</fieldset>
+		<fieldset>
+			Wholesale: <input type="text" th:field="*{inventory.wholesale}">
+		</fieldset>
+		<fieldset>
+			price of retail: <input type="text" th:field="*{inventory.por}">
+		</fieldset>
+		<fieldset>
+			price of partner: <input type="text" th:field="*{inventory.pop}">
+		</fieldset>
+
+		<fieldset>
+			<button type="submit">Save</button>
+		</fieldset>
+	</form>
+	<div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>

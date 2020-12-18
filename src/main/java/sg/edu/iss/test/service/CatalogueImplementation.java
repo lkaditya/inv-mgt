@@ -74,6 +74,22 @@ public class CatalogueImplementation implements CatalogueInterface  {
 
 		return prepo.findAll(spec,pageable);
 	}
+
+	@Override
+	public Product findById(long id) {
+		Product product = prepo.findById(id).orElse(null);
+		return product;
+	}
+
+	@Override
+	public void delete(long id) {
+		prepo.deleteById(id);
+	}
+
+	@Override
+	public void edit(long id) {
+
+	}
 }
 
 

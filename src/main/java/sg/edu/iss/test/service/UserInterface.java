@@ -5,7 +5,7 @@ import java.util.List;
 import sg.edu.iss.test.model.User;
 
 public interface UserInterface {
-	
+
 	public void createUser(User user);
 	public void updateUser(User user);
 	public List<User> listAllUser();

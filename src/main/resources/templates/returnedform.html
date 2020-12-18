@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet"
+   href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+
+   <header th:insert="layout/layout.html :: header"></header>
+   <div th:replace="layout/layout.html :: menu"></div>
+   <h1>Returned form</h1>
+   <form action="" th:object="${returned}" th:action="@{/returned/save}"
+      method="POST" class="form-horizontal" >
+
+      <fieldset>
+         <input type="hidden" name="InventoryId" th:value="${InventoryId}"  />
+         <input type="hidden" th:field="*{id}" />
+      </fieldset>
+      
+      <fieldset>
+         Quantity: <input type="text" th:field="*{qt}">
+      </fieldset>
+      <fieldset>
+         Reason: <input type="text" th:field="*{reason}">
+      </fieldset>
+      <fieldset>
+         Supplier: <input type="text" name="supplierName" th:value="${name}" >
+      </fieldset>
+
+      <fieldset>
+      	 <button type="reset" >  Reset  </button>
+      	 &nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 	&nbsp; &nbsp;&nbsp; &nbsp; 
+         <button type="submit">  Save  </button> 
+         
+      </fieldset>
+   </form>
+   <div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>

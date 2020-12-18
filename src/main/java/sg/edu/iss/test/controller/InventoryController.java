@@ -66,10 +66,5 @@ public class InventoryController {
 		iservice.deleteInventory(productID);
 		return "redirect:/inventory/list";
 	}
-//
-//	@RequestMapping(value = "/return/{id}")
-//	public String returnInventory(@PathVariable("id") Long id) {
-//		iservice.returnInventory(iservice.findInventoryById(id));
-//		return "forward:/returned/list";
-//	}
+
 }

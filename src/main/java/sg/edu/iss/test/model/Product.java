@@ -81,13 +81,7 @@ public class Product {
 		this.brand = brand;
 	}
 
-	public Returned getReturned() {
-		return returned;
-	}
 
-	public void setReturned(Returned returned) {
-		this.returned = returned;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -97,17 +91,16 @@ public class Product {
 	private String productType;
 	private String productCategory;
 	private String productSubCategory;
-    @OneToOne(cascade = {CascadeType.ALL})  
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="inventory_id")
 	private Inventory inventory;
     @ManyToOne(cascade = {CascadeType.ALL})
 	private Supplier supplier;
     @ManyToOne(cascade = {CascadeType.ALL})
 	private Brand brand;
-    @ManyToOne(cascade = {CascadeType.ALL})
-	private Returned returned;
+
 	public Product(String productName, String productDescription, String productType, String productCategory,
-			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand, Returned returned) {
+			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand) {
 		super();
 		this.productName = productName;
 		this.productDescription = productDescription;
@@ -117,7 +110,7 @@ public class Product {
 		this.inventory = inventory;
 		this.supplier = supplier;
 		this.brand = brand;
-		this.returned = returned;
+
 	}
 
 }

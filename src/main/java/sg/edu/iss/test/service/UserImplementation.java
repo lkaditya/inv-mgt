@@ -45,11 +45,11 @@ public class UserImplementation implements UserInterface {
 		else
 			return false;
 	}
-	
+
 	public User findByName(String name) {
 		return urepo.findUserByUserName(name);
 	}
-    
+
 	public User findById(Long id) {
 		return urepo.findUserById(id);
 	}
