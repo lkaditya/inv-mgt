@@ -1,3 +1,12 @@
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (1, 'password', 0, 'sharon');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (2, 'password', 0, 'xinyue');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (3, 'password', 0, 'huiling');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (4, 'password', 1, 'kevin');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (5, 'password', 1, 'keqian');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (6, 'password', 1, 'lirang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (7, 'password', 1, 'dongyang');
+INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (8, 'password', 1, 'huaizhong');
+
 INSERT INTO brand(id,brand_name) VALUES(1,"Acura" );
 INSERT INTO brand(id,brand_name) VALUES(2,"Alfa Romeo" );
 INSERT INTO brand(id,brand_name) VALUES(3,"Audi" );
@@ -35,21 +44,12 @@ INSERT INTO inventory VALUES(8,850,900,300,30,800);
 INSERT INTO inventory VALUES(9,9500,1000,300,30,9000);
 INSERT INTO inventory VALUES(10,1050,1100,300,30,1000);
 
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (1, 'password', 0, 'sharon');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (2, 'password', 0, 'xinyue');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (3, 'password', 0, 'huiling');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (4, 'password', 1, 'kevin');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (5, 'password', 1, 'keqian');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (6, 'password', 1, 'lirang');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (7, 'password', 1, 'dongyang');
-INSERT INTO `inventory`.`user` (`id`, `password`, `role`, `user_name`) VALUES (8, 'password', 1, 'huaizhong');
-
 INSERT INTO product VALUES(1,"TYRES","Tyres for SUVs and crossovers are intended to ensure safety and driving comfort on any type of road surface or in the off-road conditions.","Double coin DASP+XL","WinterTyres","Off-Road/4x4/SUV",1,1,NULL,1);
 INSERT INTO product VALUES(2,"TYRES","They have a durable design and a special tread pattern that guarantees high manoeuvrability in harsh conditions. ","Ziarelli MS45 175/65 R14 107H",NULL,"Off-Road/4x4/SUV",2,2,NULL,2);
 
 INSERT INTO product VALUES(3,"Brake system","A braking system comprises several components designed to ensure a controlled stop of a vehicle at a particular moment.","V20-92-0001","Abs ring","Abs ring",3,3,NULL,3);
 
-INSERT INTO product VALUES(4,"Engine","An engine is a unit which produces the torque required to move the vehicle.","Double coin DASP+XL",NULL,"Crankshaft seal",4,4,NULL,4);
+INSERT INTO product VALUES(4,"Engine","An engine is a unit which produces the torque required to move the vehicle.","Double coin DASP+XL ver2.0",NULL,"Crankshaft seal",4,4,NULL,4);
 INSERT INTO product VALUES(5,"Engine","along with the cylinder head and crankcase, this makes up the body of the power unit. ","Engine block ",NULL,"Oil drain plug gasket",5,5,NULL,5);
 INSERT INTO product VALUES(6,"Engine"," this covers the cylinders from the side where the piston crowns are.","Cylinder head ",NULL,"Mounting kit",6,6,NULL,6);
 

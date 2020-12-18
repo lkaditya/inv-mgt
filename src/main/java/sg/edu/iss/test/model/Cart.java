@@ -30,5 +30,9 @@ public class Cart {
 	public Cart() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public void addToCart(ProductUsage p) {
+		this.usage.add(p);
+	}
 
 }

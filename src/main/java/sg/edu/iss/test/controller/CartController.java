@@ -1,6 +1,7 @@
 package sg.edu.iss.test.controller;
 
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -20,12 +21,14 @@ import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.CartImplementation;
 import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.CustomerInterface;
 import sg.edu.iss.test.service.InventoryInterface;
 import sg.edu.iss.test.service.ProductService;
 import sg.edu.iss.test.service.ProductUsageService;
+import sg.edu.iss.test.service.UserService;
 
 @Controller
 @RequestMapping("/cart")
@@ -49,7 +52,33 @@ public class CartController {
 	private ProductService proservice;
 	
 	@Autowired
+	private UserService userservice;
+	
+	@Autowired
 	private InventoryInterface inventoryservice;
+	
+	@RequestMapping(value="/addtocart")
+	public String addCart(Model model) {
+		Cart c = new Cart();
+		LocalDate now=LocalDate.now();
+		c.setDate(now);
+		long userid= 3; //asumming
+		User user=userservice.findUserById(userid);
+		
+		ProductUsage pu= new ProductUsage ();
+		long inventoryid= 3; //asumming
+		Product p=proservice.findProductById(inventoryid);
+		pu.setProduct(p);
+		pu.setQuantity(1);
+		uservice.addProductUsage(pu);
+
+		c.addToCart(pu);
+		c.setUser(user);
+
+		
+		return null;
+		
+	}
 	
 	@RequestMapping(value="/show")
 	//TODO: don't forget implement session later, remove the hardcoded user name
@@ -58,9 +87,7 @@ public class CartController {
 		//later put session
 		String username="frank";
 		Cart c= cartservice.showAllCartByUserName(username);
-		System.out.println(c.getCustomer().getName());
 		List<ProductUsage> group= c.getUsage();
-		System.out.println(group.size());
 		ObjectInput usageform= new ObjectInput();
 		usageform.setUsages(group);
 		usageform.setCart(c);
