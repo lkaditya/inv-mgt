@@ -23,6 +23,14 @@ INSERT INTO supplier VALUES(8,100,"12345@gmail.com","13132","115648","  Panasoni
 INSERT INTO supplier VALUES(9,100,"12345@gmail.com","13132","115648","  Aisin World Corp. of America");
 INSERT INTO supplier VALUES(10,100,"12345@gmail.com","13132","115648","  American Axle & Manufacturing Holdings Inc.");
 
+INSERT INTO user VALUES (1, 'password', 0, 'sharon');
+INSERT INTO user VALUES (2, 'password', 0, 'xinyue');
+INSERT INTO user VALUES (3, 'password', 0, 'huiling');
+INSERT INTO user VALUES (4, 'password', 1, 'kevin');
+INSERT INTO user VALUES (5, 'password', 1, 'keqian');
+INSERT INTO user VALUES (6, 'password', 1, 'lirang');
+INSERT INTO user VALUES (7, 'password', 1, 'dongyang');
+INSERT INTO user VALUES (8, 'password', 1, 'huaizhong');
 
 INSERT INTO inventory VALUES(1,42,45,300,30,38);
 INSERT INTO inventory VALUES(2,108,117,300,30,99);
@@ -54,3 +62,11 @@ INSERT INTO product VALUES(7,"Interior","Seat Cover, Black/Grey, Polyester, Fron
 INSERT INTO product VALUES(8,"Engine","5W-30, 1l, Part Synthetic Oil ","K2 TEXAR, FUEL ECONOMY Engine Oil ","Engine Oil","Motorcycle",8,8,8);
 INSERT INTO product VALUES(9,"Tyre ","Truck tyre, Maxxis Mecotra 3 ME3 155/65 R14 75T","Maxxis Mecotra 3  Tyre","All season","Truck",9,9,9);
 INSERT INTO product VALUES(10,"Engine","Crankshaft, Timing End, FPM (fluoride rubber)","REINZ Shaft Seal, crankshaft ","Crankshaft","Truck",10,10,10);
+
+
+INSERT INTO `inventory`.`customer` VALUES (1, 98765431, 'Esther');
+INSERT INTO `inventory`.`customer` VALUES (2, 98765432, 'Suria');
+INSERT INTO `inventory`.`customer` VALUES (3, 98765433, 'Tin');
+INSERT INTO `inventory`.`customer` VALUES (4, 98765434, 'Cher Wah');
+INSERT INTO `inventory`.`customer` VALUES (5, 98765435, 'Yuan Kwan');
+INSERT INTO `inventory`.`customer` VALUES (6, 98765436, 'Liu Fan');

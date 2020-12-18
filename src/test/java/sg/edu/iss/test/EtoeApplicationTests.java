@@ -54,13 +54,13 @@ class EtoeApplicationTests {
 	
 	@Test
 	void loadCustomers() {
-		Customer a=new Customer("Alpha",34562283, null, null);
+		Customer a=new Customer("Alpha",34562283);
 		cusrepo.save(a);
-		Customer b=new Customer("Beta",84349210, null, null);
+		Customer b=new Customer("Beta",84349210);
 		cusrepo.save(b);
-		Customer c=new Customer("Charlie",23894012, null, null);
+		Customer c=new Customer("Charlie",23894012);
 		cusrepo.save(c);
-		Customer d=new Customer("Delta",99749329, null, null);
+		Customer d=new Customer("Delta",99749329);
 		cusrepo.save(d);	
 	}
 	

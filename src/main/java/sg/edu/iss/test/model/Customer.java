@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -28,6 +30,12 @@ public class Customer {
 		this.mobile = mobile;
 		this.orders = orders;
 
+	}
+	
+	public Customer(String name, int mobile) {
+		super();
+		this.name = name;
+		this.mobile = mobile;
 	}
 	
 	

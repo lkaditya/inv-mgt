@@ -82,12 +82,6 @@ public class CatalogueImplementation implements CatalogueInterface  {
 	}
 
 	@Override
-	public Product findById(long id) {
-		Product product = prepo.findById(id).orElse(null);
-		return product;
-	}
-
-	@Override
 	public void delete(long id) {
 		prepo.deleteById(id);
 	}
