@@ -52,17 +52,17 @@ class EtoeApplicationTests {
 
 	}
 	
-	@Test
-	void loadCustomers() {
-		Customer a=new Customer("Alpha",34562283, null, null);
-		cusrepo.save(a);
-		Customer b=new Customer("Beta",84349210, null, null);
-		cusrepo.save(b);
-		Customer c=new Customer("Charlie",23894012, null, null);
-		cusrepo.save(c);
-		Customer d=new Customer("Delta",99749329, null, null);
-		cusrepo.save(d);	
-	}
+//	@Test
+//	void loadCustomers() {
+//		Customer a=new Customer("Alpha",34562283, null, null);
+//		cusrepo.save(a);
+//		Customer b=new Customer("Beta",84349210, null, null);
+//		cusrepo.save(b);
+//		Customer c=new Customer("Charlie",23894012, null, null);
+//		cusrepo.save(c);
+//		Customer d=new Customer("Delta",99749329, null, null);
+//		cusrepo.save(d);	
+//	}
 	
 	@Test
 	void loadRepairOrder() {
