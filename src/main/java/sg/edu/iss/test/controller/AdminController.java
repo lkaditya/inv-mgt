@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import sg.edu.iss.test.model.Admin;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
