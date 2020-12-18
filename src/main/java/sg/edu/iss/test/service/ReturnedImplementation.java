@@ -1,30 +1,28 @@
 package sg.edu.iss.test.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import sg.edu.iss.test.model.Inventory;
-import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Returned;
 import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.ReturnedRepository;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
-public class ReturnedImplementation implements ReturnedInterface{
+public class ReturnedImplementation implements ReturnedInterface {
 	
 	@Autowired
-	ProductRepository prepo;
+    ProductRepository prepo;
 	
 	@Autowired
-	ReturnedRepository rrepo;
+    ReturnedRepository rrepo;
 	
 	@Autowired
-	InventoryRepository irepo;
+    InventoryRepository irepo;
 
 	@Transactional
 	public void save(Returned returned) {
@@ -38,6 +36,7 @@ public class ReturnedImplementation implements ReturnedInterface{
 
 	@Override
 	public Optional<Returned> findReturnedById(Long id) {
+		// TODO Auto-generated method stub
 		Optional<Returned> byId = rrepo.findById(id);
 		return byId;
 	}
@@ -49,6 +48,7 @@ public class ReturnedImplementation implements ReturnedInterface{
 
 	@Override
 	public Returned findById(Long id) {
+		// TODO Auto-generated method stub
 		return rrepo.findById(id).get();
 	}
 

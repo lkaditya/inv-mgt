@@ -47,9 +47,9 @@ class EtoeApplicationTests {
 	@Test
 	void contextLoads() {
 		//User u1 = new User("dilbert", "password", RoleType.ADMIN);
-		User u1= new User("frank", "password", RoleType.ADMIN); 
+		User u1= new User("frank", "password", RoleType.ADMIN);
 		urepo.save(u1);
-		
+
 	}
 	
 	@Test
@@ -94,8 +94,8 @@ class EtoeApplicationTests {
 		
 	}
 
-	
-	@Test 
+
+	@Test
 	void test1() {
 		//List<RepairOrder> group=uservice.showAllRepairOrders();
 		//LocalDate a= LocalDate.of(2020, 12, 15);

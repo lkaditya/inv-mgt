@@ -26,19 +26,19 @@ public class CustomerController {
 
 	@Autowired
 	CustomerInterface cservice;
-	
+
 	@Autowired
 	public void setCustomerImplementation(CustomerImplementation cimpl) {
 		this.cservice = cimpl;
 	}
-	
+
 	@RequestMapping(value = "/viewcustomers", method = RequestMethod.GET)
 	public String list(Model model) {
 		List<Customer> clist = cservice.listAllCustomer();
 		model.addAttribute("clist", clist);
 		return "customer";
 	}
-//	
+//
 //	@RequestMapping(value = "/save", method = RequestMethod.POST)
 //	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
 //		iservice.saveInventory(inventory);
@@ -50,9 +50,9 @@ public class CustomerController {
 //		List<Inventory> ilist = iservice.list();
 //		model.addAttribute("ilist", ilist);
 //		return "index";
-//	}	
-//	
-//	
+//	}
+//
+//
 //	@RequestMapping(value= "/edit/{id}")
 //	public String editForm(@PathVariable("id") Long id, Model model) {
 //		Optional<Inventory> inventoryById = iservice.findInventoryById(id);
@@ -60,14 +60,14 @@ public class CustomerController {
 //				);
 //		return "inventoryform";
 //	}
-//	
+//
 //	@RequestMapping(value = "/delete")
 //	public String deleteInventory(Long productID) {
 //
 //		iservice.deleteInventory(productID);
 //		return "redirect:/inventory/list";
 //	}
-	
-	
+
+
 }
-	
+

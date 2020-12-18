@@ -1,17 +1,12 @@
 package sg.edu.iss.test.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductQuery;
@@ -52,8 +47,6 @@ public class CatalogueController {
 			productQuery.setProductName("");
 			productQuery.setSupplierName("");
 		}
-		System.out.println(size);
-		System.out.println(page);
 		Page<Product> productByFliter = cservice.findProductByFliter(page,size,productQuery);
 		System.out.println(productByFliter);
 		model.addAttribute("products",productByFliter);
@@ -63,4 +56,19 @@ public class CatalogueController {
 		model.addAttribute("control", "product");
 		return "catalogue";
 	}
+
+
+	@RequestMapping("/edit/{id}")
+	public String editProduct(@PathVariable("id") Long id, Model model){
+		Product product = cservice.findById(id);
+		model.addAttribute("product", product);
+		return "catalogueformForModify";
+	}
+
+	@RequestMapping("/delete/{id}")
+	public String deleteProduct(@PathVariable("id") Long id, Model model){
+		cservice.delete(id);
+		return "redirect:/catalogue/findByFilter";
+	}
+
 }

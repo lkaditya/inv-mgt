@@ -32,6 +32,7 @@
    <th>SUPPLIER PHONE</th>
    <th>SUPPLIER EMAIL</th>
    <th>BRAND</th>
+   <th>Action</th>
  </tr>
  <tr th:each="product:${products}">
    <td th:text="${product.id}">ID</td> 
@@ -42,6 +43,13 @@
    <td th:text="${product.supplier.phone}">ID</td>
    <td th:text="${product.supplier.email}">ID</td>
    <td th:text="${product.brand.brandName}">ID</td>
+
+   <td>
+     <a th:href="@{/catalogue/edit/}+${product.id}">Edit </a>
+     /
+     <a th:href="@{/catalogue/delete/}+${product.id}">Delete </a>
+   </td>
+
  </tr>
 </table>
   <div>How many to show?</div>

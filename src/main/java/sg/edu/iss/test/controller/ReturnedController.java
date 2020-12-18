@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.Returned;
 import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.MailService;
 import sg.edu.iss.test.service.ReturnedImplementation;
 import sg.edu.iss.test.service.ReturnedInterface;
 
@@ -23,7 +24,7 @@ import java.util.Optional;
 public class ReturnedController {
 	@Autowired
 	private ReturnedInterface rservice;
-
+	
 	@Autowired
 	public void setReturned(ReturnedImplementation returned) {
 		this.rservice = returned;
@@ -36,6 +37,13 @@ public class ReturnedController {
 	@Autowired
 	private CatalogueInterface catalogueInterface;
 
+	public void setMailService(MailService mailService) {
+		this.mailService = mailService;
+	}
+
+	@Autowired
+	private MailService mailService;
+
 
 	@RequestMapping(value = "/showform")
 	public String showForm(Model model,long id) {
@@ -47,11 +55,16 @@ public class ReturnedController {
 		model.addAttribute("InventoryId",id);
 		return "returnedform";
 	}
-
+	
 	@RequestMapping(value = "/save")
-	public String save(@ModelAttribute("returned") Returned returned, BindingResult bindingResult, Model model, String productid,Long InventoryId) {
+	public String save(@ModelAttribute("returned") Returned returned, BindingResult bindingResult, Model model, String productid,long InventoryId) {
 		Long qt = returned.getQt();
 		Inventory inventory = rservice.update(qt, InventoryId);
+
+//		if (inventory.getQoh()<20){
+//			mailService.sendSimpleMail("test","send email....");
+//		}
+
 		rservice.save(returned);
 		return "redirect:/returned/list";
 	}
@@ -62,8 +75,8 @@ public class ReturnedController {
 		model.addAttribute("rlist", rlist);
 		return "returned";
 	}	
-
-
+	
+	
 	@RequestMapping(value= "/edit/{id}")
 	public String editForm(@PathVariable("id") Long id, Model model) {
 		Optional<Returned> returnedById = rservice.findReturnedById(id);
@@ -71,12 +84,12 @@ public class ReturnedController {
 				);
 		return "returnedform";
 	}
-
+	
 	@RequestMapping(value = "/delete/{id}")
 	public String delete(@PathVariable("id") Long id, Model model) {
 		rservice.delete(rservice.findById(id));
 		return "redirect:/returned/list";
 	}
 
-
+	
 }
