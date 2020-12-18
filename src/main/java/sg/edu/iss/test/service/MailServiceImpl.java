@@ -13,7 +13,7 @@ public class MailServiceImpl implements MailService {
     @Override
     public void sendSimpleMail(String subject, String text) {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom("695045850@qq.com");
+        mailMessage.setFrom("gdipsa51@gmail.com");
         mailMessage.setTo("gkq15254126923@163.com");
 
         mailMessage.setSubject(subject);

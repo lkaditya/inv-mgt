@@ -47,8 +47,6 @@ public class CatalogueController {
 			productQuery.setProductName("");
 			productQuery.setSupplierName("");
 		}
-		System.out.println(size);
-		System.out.println(page);
 		Page<Product> productByFliter = cservice.findProductByFliter(page,size,productQuery);
 		System.out.println(productByFliter);
 		model.addAttribute("products",productByFliter);
