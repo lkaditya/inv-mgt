@@ -38,12 +38,20 @@ public class CustomerController {
 		model.addAttribute("clist", clist);
 		return "customer";
 	}
-//	
-//	@RequestMapping(value = "/save", method = RequestMethod.POST)
-//	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
-//		iservice.saveInventory(inventory);
-//		return "redirect:/inventory/list";
-//	}
+	
+	@RequestMapping(value = "/customerform", method = RequestMethod.GET)
+	public String add(Model model) {
+		Customer customer = new Customer();
+		model.addAttribute("customer", customer);
+		return "customerform";
+	}
+	
+
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	public String save(@ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
+		cservice.createCustomer(customer);
+		return "redirect:/customer/viewcustomers";
+	}
 //
 //	@RequestMapping(value = "/list")
 //	public String list(Model model) {
