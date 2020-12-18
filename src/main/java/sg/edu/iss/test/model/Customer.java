@@ -21,14 +21,13 @@ public class Customer {
 	private int mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
-	@OneToMany(mappedBy = "customer")
-	private Collection <Cart> carts;
-	public Customer(String name, int mobile, List<RepairOrder> orders, Collection<Cart> carts) {
+
+	public Customer(String name, int mobile, List<RepairOrder> orders) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
 		this.orders = orders;
-		this.carts = carts;
+
 	}
 	
 	
