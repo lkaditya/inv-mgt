@@ -104,4 +104,16 @@ public class ProductUsageImplementation implements ProductUsageService{
 		return repairrepo.findById(id).get();
 	}
 
+	@Override
+	public ProductUsage showCartProductUsageByProductName(Product product) {
+	
+		return produserepo.findCartProductUsageByProductName(product.getProductName());
+	}
+
+	@Override
+	public List<ProductUsage> showProductUsagesByCartId(Long id) {
+		// TODO Auto-generated method stub
+		return produserepo.findProductUsageByCartId(id);
+	}
+
 }

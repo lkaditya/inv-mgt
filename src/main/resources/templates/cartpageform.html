@@ -13,13 +13,16 @@
 <form action="" th:object="${usages}" th:action="@{/cart/save}"
 		method="POST" class="form-horizontal">
 		<fieldset>
+			<input type="hidden" th:field="*{cart.id}" />
+		</fieldset>
+		<fieldset>
 			Customer: <input type="text" th:field="*{cart.customer.name}" >
 		</fieldset>
 		<fieldset>
 			Date: <input type="text" th:field="*{cart.date}" placeholder="yyyy-MM-dd" >
 		</fieldset>	
 		<fieldset>
-			user: <input type="text" th:field="*{cart.user.userName}" >
+			user: <input type="text" th:field="*{cart.user.userName}" readonly>
 		</fieldset>	
 		
 		<table>

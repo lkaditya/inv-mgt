@@ -30,6 +30,8 @@ public class ProductUsage {
 	private Product product;
 	@ManyToOne()
 	private RepairOrder rep;
+	@ManyToOne()
+	private Cart cart;
 	private int quantity;
 
 	

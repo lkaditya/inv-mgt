@@ -21,6 +21,12 @@ public interface ProductUsageRepository extends JpaRepository<ProductUsage, Long
 	@Query("select x from ProductUsage x where x.productUsageId like CONCAT('%',:key,'%') or x.product.productName like CONCAT('%',:key,'%')")
 	List<ProductUsage> findProductUsageByKeyword(@Param("key")String key);
 
+	@Query("Select x From ProductUsage x where x.rep=null and x.product.productName=:name")
+	ProductUsage findCartProductUsageByProductName(@Param("name")String productName);
+
+	@Query("Select x From ProductUsage x where x.cart.id=:id")
+	List<ProductUsage> findProductUsageByCartId(@Param ("id") Long id);
+
 
 
 }

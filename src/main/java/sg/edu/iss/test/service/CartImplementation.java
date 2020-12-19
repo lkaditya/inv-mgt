@@ -1,5 +1,7 @@
 package sg.edu.iss.test.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,5 +26,28 @@ public class CartImplementation implements CartService {
 		Cart c= cartrepo.findCartByUserName(username);
 		return c;
 	}
+
+
+	@Override
+	public void save(Cart cart) {
+		cartrepo.save(cart);
+	}
+
+
+	@Override
+	public void delete(Cart cart) {
+		cartrepo.delete(cart);
+		
+	}
+
+
+	@Override
+	public Cart findCartById(Long id) {
+		// TODO Auto-generated method stub
+		return cartrepo.findById(id).get();
+	}
+
+
+
 
 }

@@ -16,6 +16,7 @@ public interface ProductUsageService {
 	public List<ProductUsage> showRelevantProductUsage(RepairOrder rep);
 	public List<ProductUsage> showProductUsageByDate(Product product,LocalDate start);
 	public List<ProductUsage> showProductUsageByKeyword(String keyword);
+	public ProductUsage showCartProductUsageByProductName(Product product);
 	
 	public void saveRepairOrder(RepairOrder rep);
 	public void deleteRepairOrder(RepairOrder rep);
@@ -23,6 +24,7 @@ public interface ProductUsageService {
 	public List<RepairOrder> showRepairOrderByDate(LocalDate start,LocalDate end);
 	public List<RepairOrder> showRepairOrderByKeyword(String keyword);
 	public RepairOrder findRepairOrderById(Long id);
+	public List<ProductUsage> showProductUsagesByCartId(Long id);
 	
 	
 	

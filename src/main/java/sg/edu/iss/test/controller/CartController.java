@@ -57,43 +57,28 @@ public class CartController {
 	@Autowired
 	private InventoryInterface inventoryservice;
 	
-	@RequestMapping(value="/addtocart")
-	public String addCart(Model model) {
-		Cart c = new Cart();
-		LocalDate now=LocalDate.now();
-		c.setDate(now);
-		long userid= 3; //asumming
-		User user=userservice.findUserById(userid);
-		
-		ProductUsage pu= new ProductUsage ();
-		long inventoryid= 3; //asumming
-		Product p=proservice.findProductById(inventoryid);
-		pu.setProduct(p);
-		pu.setQuantity(1);
-		uservice.addProductUsage(pu);
-
-		c.addToCart(pu);
-		c.setUser(user);
-
-		
-		return null;
-		
-	}
 	
 	@RequestMapping(value="/show")
 	//TODO: don't forget implement session later, remove the hardcoded user name
 	public String showCart(Model model,HttpSession session) {
 		//String username=(String) session.getAttribute("username");
 		//later put session
-		String username="frank";
+		//assuming
+		String username="sharon";
 		Cart c= cartservice.showAllCartByUserName(username);
-		List<ProductUsage> group= c.getUsage();
-		ObjectInput usageform= new ObjectInput();
-		usageform.setUsages(group);
-		usageform.setCart(c);
-		//model.addAttribute("cart",c);
-		model.addAttribute("usages",usageform);
-		model.addAttribute("control","cart");
+		if(c!=null) {
+			List<ProductUsage> group= c.getUsage(); //currently null
+			ObjectInput usageform= new ObjectInput();
+			usageform.setUsages(group);
+			usageform.setCart(c);
+			model.addAttribute("usages",usageform);
+			model.addAttribute("control","cart");
+		}else {
+			ObjectInput usageform= new ObjectInput();
+			usageform.setCart(new Cart());
+			model.addAttribute("usages",usageform);
+			model.addAttribute("control","cart");
+		}
 		return "cartpageform";
 	}
 	
@@ -109,13 +94,15 @@ public class CartController {
 		rep.setRepairDate(obj.getCart().getDate());
 		uservice.saveRepairOrder(rep);
 		
-		List<ProductUsage>details=obj.getUsages();
+		//List<ProductUsage>details=obj.getUsages();
+		long cartid=obj.getCart().getId();
+		List<ProductUsage> details=uservice.showProductUsagesByCartId(cartid);
 		for(ProductUsage i:details) {
-			//String name=i.getProduct().getProductName();
 			long productid=i.getProduct().getId();
 			i.setRep(rep);
 			Product pro=proservice.findProductById(productid);
 			i.setProduct(pro);
+			i.setCart(null);
 			uservice.addProductUsage(i);
 			
 			//reduce the inventory amount
@@ -126,7 +113,15 @@ public class CartController {
 			inventoryservice.saveInventory(a);
 		}
 		rep.setProductUsageList(details);
-		//uservice.saveRepairOrder(rep);
+		//clean up the cart
+//		long cartid=obj.getCart().getId();
+//		List<ProductUsage> cusage=uservice.showProductUsagesByCartId(cartid);
+//		for (ProductUsage x :cusage) {
+//			uservice.deleteProductUsage(x);
+//		}
+		//Cart x= cartservice.findCartById(cartid);
+		//cartservice.delete(x);
+
 		return "redirect:/repair/showrecord";
 	}
 	
