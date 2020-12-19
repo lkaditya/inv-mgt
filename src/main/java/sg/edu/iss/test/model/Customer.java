@@ -1,5 +1,6 @@
 package sg.edu.iss.test.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,9 +23,13 @@ public class Customer {
 	private int mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
-	
-	public Customer() {
+
+	public Customer(String name, int mobile, List<RepairOrder> orders) {
 		super();
+		this.name = name;
+		this.mobile = mobile;
+		this.orders = orders;
+
 	}
 	
 	public Customer(String name, int mobile) {
@@ -30,5 +37,6 @@ public class Customer {
 		this.name = name;
 		this.mobile = mobile;
 	}
+	
 	
 }

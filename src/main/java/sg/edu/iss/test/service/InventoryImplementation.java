@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.iss.test.model.Inventory;
+import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 
@@ -32,7 +33,6 @@ public class InventoryImplementation implements InventoryInterface  {
 
 	@Override
 	public Optional<Inventory> findInventoryById(Long id) {
-		// TODO Auto-generated method stub
 		Optional<Inventory> byId = irepo.findById(id);
 		return byId;
 	}
@@ -53,17 +53,13 @@ public class InventoryImplementation implements InventoryInterface  {
 
 	@Transactional
 	public void saveInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
 		irepo.save(inventory);
 	}
-//
-//
-//	@Override
-//	public void returnInventory(Long inventory) {
-//		// TODO Auto-generated method stub
-//		irepo.deleteById(inventory.getId());
 
-
+	@Transactional
+	public List<Inventory> findInventoryByKeyword(String keyword){
+		return irepo.findInventoryByKeyword(keyword);
+	}
 	
 
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,14 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Inventory;
+import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
+import sg.edu.iss.test.model.ProductUsage;
+import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.InventoryImplementation;
 import sg.edu.iss.test.service.InventoryInterface;
+import sg.edu.iss.test.service.ProductService;
 
 @Controller
 @RequestMapping("/inventory")
 public class InventoryController {
 	
+	@Autowired
+	private ProductService proservice;
 	@Autowired
 	private InventoryInterface iservice;
 	
@@ -33,13 +40,18 @@ public class InventoryController {
 	
 	@RequestMapping(value = "/showform", method = RequestMethod.POST)
 	public String showForm(Model model) {
-		Inventory inventory = new Inventory();
-		model.addAttribute("inventory", inventory);
+		List<Inventory> ilist = iservice.list();
+		model.addAttribute("ilist", ilist);
+		ObjectInput f = new ObjectInput();
+		model.addAttribute("filter", f);
+		
 		return "inventoryform";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
+		Product x= proservice.findProductById(inventory.getProduct().getId());
+		inventory.setProduct(x);
 		iservice.saveInventory(inventory);
 		return "redirect:/inventory/list";
 	}
@@ -66,10 +78,13 @@ public class InventoryController {
 		iservice.deleteInventory(productID);
 		return "redirect:/inventory/list";
 	}
-//
-//	@RequestMapping(value = "/return/{id}")
-//	public String returnInventory(@PathVariable("id") Long id) {
-//		iservice.returnInventory(iservice.findInventoryById(id));
-//		return "forward:/returned/list";
-//	}
+	
+	//link when hidden search button is clicked
+	@RequestMapping(value="/search",method=RequestMethod.POST)
+	public String showRelevantInventory(@ModelAttribute("keyword") String keyword, Model model) {
+		List<Inventory> ilist =iservice.findInventoryByKeyword(keyword);
+		model.addAttribute("ilist",ilist);	
+		return "index";
+	}
+
 }
