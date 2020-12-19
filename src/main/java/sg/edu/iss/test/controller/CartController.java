@@ -1,7 +1,7 @@
 package sg.edu.iss.test.controller;
 
 
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -21,7 +21,6 @@ import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
-import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.CartImplementation;
 import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.CustomerInterface;
@@ -72,12 +71,12 @@ public class CartController {
 			usageform.setUsages(group);
 			usageform.setCart(c);
 			model.addAttribute("usages",usageform);
-			model.addAttribute("control","cart");
+			model.addAttribute("customers",custservice.listAllCustomerNames());
 		}else {
 			ObjectInput usageform= new ObjectInput();
 			usageform.setCart(new Cart());
 			model.addAttribute("usages",usageform);
-			model.addAttribute("control","cart");
+			model.addAttribute("customers",custservice.listAllCustomerNames());
 		}
 		return "cartpageform";
 	}
@@ -94,12 +93,18 @@ public class CartController {
 		rep.setRepairDate(obj.getCart().getDate());
 		uservice.saveRepairOrder(rep);
 		
-		//List<ProductUsage>details=obj.getUsages();
+		List<ProductUsage>formdata=obj.getUsages();
+		List<Integer> quantityusages= new ArrayList<Integer>();
+		formdata.stream().forEach(x->quantityusages.add(x.getQuantity()));
+		
 		long cartid=obj.getCart().getId();
 		List<ProductUsage> details=uservice.showProductUsagesByCartId(cartid);
-		for(ProductUsage i:details) {
+		//for(ProductUsage i:details) 
+		for(int x=0;x<details.size();x++){
+			ProductUsage i=details.get(x);
 			long productid=i.getProduct().getId();
 			i.setRep(rep);
+			i.setQuantity(quantityusages.get(x));
 			Product pro=proservice.findProductById(productid);
 			i.setProduct(pro);
 			i.setCart(null);

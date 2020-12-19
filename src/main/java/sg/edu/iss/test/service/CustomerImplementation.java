@@ -1,5 +1,6 @@
 package sg.edu.iss.test.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,14 @@ public class CustomerImplementation implements CustomerInterface {
 	@Override
 	public Customer findCustomerByCustomerId(Long customerId) {
 		return crepo.findCustomerByCustomerId(customerId);
+	}
+
+	@Override
+	public List<String> listAllCustomerNames() {
+		List<Customer>group=crepo.findAll();
+		List<String> names= new ArrayList<String>();
+		group.stream().forEach(x->names.add(x.getName()));
+		return names;
 	}
 
 }

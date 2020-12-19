@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
@@ -108,13 +109,16 @@ public class RepairOrderController {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
 		model.addAttribute("control","record");
+		model.addAttribute("customers",custservice.listAllCustomerNames());
 		return "recordrepairform";
 	}
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public String saveRecord(@ModelAttribute("${repairrecord}") RepairOrder rep,BindingResult bindingResult,Model model) {
+		Customer a= custservice.findByName(rep.getCustomer().getName());
+		rep.setCustomer(a);
 		uservice.saveRepairOrder(rep);
-		return "forward:/repair/showrecord";
+		return "redirect:/repair/showrecord";
 	}
 	
 	//link for each delete repair to be clicked

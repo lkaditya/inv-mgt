@@ -12,4 +12,5 @@ public interface CustomerInterface {
 	public void deleteCustomer(Long customerId);
 	public Customer findByName(String name);
 	public Customer findCustomerByCustomerId(Long customerId);
+	public List<String> listAllCustomerNames();
 }

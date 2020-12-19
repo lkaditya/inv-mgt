@@ -16,7 +16,10 @@
 			RepairOrder <input type="text" th:field="*{repairId}" readonly>
 		</fieldset>
 		<fieldset>
-			Customer: <input type="text" th:field="*{customer.name}" >
+			Customer: <select th:field="*{customer.name}" >
+			<option th:each="name:${customers}" th:value="${name}" th:text="${name}">
+			</option>
+			</select>
 		</fieldset>
 		<fieldset>
 			Date: <input type="text" th:field="*{repairDate}" placeholder="yyyy-MM-dd" >
