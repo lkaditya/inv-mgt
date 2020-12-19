@@ -26,9 +26,9 @@
 	<td th:text="${customer.name}">name</td>
 	<td th:text="${customer.mobile}">mobile</td> 
 	<td>
-		<a href="customeredit.html" th:href="@{/customer/edit/}+${customerid}">Edit </a>
+		<a href="customeredit.html" th:href="@{/customer/edit/}+${customer.customerId}">Edit </a>
 		/
-		<a href="customerdelete.html" th:href="@{/customer/delete/}+${customerid}">Delete </a>
+		<a href="customerdelete.html" th:href="@{'/customer/delete?customerId='+${customer.customerId}}">Delete </a>
 	</td>
 	
  </tr>

@@ -52,29 +52,20 @@ public class CustomerController {
 		cservice.createCustomer(customer);
 		return "redirect:/customer/viewcustomers";
 	}
-//
-//	@RequestMapping(value = "/list")
-//	public String list(Model model) {
-//		List<Inventory> ilist = iservice.list();
-//		model.addAttribute("ilist", ilist);
-//		return "index";
-//	}	
-//	
-//	
-//	@RequestMapping(value= "/edit/{id}")
-//	public String editForm(@PathVariable("id") Long id, Model model) {
-//		Optional<Inventory> inventoryById = iservice.findInventoryById(id);
-//		model.addAttribute("inventory", inventoryById
-//				);
-//		return "inventoryform";
-//	}
-//	
-//	@RequestMapping(value = "/delete")
-//	public String deleteInventory(Long productID) {
-//
-//		iservice.deleteInventory(productID);
-//		return "redirect:/inventory/list";
-//	}
+
+
+	@RequestMapping(value= "/edit/{id}")
+	public String editForm(@PathVariable("id") Long id, Model model) {
+		Customer customer = cservice.findCustomerByCustomerId(id);
+		model.addAttribute("customer", customer);
+		return "customerform";
+	}
+	
+	@RequestMapping(value = "/delete")
+	public String deleteCustomer(Long customerId) {
+		cservice.deleteCustomer(customerId);
+		return "redirect:/customer/viewcustomers";
+	}
 	
 	
 }

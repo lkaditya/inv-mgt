@@ -13,6 +13,10 @@
 	<form action="#" th:object="${customer}" th:action="@{/customer/save}" method="POST" class="form-horizontal">
 	
 		<fieldset>
+			<input type="hidden" th:field="*{customerId}" />
+		</fieldset>
+			
+		<fieldset>
 			Name: <input type="text" th:field="*{name}">
 		</fieldset>
 		

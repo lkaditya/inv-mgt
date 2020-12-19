@@ -9,7 +9,7 @@ public interface CustomerInterface {
 	public void createCustomer(Customer customer);
 	public void updateCustomer(Customer customer);
 	public List<Customer> listAllCustomer();
-	public void deleteCustomer(Customer customer);
-	//public boolean authenticate(Customer customer);
+	public void deleteCustomer(Long customerId);
 	public Customer findByName(String name);
+	public Customer findCustomerByCustomerId(Long customerId);
 }
