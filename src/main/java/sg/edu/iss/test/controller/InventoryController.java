@@ -1,12 +1,10 @@
 package sg.edu.iss.test.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,14 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
-import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.model.User;
+import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.InventoryImplementation;
 import sg.edu.iss.test.service.InventoryInterface;
 import sg.edu.iss.test.service.ProductService;
+import sg.edu.iss.test.service.ProductUsageService;
+import sg.edu.iss.test.service.UserService;
 
 @Controller
 @RequestMapping("/inventory")
@@ -37,6 +39,17 @@ public class InventoryController {
 	public void setInventory(InventoryImplementation inventory) {
 		this.iservice = inventory;
 	}
+	
+	@Autowired
+	private CartService cartservice;
+	
+	
+	@Autowired
+	private ProductUsageService puservice;
+	
+	
+	@Autowired
+	private UserService userservice;
 	
 	@RequestMapping(value = "/showform", method = RequestMethod.POST)
 	public String showForm(Model model) {
@@ -85,6 +98,52 @@ public class InventoryController {
 		List<Inventory> ilist =iservice.findInventoryByKeyword(keyword);
 		model.addAttribute("ilist",ilist);	
 		return "index";
+	}
+	
+	@RequestMapping(value="/add")
+	public String add(Long inventoryid) {
+		//TODO change user to be taken from the session
+		long userid= 1; //asumming
+		User user=userservice.findUserById(userid);
+		Cart c=cartservice.showAllCartByUserName(user.getUserName());
+		//assuming the cart is 1 per user regardless of customer
+		if(c!=null) {
+			Product p=proservice.findProductById(inventoryid);
+			ProductUsage existing= puservice.showCartProductUsageByProductName(p);
+			if(existing!=null) {
+				existing.setQuantity(existing.getQuantity()+1);
+				puservice.addProductUsage(existing);
+			}else {
+				ProductUsage pu= new ProductUsage ();
+				pu.setProduct(p);
+				pu.setQuantity(1);
+				pu.setCart(c);
+				puservice.addProductUsage(pu);
+				c.addToCart(pu);
+			}
+			cartservice.save(c);
+			return "redirect:/inventory/list";
+		}else {
+			Cart c1 = new Cart();
+			LocalDate now=LocalDate.now();
+			c1.setDate(now);
+			c1.setUser(user);
+			//c1.addToCart(pu);
+			cartservice.save(c1);
+			
+			Product p=proservice.findProductById(inventoryid);
+			ProductUsage pu= new ProductUsage ();
+			pu.setProduct(p);
+			pu.setQuantity(1);
+			pu.setCart(c1);
+			puservice.addProductUsage(pu);
+			
+			//Cart c2=cartservice.showAllCartByUserName(user.getUserName());
+			c1.addToCart(pu);
+			cartservice.save(c1);
+			return "redirect:/inventory/list";
+		}		
+
 	}
 
 }

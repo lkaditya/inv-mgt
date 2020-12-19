@@ -17,7 +17,7 @@ import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.CustomerInterface;
 import sg.edu.iss.test.service.ProductUsageImplementation;
-import sg.edu.iss.test.service.ProductUsageInterface;
+import sg.edu.iss.test.service.ProductUsageService;
 
 @Controller
 @RequestMapping("/repair")
@@ -28,7 +28,7 @@ public class RepairOrderController {
 	private CustomerInterface custservice;
 	
 	@Autowired
-	private ProductUsageInterface uservice;
+	private ProductUsageService uservice;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {

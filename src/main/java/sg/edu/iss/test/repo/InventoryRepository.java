@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import sg.edu.iss.test.model.Inventory;
-import sg.edu.iss.test.model.RepairOrder;
 
 public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 	@Query("select x from Inventory x where x.id like CONCAT('%',:key,'%') "
@@ -18,5 +17,6 @@ public interface InventoryRepository extends JpaRepository<Inventory, Long> {
 			+ "or x.rol like CONCAT('%',:key,'%')"
 			+ "or x.wholesale like CONCAT('%',:key,'%')")
 	public List<Inventory> findInventoryByKeyword(@Param("key")String key);
-	 
+	@Query("Select i from Inventory i where i.product.productName=:name")
+	Inventory findInventoryByName(@Param("name")String name);
 }

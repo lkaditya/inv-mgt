@@ -2,23 +2,30 @@ package sg.edu.iss.test;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Customer;
+import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
+import sg.edu.iss.test.repo.CartRepository;
 import sg.edu.iss.test.repo.CustomerRepository;
+import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.repo.UserRepository;
 import sg.edu.iss.test.service.ProductUsageImplementation;
-import sg.edu.iss.test.service.ProductUsageInterface;
+import sg.edu.iss.test.service.ProductUsageService;
 
 @SpringBootTest
 class EtoeApplicationTests {
@@ -30,13 +37,19 @@ class EtoeApplicationTests {
 	RepairOrderRepository repairrepo;
 	
 	@Autowired
-	private ProductUsageInterface uservice;
+	private ProductUsageService uservice;
 	
 	@Autowired
 	private ProductRepository prorepo;
 	
 	@Autowired
 	private UserRepository userrepo;
+	
+	@Autowired
+	private CartRepository cartrepo;
+	
+	@Autowired
+	private InventoryRepository invrepo;
 	
 	@Autowired
 	public void setProductUsage(ProductUsageImplementation usage) {
@@ -102,6 +115,23 @@ class EtoeApplicationTests {
 		//List<RepairOrder>group= uservice.showRepairOrderByKeyword("alpha");
 		ArrayList<User>group= (ArrayList<User>)userrepo.findAll();
 		System.out.println(group.size());
+	}
+	
+	@Test
+	@Transactional
+	void test2query() {
+		String username="frank";
+		Cart c= cartrepo.findCartByUserName(username);
+		System.out.println(c.getId());
+		List<ProductUsage> group= c.getUsage();
+		System.out.println(group.size());
+		System.out.println(group.get(0).getProduct().getProductName());
+	}
+	
+	@Test
+	void InventoryTest() {
+		Inventory a= invrepo.findInventoryByName("Crankcase");
+		System.out.println(a.getQoh());
 	}
 	
 

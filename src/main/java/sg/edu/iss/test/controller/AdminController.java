@@ -1,14 +1,27 @@
 package sg.edu.iss.test.controller;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
@@ -50,9 +63,9 @@ public class AdminController {
 		model.addAttribute("control","user");
 		return "user-form";
 	}
-
+	
 	@RequestMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("user") @Valid User user,
+	public String saveUser(@ModelAttribute("user") @Valid User user, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("control","user");
@@ -68,8 +81,8 @@ public class AdminController {
 		userServices.deleteUser(user);
 		return "forward:/admin/viewusers";
 	}
-
-
+    
+	
 	@RequestMapping(value = "/viewsuppliers")
 	public String listsuppliers(Model model) {
 		model.addAttribute("suppliers", supplierServices.findAllSuppliers());
@@ -89,7 +102,7 @@ public class AdminController {
 		return "supplier-form";
 	}
 	@RequestMapping(value = "/savesupplier")
-	public String saveSupplier(@ModelAttribute("supplier") @Valid Supplier supplier,
+	public String saveSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
 			return "supplier-form";
@@ -102,8 +115,8 @@ public class AdminController {
 		supplierServices.deleteSupplier(supplierServices.findSupplierById(id));
 		return "forward:/admin/viewsuppliers";
 	}
-
-
+	
+	
 	@RequestMapping(value = "/viewproducts")
 	public String list(Model model) {
 		model.addAttribute("products", productServices.findALLProducts());
@@ -120,7 +133,7 @@ public class AdminController {
 		return "product-form";
 	}
 	@RequestMapping(value = "/saveproduct")
-	public String saveProduct(@ModelAttribute("product") @Valid Product product,
+	public String saveProduct(@ModelAttribute("product") @Valid Product product, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
 			return "product-form";
@@ -133,5 +146,5 @@ public class AdminController {
 		productServices.deleteProduct(productServices.findProductById(id));
 		return "forward:/admin/viewproducts";
 	}
-
+	
 }

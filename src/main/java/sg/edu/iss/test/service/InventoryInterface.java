@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import sg.edu.iss.test.model.Inventory;
-import sg.edu.iss.test.model.ProductUsage;
-import sg.edu.iss.test.model.RepairOrder;
 
 
 public interface InventoryInterface {
@@ -16,5 +14,7 @@ public interface InventoryInterface {
 	public void deleteInventory(long productId);
 	void returnInventory(Inventory inventory);
 	public List<Inventory> findInventoryByKeyword(String keyword);
+	public Inventory findInventoryByProductName(String name);
+	
 
 }

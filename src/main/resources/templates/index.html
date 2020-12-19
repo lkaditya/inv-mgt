@@ -34,6 +34,7 @@ function myFunction() {
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <h1>Inventory Listing</h1>
+  	<a href="#" th:href="@{/cart/show}">Link To Cart</a>
 	<form  th:action="@{/inventory/search}" method="post" class="form-horizontal" style="float: left">
 		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for inventory.." title="Type in a name">
 		<fieldset>
@@ -66,8 +67,12 @@ function myFunction() {
 		th:href="@{/inventory/edit/}+${inventory.id}">Edit /</a>
 		<a href="Editinventory.html"
    		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
+		
 		<a href="Returninventory.html"
-           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return</a>
+           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return/</a>
+        
+        <a href="arbitrary.html"
+		th:href="@{'/inventory/add?inventoryid='+${inventory.id}}">Add To Cart</a>
 	</td>
   
  </tr>
