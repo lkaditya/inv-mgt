@@ -10,7 +10,24 @@
 	<header th:insert="layout/layout.html :: header"></header>
 	<div th:replace="layout/layout.html :: menu"></div>
 	<h1>Add Customer Form</h1>
-	<form action="" th:object="${product}" th:action="@{/catalogue/save}">
+	<form action="#" th:object="${customer}" th:action="@{/customer/save}" method="POST" class="form-horizontal">
+	
+		<fieldset>
+			<input type="hidden" th:field="*{customerId}" />
+		</fieldset>
+			
+		<fieldset>
+			Name: <input type="text" th:field="*{name}">
+		</fieldset>
+		
+		
+		<fieldset>
+			Mobile: <input type="number" th:field="*{mobile}">
+		</fieldset>
+		
+		<fieldset>
+			<button type="submit">Save</button>
+		</fieldset>
 		
 	</form>
 	<div th:replace="layout/layout.html :: footer"></div>

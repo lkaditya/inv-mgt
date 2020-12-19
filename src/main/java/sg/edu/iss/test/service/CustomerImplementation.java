@@ -30,13 +30,18 @@ public class CustomerImplementation implements CustomerInterface {
 	}
 
 	@Override
-	public void deleteCustomer(Customer customer) {
-		crepo.delete(customer);
+	public void deleteCustomer(Long customerId) {
+		crepo.delete(crepo.findCustomerByCustomerId(customerId));
 	}
 
 	@Override
 	public Customer findByName(String name) {
 		return crepo.findCustomerByName(name);
+	}
+	
+	@Override
+	public Customer findCustomerByCustomerId(Long customerId) {
+		return crepo.findCustomerByCustomerId(customerId);
 	}
 
 }
