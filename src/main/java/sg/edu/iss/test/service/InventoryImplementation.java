@@ -68,6 +68,12 @@ public class InventoryImplementation implements InventoryInterface  {
 		return irepo.findInventoryByName(name);
 	}
 
+	@Override
+	public List<Inventory> findInventoryByKeyword(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 	
 
