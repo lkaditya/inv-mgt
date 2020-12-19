@@ -10,4 +10,7 @@ public interface UserService {
 	public long totalUser();
 	public ArrayList<User> findAllUsers();
 	public void deleteUser(User user);
+	
+	public boolean authenticate(User user);
+	public User findUserByUserName(String name);
 }
