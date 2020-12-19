@@ -11,5 +11,7 @@ public interface CatalogueInterface {
 	public void save(Product product);
 	public List<Product> list();
 	public Page<Product> findProductByFliter(Integer page, Integer size,ProductQuery productQuery);
-
+	public Product findById(long id);
+	public void delete(long id);
+	public void edit(long id);
 }

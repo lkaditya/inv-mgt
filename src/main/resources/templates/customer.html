@@ -17,7 +17,7 @@
    <th>Customer Id</th>
    <th>Customer Name</th>
    <th>Mobile Number</th>
-   <th>Repair Order List</th>
+   <!-- <th>Repair Order List</th> -->
    <th>Action</th>
  </tr>
  <tr th:each="customer:${clist}">
@@ -25,7 +25,6 @@
 	<td th:text="${customer.customerId}">customerId</td>
 	<td th:text="${customer.name}">name</td>
 	<td th:text="${customer.mobile}">mobile</td> 
-	<td></td>
 	<td>
 		<a href="customeredit.html" th:href="@{/customer/edit/}+${customerid}">Edit </a>
 		/

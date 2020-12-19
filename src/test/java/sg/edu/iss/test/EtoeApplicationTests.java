@@ -60,9 +60,9 @@ class EtoeApplicationTests {
 	@Test
 	void contextLoads() {
 		//User u1 = new User("dilbert", "password", RoleType.ADMIN);
-		User u1= new User("frank", "password", RoleType.ADMIN); 
+		User u1= new User("frank", "password", RoleType.ADMIN);
 		urepo.save(u1);
-		
+
 	}
 	
 	@Test
@@ -83,8 +83,6 @@ class EtoeApplicationTests {
 		RepairOrder rep2=new RepairOrder();
 		Customer a= cusrepo.findCustomerByName("Alpha");
 		Customer b= cusrepo.findCustomerByName("Beta");
-		Customer c= cusrepo.findCustomerByName("Charlie");
-		Customer d= cusrepo.findCustomerByName("Delta");
 		rep1.setCustomer(a);
 		LocalDate d1=LocalDate.now();
 		rep1.setRepairDate(d1);
@@ -109,8 +107,8 @@ class EtoeApplicationTests {
 		
 	}
 
-	
-	@Test 
+
+	@Test
 	void test1() {
 		//List<RepairOrder> group=uservice.showAllRepairOrders();
 		//LocalDate a= LocalDate.of(2020, 12, 15);

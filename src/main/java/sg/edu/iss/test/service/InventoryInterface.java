@@ -13,7 +13,7 @@ public interface InventoryInterface {
 	public Optional<Inventory> findInventoryById(Long id);
 	public void deleteInventory(long productId);
 	void returnInventory(Inventory inventory);
-	
+	public List<Inventory> findInventoryByKeyword(String keyword);
 	public Inventory findInventoryByProductName(String name);
 	
 
