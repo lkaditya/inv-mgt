@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>  
+<meta charset="ISO-8859-1"> 
+<title>Product Form</title> 
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+	<header th:insert="layout/layout.html :: header"> </header>
+	<div th:replace="layout/layout.html :: menu"></div>   
+
+	<h1>Product Form</h1>
+	<form action="#" th:object="${product}" th:action="@{/admin/saveproduct}"
+		method="post">
+		<fieldset>
+			<input type="hidden" th:field="*{id}">
+		</fieldset>
+		<fieldset>
+			Product Name <input type="text" th:field="*{productName}">
+			<p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
+		</fieldset>
+		<fieldset>
+			Product Description <input type="text" th:field="*{productDescription}">
+			<p th:if="${#fields.hasErrors('productDescription')}" th:errors="*{productDescription}"></p>
+		</fieldset>
+		<fieldset>
+			Product Type <input type="text" th:field="*{productType}">
+			<p th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}"></p>
+		</fieldset>
+		<fieldset>
+			Product Category <input type="text" th:field="*{productCategory}">
+			<p th:if="${#fields.hasErrors('productCategory')}" th:errors="*{productCategory}"></p>
+		</fieldset>
+		<fieldset>
+			Product SubCategory <input type="text" th:field="*{productSubCategory}">
+			<p th:if="${#fields.hasErrors('productSubCategory')}" th:errors="*{productSubCategory}"></p>
+		</fieldset>
+		
+		
+
+		<fieldset>
+			<input type="submit" value="Save" /> &nbsp; &nbsp; <input
+				type="reset" value="Reset" />
+		</fieldset>
+
+	</form>
+	<br />
+	<div th:replace="layout/layout.html :: footer"></div>
+</body>
+</html>

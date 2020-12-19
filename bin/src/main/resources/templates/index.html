@@ -28,42 +28,52 @@ function myFunction() {
 	}
 }
 </script>
-<title>Returned Page</title>
+<title>Inventory Page</title>
 </head>
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Returned Listing</h1>
-  <a href="#" th:href="@{/inventory/list}" style="margin-left: 15px; font-size: 16px" >Back To Inventory List</a>
+  <h1>Inventory Listing</h1>
+  	<a href="#" th:href="@{/cart/show}">Link To Cart</a>
 	<form  th:action="@{/inventory/search}" method="post" class="form-horizontal" style="float: left">
-		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for product.." title="Type in a name">
+		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for inventory.." title="Type in a name">
 		<fieldset>
 		<button type="submit" hidden=true></button>
 		</fieldset>
 	</form>
 
-  <!-- a th:href="@{/returned/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a -->
+  <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
 
-  <table class="table table-bordered table-hover" id="myTable" style="margin-top: 30px">
+  <table class="table table-bordered table-hover" id="myTable">
  <tr>
-   <th>Returned Id</th>
+   <th>Inventory Id</th>
    <th>Product Name</th>
-   <th>Quantity</th>
-   <th>Reason</th>
-   <th>Supplier</th>
+   <th>Quantity on hand</th>
+   <th>Wholesale</th>
+   <th>Price of retail</th>   
+   <th>Price of partner</th>
+   <th>Reorder level</th>
    <th>Actions</th>
-   <!--th>Actions</th-->
  </tr>
- <tr th:each="returned:${rlist}">
-   <td th:text="${returned.id}">ID</td>
-   <td th:text="${returned.inventory.product.productName}">ID</td>
-   <td th:text="${returned.qt}">ID</td>
-   <td th:text="${returned.reason}">ID</td>
-   <td th:text="${returned.inventory.product.supplier.supplierName}">ID</td>
-     <td>
-         <a href="Editreturned.html"
-            th:href="@{/returned/delete/}+${returned.id}">Delete </a>
-     </td>
+ <tr th:each="inventory:${ilist}">
+   <td th:text="${inventory.id}">ID</td>
+   <td th:text="${inventory.product.productName}">ID</td>
+   <td th:text="${inventory.qoh}">ID</td>
+   <td th:text="${inventory.wholesale}">ID</td>
+   <td th:text="${inventory.por}">ID</td>
+   <td th:text="${inventory.pop}">ID</td>
+   <td th:text="${inventory.rol}">ID</td>
+   <td><a href="Editinventory.html"
+		th:href="@{/inventory/edit/}+${inventory.id}">Edit /</a>
+		<a href="Editinventory.html"
+   		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
+		
+		<a href="Returninventory.html"
+           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return/</a>
+        
+        <a href="arbitrary.html"
+		th:href="@{'/inventory/add?inventoryid='+${inventory.id}}">Add To Cart</a>
+	</td>
   
  </tr>
 </table>

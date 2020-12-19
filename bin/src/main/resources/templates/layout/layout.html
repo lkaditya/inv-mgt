@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div th:fragment="header" id="header">
+</div>
+<div th:fragment="menu" id="menu">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Team 3</a>
+    </div>
+
+<ul class="nav navbar-nav navbar-right">
+      <li><a href="#" th:href="@{/customer/viewcustomers}">Manage Customer</a></li>
+      <li th:classappend="${control=='user'} ? 'active'"><a href="#" th:href="@{/admin/viewusers}">Manage User</a></li>
+      <li th:classappend="${control=='supplier'} ? 'active'"><a href="#" th:href="@{/admin/viewsuppliers}">Manage Supplier</a></li>
+      <li th:classappend="${control=='product'} ? 'active'"><a href="#" th:href="@{/catalogue/findByFilter}">Manage Product</a></li>
+      <li><a href="#" th:href="@{/inventory/list}">Manage Inventory</a></li>
+      <li><a href="#" th:href="@{/returned/list}">Manage Returned</a></li>
+      <li th:classappend="${control=='record'} ? 'active'"><a href="#" th:href="@{/repair/showrecord}">Record Usage</a></li>
+      <!-- 
+      <li th:if="${not #lists.isEmpty(session.usession)}">
+      <a href="#" th:utext="${session.usession.userName}"  >
+      <span class="glyphicon glyphicon-user"></span> User </a></li>
+       -->
+      <li><a th:classappend="${control=='user'} ? 'active'"><a href="#" th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+    </ul>
+  </div>
+</nav>
+</div>
+<footer th:fragment="footer">
+		<a href="Home" th:href="@{/}">Back to Home</a>
+		<br/>
+		 <small>Now is: <b
+			th:text="${execInfo.now.time}"></b></small> <br /> <small>
+			(c) Inventory Management System, ISS, NUS 2020</small>
+</footer>
+
+</body>
