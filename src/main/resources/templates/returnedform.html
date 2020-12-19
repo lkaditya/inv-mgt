@@ -15,9 +15,11 @@
       
       <fieldset>
          <input type="hidden" name="InventoryId" th:value="${InventoryId}"  />
-         <input type="hidden" th:field="*{id}" />
+         <input type="hidden" th:field="*{inventory.product.id}" />
       </fieldset>
-      
+      <fieldset>
+         Product: <input type="text" th:field="*{inventory.product.productName}">
+      </fieldset>
       <fieldset>
          Quantity: <input type="text" th:field="*{qt}">
       </fieldset>

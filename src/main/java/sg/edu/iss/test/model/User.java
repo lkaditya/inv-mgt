@@ -14,7 +14,7 @@ import sg.edu.iss.test.model.RoleType;
 @NoArgsConstructor
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String userName;
     private String password;

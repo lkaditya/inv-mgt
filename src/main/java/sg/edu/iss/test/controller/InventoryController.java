@@ -22,11 +22,14 @@ import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.InventoryImplementation;
 import sg.edu.iss.test.service.InventoryInterface;
+import sg.edu.iss.test.service.ProductService;
 
 @Controller
 @RequestMapping("/inventory")
 public class InventoryController {
 	
+	@Autowired
+	private ProductService proservice;
 	@Autowired
 	private InventoryInterface iservice;
 	
@@ -47,6 +50,8 @@ public class InventoryController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
+		Product x= proservice.findProductById(inventory.getProduct().getId());
+		inventory.setProduct(x);
 		iservice.saveInventory(inventory);
 		return "redirect:/inventory/list";
 	}
