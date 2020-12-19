@@ -8,10 +8,8 @@
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Inventory List</h1>
-  <h3 	
-  		th:utext="'Welcome '+${session.usession.userName}" 
-  		style ="text-align:right">Welcome</h3>
+  <h1>Welcome!</h1>
+  <h3 style ="text-align:right">Welcome</h3>
   
   <div th:replace="layout/layout.html :: footer"></div>
 </body>
