@@ -3,6 +3,8 @@ package sg.edu.iss.test.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,7 +95,7 @@ public class RepairOrderController {
 		return "recordrepair";
 	}
 	
-	//link when hidden search button is clicked
+	//link when repair record is clicked
 	@RequestMapping(value="/detailsearch/{id}",method=RequestMethod.POST)
 	public String showUsageDetailRecord(@ModelAttribute("filter") ObjectInput filter,@PathVariable("id") Long id,BindingResult bindingResult,Model model) {
 		List<ProductUsage> group=uservice.showProductUsageByKeyword(filter.getKeyword());
@@ -114,7 +116,12 @@ public class RepairOrderController {
 	}
 	
 	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String saveRecord(@ModelAttribute("${repairrecord}") RepairOrder rep,BindingResult bindingResult,Model model) {
+	public String saveRecord(@Valid @ModelAttribute("repairrecord") RepairOrder rep,BindingResult bindingResult,Model model) {
+		if(bindingResult.hasErrors()) {
+			//currently it is denying when the date is null or 
+			model.addAttribute("customers",custservice.listAllCustomerNames());
+			return "recordrepairform";
+		}
 		Customer a= custservice.findByName(rep.getCustomer().getName());
 		rep.setCustomer(a);
 		uservice.saveRepairOrder(rep);

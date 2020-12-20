@@ -1,7 +1,6 @@
 package sg.edu.iss.test.model;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -28,6 +28,7 @@ private Customer customer;
 @OneToMany(cascade=CascadeType.ALL, mappedBy="rep")
 private List<ProductUsage> productUsageList;
 @DateTimeFormat (pattern="yyyy-MM-dd")
+@NotNull
 private LocalDate repairDate;
 
 

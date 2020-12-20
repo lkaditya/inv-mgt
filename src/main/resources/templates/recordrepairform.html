@@ -23,6 +23,7 @@
 		</fieldset>
 		<fieldset>
 			Date: <input type="text" th:field="*{repairDate}" placeholder="yyyy-MM-dd" >
+		<p th:if="${#fields.hasErrors('repairDate')}" th:errors="*{repairDate}"></p>
 		</fieldset>		
 		<fieldset>
 			<button type="submit">Save</button>
