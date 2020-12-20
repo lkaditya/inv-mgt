@@ -57,6 +57,7 @@ public class InventoryController {
 		model.addAttribute("ilist", ilist);
 		ObjectInput f = new ObjectInput();
 		model.addAttribute("filter", f);
+		model.addAttribute("control","product");
 		
 		return "inventoryform";
 	}
@@ -73,6 +74,7 @@ public class InventoryController {
 	public String list(Model model) {
 		List<Inventory> ilist = iservice.list();
 		model.addAttribute("ilist", ilist);
+		model.addAttribute("control","inventory");
 		return "index";
 	}	
 	
@@ -82,6 +84,7 @@ public class InventoryController {
 		Optional<Inventory> inventoryById = iservice.findInventoryById(id);
 		model.addAttribute("inventory", inventoryById
 				);
+		model.addAttribute("control","inventory");
 		return "inventoryform";
 	}
 	
@@ -97,6 +100,7 @@ public class InventoryController {
 	public String showRelevantInventory(@ModelAttribute("keyword") String keyword, Model model) {
 		List<Inventory> ilist =iservice.findInventoryByKeyword(keyword);
 		model.addAttribute("ilist",ilist);	
+		model.addAttribute("control","inventory");
 		return "index";
 	}
 	

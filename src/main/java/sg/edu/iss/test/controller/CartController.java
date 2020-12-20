@@ -71,13 +71,13 @@ public class CartController {
 			usageform.setUsages(group);
 			usageform.setCart(c);
 			model.addAttribute("usages",usageform);
-			model.addAttribute("customers",custservice.listAllCustomerNames());
 		}else {
 			ObjectInput usageform= new ObjectInput();
 			usageform.setCart(new Cart());
-			model.addAttribute("usages",usageform);
-			model.addAttribute("customers",custservice.listAllCustomerNames());
+			model.addAttribute("usages",usageform);	
 		}
+		model.addAttribute("control","inventory");
+		model.addAttribute("customers",custservice.listAllCustomerNames());
 		return "cartpageform";
 	}
 	

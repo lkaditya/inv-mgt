@@ -62,6 +62,7 @@ public class ReturnedController {
 		//do we need this two below??
 		model.addAttribute("name",supplierName);
 		model.addAttribute("InventoryId",id);
+		model.addAttribute("control","inventory");
 		return "returnedform";
 	}
 	
@@ -91,6 +92,7 @@ public class ReturnedController {
 	public String list(Model model) {
 		List<Returned> rlist = rservice.list();
 		model.addAttribute("rlist", rlist);
+		model.addAttribute("control","inventory");
 		return "returned";
 	}	
 	

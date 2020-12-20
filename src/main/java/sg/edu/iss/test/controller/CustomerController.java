@@ -36,6 +36,7 @@ public class CustomerController {
 	public String list(Model model) {
 		List<Customer> clist = cservice.listAllCustomer();
 		model.addAttribute("clist", clist);
+		model.addAttribute("control","customer");
 		return "customer";
 	}
 	
@@ -43,6 +44,7 @@ public class CustomerController {
 	public String add(Model model) {
 		Customer customer = new Customer();
 		model.addAttribute("customer", customer);
+		model.addAttribute("control","customer");
 		return "customerform";
 	}
 	
@@ -58,6 +60,7 @@ public class CustomerController {
 	public String editForm(@PathVariable("id") Long id, Model model) {
 		Customer customer = cservice.findCustomerByCustomerId(id);
 		model.addAttribute("customer", customer);
+		model.addAttribute("control","customer");
 		return "customerform";
 	}
 	
