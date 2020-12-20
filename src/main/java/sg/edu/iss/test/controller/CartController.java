@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -28,7 +30,6 @@ import sg.edu.iss.test.service.CustomerInterface;
 import sg.edu.iss.test.service.InventoryInterface;
 import sg.edu.iss.test.service.ProductService;
 import sg.edu.iss.test.service.ProductUsageService;
-import sg.edu.iss.test.service.UserService;
 
 @Controller
 @RequestMapping("/cart")
@@ -50,9 +51,6 @@ public class CartController {
 	
 	@Autowired
 	private ProductService proservice;
-	
-	@Autowired
-	private UserService userservice;
 	
 	@Autowired
 	private InventoryInterface inventoryservice;
@@ -77,12 +75,15 @@ public class CartController {
 		model.addAttribute("control","inventory");
 		model.addAttribute("customers",custservice.listAllCustomerNames());
 		return "cartpageform";
-	}
-	
+	}	
 
 	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String saverepair(@ModelAttribute("${usages}")ObjectInput obj,BindingResult bindingResult ,Model model) {
+	public String saverepair(@Valid @ModelAttribute("usages")ObjectInput obj,BindingResult bindingResult ,Model model) {
 		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("customers",custservice.listAllCustomerNames());
+			return "cartpageform";
+		}
 		RepairOrder rep = new RepairOrder();
 		String namecust=obj.getCart().getCustomer().getName();
 		Customer cu=custservice.findByName(namecust);
@@ -97,33 +98,37 @@ public class CartController {
 		
 		long cartid=obj.getCart().getId();
 		List<ProductUsage> details=uservice.showProductUsagesByCartId(cartid);
-		//for(ProductUsage i:details) 
+		int unitofusage=0; 
 		for(int x=0;x<details.size();x++){
-			ProductUsage i=details.get(x);
-			long productid=i.getProduct().getId();
-			i.setRep(rep);
-			i.setQuantity(quantityusages.get(x));
-			Product pro=proservice.findProductById(productid);
-			i.setProduct(pro);
-			i.setCart(null);
-			uservice.addProductUsage(i);
-			
-			//reduce the inventory amount
-			Inventory a= inventoryservice.findInventoryByProductName(i.getProduct().getProductName());
-			long currentAmount=a.getQoh();
-			long rem=currentAmount-i.getQuantity(); 
-			a.setQoh(rem);
-			inventoryservice.saveInventory(a);
+			int quantity=quantityusages.get(x);
+			if(quantity>0) {
+				unitofusage++;
+				ProductUsage i=details.get(x);
+				long productid=i.getProduct().getId();
+				i.setRep(rep);
+				i.setQuantity(quantity);
+				Product pro=proservice.findProductById(productid);
+				i.setProduct(pro);
+				i.setCart(null);
+				uservice.addProductUsage(i);
+				
+				//reduce the inventory amount
+				Inventory a= inventoryservice.findInventoryByProductName(i.getProduct().getProductName());
+				long currentAmount=a.getQoh();
+				long rem=currentAmount-i.getQuantity(); 
+				a.setQoh(rem);
+				inventoryservice.saveInventory(a);
+			}else {
+				List<ProductUsage> group=uservice.showProductUsagesByCartId(obj.getCart().getId());
+				group.stream().forEach(t->t.setCart(null));
+				group.stream().forEach(t->uservice.deleteProductUsage(t));
+				
+			}
 		}
-		rep.setProductUsageList(details);
-		//clean up the cart
-//		long cartid=obj.getCart().getId();
-//		List<ProductUsage> cusage=uservice.showProductUsagesByCartId(cartid);
-//		for (ProductUsage x :cusage) {
-//			uservice.deleteProductUsage(x);
-//		}
-		//Cart x= cartservice.findCartById(cartid);
-		//cartservice.delete(x);
+		if(unitofusage==0) {
+			uservice.deleteRepairOrder(rep);
+		}
+		
 
 		return "redirect:/repair/showrecord";
 	}

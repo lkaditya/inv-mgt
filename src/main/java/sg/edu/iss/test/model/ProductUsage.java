@@ -4,8 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 import lombok.Data;
 
@@ -32,6 +32,7 @@ public class ProductUsage {
 	private RepairOrder rep;
 	@ManyToOne()
 	private Cart cart;
+	@Min(1)
 	private int quantity;
 
 	

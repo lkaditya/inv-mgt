@@ -11,9 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ObjectInput {
 
 	@DateTimeFormat (pattern="yyyy-MM-dd")
-	@NotNull
 	private LocalDate start;
-	@NotNull
 	@DateTimeFormat (pattern="yyyy-MM-dd")
 	private LocalDate end;
 	private String keyword;
