@@ -32,7 +32,6 @@ public class InventoryImplementation implements InventoryInterface  {
 
 	@Override
 	public Optional<Inventory> findInventoryById(Long id) {
-		// TODO Auto-generated method stub
 		Optional<Inventory> byId = irepo.findById(id);
 		return byId;
 	}
@@ -53,15 +52,9 @@ public class InventoryImplementation implements InventoryInterface  {
 
 	@Transactional
 	public void saveInventory(Inventory inventory) {
-		// TODO Auto-generated method stub
 		irepo.save(inventory);
 	}
-//
-//
-//	@Override
-//	public void returnInventory(Long inventory) {
-//		// TODO Auto-generated method stub
-//		irepo.deleteById(inventory.getId());
+
 
 	@Override
 	public Inventory findInventoryByProductName(String name) {
@@ -70,7 +63,6 @@ public class InventoryImplementation implements InventoryInterface  {
 
 	@Override
 	public List<Inventory> findInventoryByKeyword(String keyword) {
-		// TODO Auto-generated method stub
 		return irepo.findInventoryByKeyword(keyword);
 	}
 

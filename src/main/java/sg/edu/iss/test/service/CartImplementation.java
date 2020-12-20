@@ -12,9 +12,6 @@ import sg.edu.iss.test.repo.CartRepository;
 @Service
 public class CartImplementation implements CartService {
 
-	public CartImplementation() {
-		// TODO Auto-generated constructor stub
-	}
 	
 	@Autowired 
 	private CartRepository cartrepo;
@@ -43,7 +40,6 @@ public class CartImplementation implements CartService {
 
 	@Override
 	public Cart findCartById(Long id) {
-		// TODO Auto-generated method stub
 		return cartrepo.findById(id).get();
 	}
 

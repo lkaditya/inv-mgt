@@ -21,6 +21,7 @@ import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.CartImplementation;
 import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.CustomerInterface;
@@ -58,12 +59,9 @@ public class CartController {
 	
 	
 	@RequestMapping(value="/show")
-	//TODO: don't forget implement session later, remove the hardcoded user name
 	public String showCart(Model model,HttpSession session) {
-		//String username=(String) session.getAttribute("username");
-		//later put session
-		//assuming
-		String username="sharon";
+		User user=(User)session.getAttribute("user");
+		String username=user.getUserName();
 		Cart c= cartservice.showAllCartByUserName(username);
 		if(c!=null) {
 			List<ProductUsage> group= c.getUsage(); //currently null
