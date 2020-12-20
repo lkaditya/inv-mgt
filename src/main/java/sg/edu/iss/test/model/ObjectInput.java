@@ -1,25 +1,35 @@
 package sg.edu.iss.test.model;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 //for filtering or search purpose (sending parameter from page to controller)
 public class ObjectInput {
-	private String start;
-	private String end;
+
+	@DateTimeFormat (pattern="yyyy-MM-dd")
+	@NotNull
+	private LocalDate start;
+	@NotNull
+	@DateTimeFormat (pattern="yyyy-MM-dd")
+	private LocalDate end;
 	private String keyword;
 	private List<ProductUsage>usages;
 	private Cart cart;
 	
-	public String getStart() {
+	public LocalDate getStart() {
 		return start;
 	}
-	public void setStart(String start) {
+	public void setStart(LocalDate start) {
 		this.start = start;
 	}
-	public String getEnd() {
+	public LocalDate getEnd() {
 		return end;
 	}
-	public void setEnd(String end) {
+	public void setEnd(LocalDate end) {
 		this.end = end;
 	}
 	public String getKeyword() {

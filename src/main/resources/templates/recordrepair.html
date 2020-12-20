@@ -18,6 +18,8 @@
 		<span> EndDate: </span> 
 		<input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required>
 		<button type="submit">Filter</button>
+		<p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p>
+		<p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p>
 	</form>
 
 	<form action="" th:object="${filter}" th:action="@{/repair/search}" method="post" class="form-horizontal" style="float: right">

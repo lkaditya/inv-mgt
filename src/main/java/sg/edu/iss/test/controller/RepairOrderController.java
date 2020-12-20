@@ -68,13 +68,8 @@ public class RepairOrderController {
 	//link when filter of date is clicked
 	@RequestMapping(value="/filter")
 	public String showFilteredRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
-		
-		String start=filter.getStart();
-		//System.out.println(start);
-		String end=filter.getEnd();
-		//System.out.println(end);
-		LocalDate a= LocalDate.of(Integer.parseInt(start.split("-")[0]), Integer.parseInt(start.split("-")[1]), Integer.parseInt(start.split("-")[2]));
-		LocalDate b= LocalDate.of(Integer.parseInt(end.split("-")[0]), Integer.parseInt(end.split("-")[1]), Integer.parseInt(end.split("-")[2]));
+		LocalDate a=filter.getStart();
+		LocalDate b=filter.getEnd();
 		
 		List<RepairOrder> group=uservice.showRepairOrderByDate(a, b);
 		System.out.println("how many group size= "+group.size());
