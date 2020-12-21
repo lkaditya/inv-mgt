@@ -27,6 +27,7 @@
 			<th >USER ID</th>
 			<th >USER NAME</th>
 			<th >ROLE TYPE</th>
+			<th >EMAIL</th>
 			<th th:if="${session.usession.role eq 'ADMIN'}" >ACTIONS</th>
 
 			
@@ -35,6 +36,7 @@
 			<td th:text=${user.id}>Id</td>
 			<td th:text=${user.userName}>User Name</td>
 			<td th:text=${user.role}>User RoleType</td>
+			<td th:text=${user.email}>Email</td>
 			<td th:if="${session.usession.role eq 'ADMIN'}"><a href="EditUser.html"
 				th:href="@{/admin/edituser/}+${user.id}">Edit</a>
 				/

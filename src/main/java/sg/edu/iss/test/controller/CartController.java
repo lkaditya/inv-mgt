@@ -114,7 +114,7 @@ public class CartController {
 				long currentAmount=a.getQoh();
 				long rem=currentAmount-i.getQuantity(); 
 				a.setQoh(rem);
-				if (a.getQoh()<20){
+				if (a.getQoh()<a.getRol()){
 					String message=a.getProduct().getProductName()+" needs to be reordered.";
 					message+="\n The quantity now is "+a.getQoh();
 					message+="\n The minimum available quantity is "+a.getRol();
