@@ -11,9 +11,9 @@
   <div>
 	  <a href="RepairDetails.html"
 		 th:href="@{/repair/showrecord}"
-			  style="font-size: xxx-large">Record List ->
-		  <span th:utext="${repairrecord.repairId}"></span>
+			  style="font-size: xxx-large">Record List
 		  </a>
+		  <span style="font-size: xxx-large" th:utext="'>'+${repairrecord.repairId}"> </span>
   </div>
 
 	<form action="" th:object="${filter}" th:action="@{/repair/detailsearch/}+${repairrecord.repairId}" method="post" class="form-horizontal" style="float: right">

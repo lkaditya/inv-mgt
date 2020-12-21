@@ -21,8 +21,8 @@
 		<input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required>
 		<span> Generate Report: </span> 
 		<select th:field="*{reportstate}">
-		<option th:value="'yes'" th:text="Yes"></option>
 		<option th:value="'no'" th:text="No"></option>
+		<option th:value="'yes'" th:text="Yes"></option>
 		</select>
 		<button type="submit">Filter</button>
 		<p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p>
