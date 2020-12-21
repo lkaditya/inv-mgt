@@ -82,7 +82,7 @@ public class InventoryController {
 		//----------------------------------------------------
 		model.addAttribute("ilist", ilist);
 		model.addAttribute("control","inventory");
-		return "index";
+		return "inventorylisting";
 	}	
 	
 	
