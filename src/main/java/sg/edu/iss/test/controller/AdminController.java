@@ -162,8 +162,8 @@ public class AdminController {
 	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
 		if(userServices.authenticate(user)) 
 		{
-//			User u = uservice.findByName(user.getUserName());
-//			session.setAttribute("usession", u);
+			User u = userServices.findUserByUserName(user.getUserName());
+			session.setAttribute("usession", u);
 			return "welcome";
 		}
 		else
