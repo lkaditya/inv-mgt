@@ -116,7 +116,8 @@ public class AdminController {
 		return "forward:/admin/viewsuppliers";
 	}
 	
-	
+	//====================================================================
+	//TODO need to be deleted (including products.html and product-form.html as it is duplicated from catalogue controller????
 	@RequestMapping(value = "/viewproducts")
 	public String list(Model model) {
 		model.addAttribute("products", productServices.findALLProducts());
@@ -146,6 +147,8 @@ public class AdminController {
 		productServices.deleteProduct(productServices.findProductById(id));
 		return "forward:/admin/viewproducts";
 	}
+	//=================================================================
+	
 	@RequestMapping(path = "/login")
 	public String login(Model model) {
 		User u = new User();
