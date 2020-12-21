@@ -71,6 +71,7 @@ public class AdminController {
 			model.addAttribute("control","user");
 			return "user-form";
 		}
+		//find to user password
 		 userServices.saveUser(user);
 		return "forward:/admin/viewusers";
 	}

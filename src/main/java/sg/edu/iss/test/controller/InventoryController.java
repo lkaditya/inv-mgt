@@ -82,7 +82,7 @@ public class InventoryController {
 		//----------------------------------------------------
 		model.addAttribute("ilist", ilist);
 		model.addAttribute("control","inventory");
-		return "index";
+		return "inventorylisting";
 	}	
 	
 	
@@ -108,7 +108,7 @@ public class InventoryController {
 		List<Inventory> ilist =iservice.findInventoryByKeyword(keyword);
 		model.addAttribute("ilist",ilist);	
 		model.addAttribute("control","inventory");
-		return "index";
+		return "inventorylisting";
 	}
 	
 	@RequestMapping(value="/add")
