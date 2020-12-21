@@ -41,6 +41,10 @@ public class AdminController {
 	private UserServiceImplementation userServices;
 	@Autowired
 	private ProductServiceImplementation productServices;
+	@Autowired
+	public void setUserImplementation(UserServiceImplementation uimpl) {
+		this.userServices = uimpl;
+	}
 
 	@RequestMapping(value = "/viewusers")
 	public String ListUsers(Model model) {
@@ -152,6 +156,23 @@ public class AdminController {
 		User u = new User();
 		model.addAttribute("user", u);
 		return "login";
+	}
+	
+	@RequestMapping(path = "/authenticate")
+	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
+		if(userServices.authenticate(user)) 
+		{
+//			User u = uservice.findByName(user.getUserName());
+//			session.setAttribute("usession", u);
+			return "welcome";
+		}
+		else
+			return "login";
+	}
+	
+	@RequestMapping(path = "/logout")
+	public String logout() {
+		return "logout";
 	}
 	
 }

@@ -18,7 +18,7 @@ public class User {
     private long id;
     private String userName;
     private String password;
-    private RoleType role;
+    private String role;
 
     public User(String userName, String password) {
         super();
@@ -26,7 +26,7 @@ public class User {
         this.password = password;
     }
 
-    public User(String userName, String password, RoleType role) {
+    public User(String userName, String password, String role) {
         super();
         this.userName = userName;
         this.password = password;
