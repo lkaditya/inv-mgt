@@ -23,6 +23,7 @@ INSERT INTO supplier VALUES(8,100,"12345@gmail.com","13132","115648","  Panasoni
 INSERT INTO supplier VALUES(9,100,"12345@gmail.com","13132","115648","  Aisin World Corp. of America");
 INSERT INTO supplier VALUES(10,100,"12345@gmail.com","13132","115648","  American Axle & Manufacturing Holdings Inc.");
 
+/*
 INSERT INTO user VALUES (1, 'password', 0, 'sharon');
 INSERT INTO user VALUES (2, 'password', 0, 'xinyue');
 INSERT INTO user VALUES (3, 'password', 0, 'huiling');
@@ -31,6 +32,16 @@ INSERT INTO user VALUES (5, 'password', 1, 'keqian');
 INSERT INTO user VALUES (6, 'password', 1, 'lirang');
 INSERT INTO user VALUES (7, 'password', 1, 'dongyang');
 INSERT INTO user VALUES (8, 'password', 1, 'huaizhong');
+*/
+
+INSERT INTO user VALUES (1, 'password', "ADMIN", 'sharon');
+INSERT INTO user VALUES (2, 'password', "ADMIN", 'xinyue');
+INSERT INTO user VALUES (3, 'password', "ADMIN", 'huiling');
+INSERT INTO user VALUES (4, 'password', "MECHANIC", 'kevin');
+INSERT INTO user VALUES (5, 'password', "MECHANIC", 'keqian');
+INSERT INTO user VALUES (6, 'password', "MECHANIC", 'lirang');
+INSERT INTO user VALUES (7, 'password', "MECHANIC", 'dongyang');
+INSERT INTO user VALUES (8, 'password', "MECHANIC", 'huaizhong');
 
 INSERT INTO inventory VALUES(1,42,45,300,30,38);
 INSERT INTO inventory VALUES(2,108,117,300,30,99);

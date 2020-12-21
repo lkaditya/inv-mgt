@@ -21,6 +21,7 @@
 			</option>
 			</select>
 		</fieldset>
+			<p th:if="${#fields.hasErrors('cart.customer.name')}" th:errors="*{cart.customer.name}"></p>
 		<fieldset>
 			Date: <input type="text" th:field="*{cart.date}" placeholder="yyyy-MM-dd" required>
 		<p th:if="${#fields.hasErrors('cart.date')}" th:errors="*{cart.date}"></p>
@@ -28,6 +29,7 @@
 		<fieldset>
 			user: <input type="text" th:field="*{cart.user.userName}" readonly>
 		</fieldset>	
+		
 		
 		<h2 th:if="${#lists.size(usages.usages)==0}"> Cart is Empty </h2>
 		

@@ -23,56 +23,72 @@
 		</fieldset>
 		<fieldset>
 			Name: <input type="text" th:value="*{productName}" name="productName">
+			<p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
 		</fieldset>
 		<fieldset>
 			Description: <input type="text" th:value="*{productDescription}" name="productDescription">
+			<p th:if="${#fields.hasErrors('productDescription')}" th:errors="*{productDescription}"></p>
 		</fieldset>
 		<fieldset>
 			Type: <input type="text" th:value="*{productType}" name="productType">
+			<p th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}"></p>
 		</fieldset>
 		<fieldset>
 			Category: <input type="text" th:value="*{productCategory}" name="productCategory">
+			<p th:if="${#fields.hasErrors('productCategory')}" th:errors="*{productCategory}"></p>
 		</fieldset>
 		<fieldset>
 			SubCategory: <input type="text" th:value="*{productSubCategory}" name="productSubCategory">
+			<p th:if="${#fields.hasErrors('productSubCategory')}" th:errors="*{productSubCategory}"></p>
 		</fieldset>
 
 
 		<fieldset>
 			Supplier Name: <input type="text" th:field="*{supplier.supplierName}">
+			<p th:if="${#fields.hasErrors('supplier.supplierName')}" th:errors="*{supplier.supplierName}"></p>
 		</fieldset>
 		<fieldset>
 			Supplier Address: <input type="text" th:field="*{supplier.supplierAddress}">
+			<p th:if="${#fields.hasErrors('supplier.supplierAddress')}" th:errors="*{supplier.supplierAddress}"></p>
 		</fieldset>
 		<fieldset>
 			Supplier Phone: <input type="text" th:field="*{supplier.phone}">
+			<p th:if="${#fields.hasErrors('supplier.supplier.phone')}" th:errors="*{supplier.phone}"></p>
 		</fieldset>
 		<fieldset>
 			Supplier Email: <input type="email" th:field="*{supplier.email}">
+			<p th:if="${#fields.hasErrors('supplier.supplier.email')}" th:errors="*{supplier.email}"></p>
 		</fieldset>
 		<fieldset>
 			Supplier MOQ: <input type="text" th:field="*{supplier.MOQ}">
+			<p th:if="${#fields.hasErrors('supplier.supplier.MOQ')}" th:errors="*{supplier.MOQ}"></p>
 		</fieldset>
 
 		<!--		//brand-->
 		<fieldset>
 			Brand Name: <input type="text" th:field="*{brand.brandName}">
+			<p th:if="${#fields.hasErrors('brand.brandName')}" th:errors="*{brand.brandName}"></p>
 		</fieldset>
 		<!--     inventory-->
 		<fieldset>
 			quantity on hand: <input type="text" th:field="*{inventory.qoh}">
+			<p th:if="${#fields.hasErrors('inventory.qoh')}" th:errors="*{inventory.qoh}"></p>
 		</fieldset>
 		<fieldset>
 			Reorder Level: <input type="text" th:field="*{inventory.rol}">
+			<p th:if="${#fields.hasErrors('inventory.rol')}" th:errors="*{inventory.rol}"></p>
 		</fieldset>
 		<fieldset>
 			Wholesale: <input type="text" th:field="*{inventory.wholesale}">
+			<p th:if="${#fields.hasErrors('inventory.wholesale')}" th:errors="*{inventory.wholesale}"></p>
 		</fieldset>
 		<fieldset>
 			price of retail: <input type="text" th:field="*{inventory.por}">
+			<p th:if="${#fields.hasErrors('inventory.por')}" th:errors="*{inventory.por}"></p>
 		</fieldset>
 		<fieldset>
 			price of partner: <input type="text" th:field="*{inventory.pop}">
+			<p th:if="${#fields.hasErrors('inventory.pop')}" th:errors="*{inventory.pop}"></p>
 		</fieldset>
 
 		<fieldset>

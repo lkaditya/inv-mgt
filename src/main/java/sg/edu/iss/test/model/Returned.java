@@ -6,7 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-
+import javax.validation.constraints.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,8 +19,12 @@ public class Returned {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	//quantity
+	@Min(0)
+	@Max(2000)
 	private long qt;
-	private String reason;	
+	@Size(min=5, max=100)
+	private String reason;
+	@Size(min=5, max=100)
 	private String supplierName;
     @ManyToOne(cascade = {CascadeType.ALL})  
 	private Inventory inventory;
@@ -30,6 +34,10 @@ public class Returned {
 		this.reason = reason;
 		this.supplierName = supplierName;
 		this.inventory = inventory;
+	}
+	public Returned() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
    
 }

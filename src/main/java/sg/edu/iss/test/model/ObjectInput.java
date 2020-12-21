@@ -3,8 +3,7 @@ package sg.edu.iss.test.model;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 //for filtering or search purpose (sending parameter from page to controller)
@@ -14,6 +13,7 @@ public class ObjectInput {
 	private LocalDate start;
 	@DateTimeFormat (pattern="yyyy-MM-dd")
 	private LocalDate end;
+	@NotEmpty
 	private String keyword;
 	private String reportstate;
 	public String getReportstate() {

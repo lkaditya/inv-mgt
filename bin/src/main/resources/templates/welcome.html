@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>Welcome Page</title>
 </head>
+
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Inventory List</h1>
-  <h3 	
-  		th:utext="'Welcome '+${session.usession.userName}" 
-  		style ="text-align:right">Welcome</h3>
+  <h1>Welcome!</h1>
   
   <div th:replace="layout/layout.html :: footer"></div>
 </body>

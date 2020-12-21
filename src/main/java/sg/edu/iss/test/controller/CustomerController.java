@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ import sg.edu.iss.test.service.CustomerInterface;
 @RequestMapping("/customer")
 public class CustomerController {
 
-	@Autowired
+	@Autowired	
 	CustomerInterface cservice;
 	
 	@Autowired
@@ -50,7 +51,7 @@ public class CustomerController {
 	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
 		cservice.createCustomer(customer);
 		return "redirect:/customer/viewcustomers";
 	}

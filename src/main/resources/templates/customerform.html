@@ -14,15 +14,18 @@
 	
 		<fieldset>
 			<input type="hidden" th:field="*{customerId}" />
+			<p th:if="${#fields.hasErrors('customerId')}" th:errors="*{customerId}"></p>
 		</fieldset>
 			
 		<fieldset>
 			Name: <input type="text" th:field="*{name}">
+			<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
 		</fieldset>
 		
 		
 		<fieldset>
 			Mobile: <input type="number" th:field="*{mobile}">
+			<p th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}"></p>
 		</fieldset>
 		
 		<fieldset>

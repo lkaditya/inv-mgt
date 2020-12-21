@@ -24,6 +24,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="qoh" placeholder="Enter quantity" th:field="*{qoh}">
+					<p th:if="${#fields.hasErrors('qoh')}" th:errors="*{qoh}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -33,6 +34,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="rol" th:field="*{rol}">
+					<p th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -42,6 +44,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="wholesale" th:field="*{wholesale}">
+					<p th:if="${#fields.hasErrors('wholesale')}" th:errors="*{wholesale}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -51,6 +54,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="por" th:field="*{por}">
+					<p th:if="${#fields.hasErrors('por')}" th:errors="*{por}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -60,6 +64,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="pop" th:field="*{pop}">
+					<p th:if="${#fields.hasErrors('pop')}" th:errors="*{pop}"></p>
 				</fieldset>
 			</div>
 		</div>

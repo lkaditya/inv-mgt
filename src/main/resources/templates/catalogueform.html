@@ -30,16 +30,17 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="name" placeholder="Enter name" th:field="*{productName}">
+					<p th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}"></p>
 				</fieldset>
 		    	</div>
     	</div>
-    	
     	
     	<div class="form-group">
       		<label class="control-label col-sm-2" for="des">Description:</label>
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="des" placeholder="Enter description" th:field="*{productDescription}">
+					<p th:if="${#fields.hasErrors('productDescription')}" th:errors="*{productDescription}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -49,6 +50,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="type" placeholder="Enter type" th:field="*{productType}">
+					<p th:if="${#fields.hasErrors('productType')}" th:errors="*{productType}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -58,6 +60,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="cate" placeholder="Enter category" th:field="*{productCategory}">
+					<p th:if="${#fields.hasErrors('productCategory')}" th:errors="*{productCategory}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -67,6 +70,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="subcate" placeholder="Enter subcategory" th:field="*{productSubCategory}">
+					<p th:if="${#fields.hasErrors('productSubCategory')}" th:errors="*{productSubCategory}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -76,6 +80,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="supName" placeholder="Enter supplier name" th:field="*{supplier.supplierName}">
+					<p th:if="${#fields.hasErrors('supplier.supplierName')}" th:errors="*{supplier.supplierName}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -85,6 +90,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="supAdd" placeholder="Enter supplier address" th:field="*{supplier.supplierAddress}">
+					<p th:if="${#fields.hasErrors('supplier.supplierAddress')}" th:errors="*{supplier.supplierAddress}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -94,6 +100,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="supPh" placeholder="Enter supplier phone" th:field="*{supplier.phone}">
+					<p th:if="${#fields.hasErrors('supplier.phone')}" th:errors="*{supplier.phone}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -103,6 +110,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="email" class="form-control" id="supEmail" placeholder="Enter email" th:field="*{supplier.email}">
+					<p th:if="${#fields.hasErrors('supplier.email')}" th:errors="*{supplier.email}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -112,6 +120,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="supMOQ" placeholder="Enter minimume order quantity" th:field="*{supplier.MOQ}">
+					<p th:if="${#fields.hasErrors('supplier.MOQ')}" th:errors="*{supplier.MOQ}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -123,6 +132,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="brand" placeholder="Enter name" th:field="*{brand.brandName}">
+					<p th:if="${#fields.hasErrors('brand.brandName')}" th:errors="*{brand.brandName}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -133,6 +143,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="qoh" placeholder="Enter quantity" th:field="*{inventory.qoh}">
+					<p th:if="${#fields.hasErrors('inventory.qoh')}" th:errors="*{inventory.qoh}"></p>
 				</fieldset>
 		    	</div>
     	</div>
@@ -142,6 +153,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="rol" placeholder="Enter quantity" th:field="*{inventory.rol}">
+					<p th:if="${#fields.hasErrors('inventory.rol')}" th:errors="*{inventory.rol}"></p>
 				</fieldset>
 		    	</div>
     	</div>    	
@@ -151,6 +163,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="wholesale" placeholder="Enter quantity" th:field="*{inventory.wholesale}">
+					<p th:if="${#fields.hasErrors('inventory.wholesale')}" th:errors="*{inventory.wholesale}"></p>
 				</fieldset>
 		    	</div>
     	</div>   
@@ -160,6 +173,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="por" placeholder="Enter quantity" th:field="*{inventory.por}">
+					<p th:if="${#fields.hasErrors('inventory.por')}" th:errors="*{inventory.por}"></p>
 				</fieldset>
 		    	</div>
     	</div>   
@@ -169,6 +183,7 @@
             	<div class="col-sm-10">
 				<fieldset>
 		    		<input type="text" class="form-control" id="pop" placeholder="Enter quantity" th:field="*{inventory.pop}">
+					<p th:if="${#fields.hasErrors('inventory.pop')}" th:errors="*{inventory.pop}"></p>
 				</fieldset>
 		    	</div>
     	</div>

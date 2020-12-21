@@ -1,5 +1,7 @@
 package sg.edu.iss.test.controller;
 
+import javax.validation.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,7 @@ public class CatalogueController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 		cservice.save(product);
 		return "redirect:/catalogue/findByFilter";
 	}

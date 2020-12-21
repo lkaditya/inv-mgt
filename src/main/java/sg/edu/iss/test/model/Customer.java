@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,12 +20,15 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long customerId;
+	@NotEmpty
+	@Size (min=5, max=50)
 	private String name;
-	private int mobile;
+	@Pattern(regexp="\\d{6}")
+	private String mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
 
-	public Customer(String name, int mobile, List<RepairOrder> orders) {
+	public Customer(String name, @Pattern(regexp = "\\d{6}") String mobile, List<RepairOrder> orders) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
@@ -32,10 +36,15 @@ public class Customer {
 
 	}
 	
-	public Customer(String name, int mobile) {
+	public Customer(String name, @Pattern(regexp = "\\d{6}") String mobile) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
+	}
+
+	public Customer() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	

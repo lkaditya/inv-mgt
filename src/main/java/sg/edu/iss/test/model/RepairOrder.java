@@ -1,5 +1,6 @@
 package sg.edu.iss.test.model;
 
+import java.beans.BeanProperty;
 import java.time.LocalDate;
 import java.util.List;
 
