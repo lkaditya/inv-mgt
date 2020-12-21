@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -71,7 +72,6 @@ public class AdminController {
 			model.addAttribute("control","user");
 			return "user-form";
 		}
-		//find to user password
 		 userServices.saveUser(user);
 		return "forward:/admin/viewusers";
 	}

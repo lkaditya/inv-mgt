@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +33,11 @@ public class User {
         this.password = password;
         this.role = role;
     }
+
+	public void setUser(@Valid User user) {
+		// TODO Auto-generated method stub
+		
+	}
 
     //hz test 2
 
