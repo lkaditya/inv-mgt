@@ -37,7 +37,7 @@ public class ProductUsage {
 	@Override
 	public String toString() {
 		return "ProductUsage [productUsageId=" + productUsageId + ", product=" + product.getProductName() + ", quantity=" + quantity
-				+ "]";
+				+ ", date=" + rep.getRepairDate()+ "]";
 	}
 
 	
