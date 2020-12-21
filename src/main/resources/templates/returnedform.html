@@ -27,6 +27,7 @@
          <div class="col-sm-10">
             <fieldset>
                <input type="text" class="form-control" id="pro" th:field="*{inventory.product.productName}">
+            	<p th:if="${#fields.hasErrors('inventory.product.productName')}" th:errors="*{inventory.product.productName}"></p>
             </fieldset>
          </div>
       </div>
@@ -36,6 +37,7 @@
          <div class="col-sm-10">
             <fieldset>
                <input type="text" class="form-control" id="qt" th:field="*{qt}">
+               <p th:if="${#fields.hasErrors('qt')}" th:errors="*{qt}"></p>
             </fieldset>
          </div>
       </div>
@@ -45,6 +47,7 @@
          <div class="col-sm-10">
             <fieldset>
                <input type="text" class="form-control" id="reason" th:field="*{reason}">
+               <p th:if="${#fields.hasErrors('reason')}" th:errors="*{reason}"></p>
             </fieldset>
          </div>
       </div>
@@ -55,6 +58,7 @@
          <div class="col-sm-10">
             <fieldset>
                <input type="text" class="form-control" name="supplierName" th:value="${name}">
+               <p th:if="${#values.hasErrors('name')}" th:errors="*{name}"></p>
             </fieldset>
          </div>
       </div>
