@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <title>Logged out</title>
 </head>
 <body>
 	<h1>You have logged out</h1>
-	<h1>Return to login page</h1>
+  <a href="#" th:href="@{/}">Back to Main page</a>
+  
 </body>
 </html>
