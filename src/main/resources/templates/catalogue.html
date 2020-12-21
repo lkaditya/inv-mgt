@@ -11,7 +11,8 @@
 
   <div>
     <a style="font-size: xxx-large">Product Listing</a>
-    <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"
+    <a th:if="${session.usession.role eq 'ADMIN'}"
+            th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"
        style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
        role="button">+</a>
   </div>
