@@ -19,6 +19,11 @@
 			placeholder="yyyy-MM-dd" required> 
 		<span> EndDate: </span> 
 		<input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required>
+		<span> Generate Report: </span> 
+		<select th:field="*{reportstate}">
+		<option th:value="'yes'" th:text="Yes"></option>
+		<option th:value="'no'" th:text="No"></option>
+		</select>
 		<button type="submit">Filter</button>
 		<p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p>
 		<p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p>
@@ -53,7 +58,16 @@
 				th:href="@{/repair/delete/}+${rep.repairId}">Delete</a></td>
 		</tr>
 	</table>
+<<<<<<< HEAD
 
+=======
+	
+	<div style="float: right">
+	
+	
+	</div>
+	
+>>>>>>> refs/heads/master
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>

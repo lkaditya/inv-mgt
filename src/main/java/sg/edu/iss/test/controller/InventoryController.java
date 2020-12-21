@@ -76,9 +76,9 @@ public class InventoryController {
 	public String list(Model model,HttpSession session) {
 		List<Inventory> ilist = iservice.list();
 		//TODO: later need to replace this when the login done
-		String username="sharon";
-		User u=userservice.findUserByUserName(username);
-		session.setAttribute("user", u);
+		//String username="sharon";
+		//User u=userservice.findUserByUserName(username);
+		//session.setAttribute("user", u);
 		//----------------------------------------------------
 		model.addAttribute("ilist", ilist);
 		model.addAttribute("control","inventory");
@@ -113,7 +113,7 @@ public class InventoryController {
 	
 	@RequestMapping(value="/add")
 	public String add(Long inventoryid,HttpSession session) {
-		User user=(User)session.getAttribute("user");
+		User user=(User)session.getAttribute("usession");
 		Cart c=cartservice.showAllCartByUserName(user.getUserName());
 		//assuming the cart is 1 per user regardless of customer
 		if(c!=null) {

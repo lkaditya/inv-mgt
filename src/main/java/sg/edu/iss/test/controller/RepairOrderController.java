@@ -1,6 +1,9 @@
 package sg.edu.iss.test.controller;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -64,20 +67,45 @@ public class RepairOrderController {
 		return "recordrepairdetails";
 	}
 	
+
 	
 	//link when filter of date is clicked
 	@RequestMapping(value="/filter")
 	public String showFilteredRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
 		LocalDate a=filter.getStart();
 		LocalDate b=filter.getEnd();
-		
+		String keyword=filter.getReportstate();
+
 		List<RepairOrder> group=uservice.showRepairOrderByDate(a, b);
+		
+		
+		if(keyword.contentEquals("yes")) {
+			List<String> usagelist= new ArrayList<String>();
+			for(RepairOrder r:group) {
+				for(ProductUsage p:r.getProductUsageList()) {
+					usagelist.add(p.toString());
+				}
+			}
+			try {
+				textWriter(usagelist);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 		System.out.println("how many group size= "+group.size());
 		model.addAttribute("repairlist",group);
 		model.addAttribute("control","record");
 
 		
 		return "recordrepair";
+	}
+	
+	public void textWriter(List<String> content) throws IOException {
+		FileWriter writer = new FileWriter("D:/ReportUsage.txt"); 
+		for(String str: content) {
+		  writer.write(str + System.lineSeparator());
+		}
+		writer.close();
 	}
 	
 	//link when hidden search button is clicked

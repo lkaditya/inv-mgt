@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -147,5 +146,28 @@ public class AdminController {
 		productServices.deleteProduct(productServices.findProductById(id));
 		return "forward:/admin/viewproducts";
 	}
+	@RequestMapping(path = "/login")
+	public String login(Model model) {
+		User u = new User();
+		model.addAttribute("user", u);
+		return "login";
+	}
 	
+	@RequestMapping(path = "/authenticate")
+	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
+		if(userServices.authenticate(user)) 
+		{
+			User u = userServices.findUserByUserName(user.getUserName());
+			session.setAttribute("usession", u);
+			return "redirect:/inventory/list";
+		}
+		else
+			return "login";
+	}
+	
+	@RequestMapping(path = "/logout")
+	public String logout(HttpSession session) {
+		session.removeAttribute("usession");
+		return "logout";
+	}
 }

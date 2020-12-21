@@ -34,6 +34,11 @@ public class ProductUsage {
 	private Cart cart;
 	@Min(1)
 	private int quantity;
+	@Override
+	public String toString() {
+		return "ProductUsage [productUsageId=" + productUsageId + ", product=" + product.getProductName() + ", quantity=" + quantity
+				+ ", date=" + rep.getRepairDate()+ "]";
+	}
 
 	
 	

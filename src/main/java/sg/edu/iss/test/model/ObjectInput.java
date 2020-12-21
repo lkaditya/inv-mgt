@@ -15,6 +15,13 @@ public class ObjectInput {
 	@DateTimeFormat (pattern="yyyy-MM-dd")
 	private LocalDate end;
 	private String keyword;
+	private String reportstate;
+	public String getReportstate() {
+		return reportstate;
+	}
+	public void setReportstate(String reportstate) {
+		this.reportstate = reportstate;
+	}
 	private List<ProductUsage>usages;
 	private Cart cart;
 	
