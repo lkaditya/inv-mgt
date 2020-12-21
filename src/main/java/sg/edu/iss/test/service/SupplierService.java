@@ -11,4 +11,6 @@ public ArrayList<Supplier> findAllSuppliers();
 public Supplier findSupplierById(Long id);
 public void deleteSupplier(Supplier supplier);
 public long totalSupplier();
+public Supplier findSupplierByName(String name); 
+
 }
