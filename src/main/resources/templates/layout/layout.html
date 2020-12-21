@@ -26,7 +26,7 @@
                 <a href="#" th:utext="${session.usession.userName}"  >
                 <span class="glyphicon glyphicon-user"></span> User </a></li>
                  -->
-                <li><a th:classappend="${control=='user'} ? 'active'" href="#" th:href="@{/user/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a th:classappend="${control=='user'} ? 'active'" href="#" th:href="@{/admin/login}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             </ul>
         </div>
     </nav>

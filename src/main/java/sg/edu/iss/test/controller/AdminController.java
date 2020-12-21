@@ -147,4 +147,11 @@ public class AdminController {
 		return "forward:/admin/viewproducts";
 	}
 	
+	@RequestMapping(path = "/login")
+	public String login(Model model) {
+		User u = new User();
+		model.addAttribute("user", u);
+		return "login";
+	}
+	
 }
