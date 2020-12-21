@@ -54,7 +54,7 @@
 			<label class="control-label col-sm-2" for="email">Supplier Email:</label>
 			<div class="col-sm-10">
 				<fieldset>
-					<input type="text" class="form-control" id="email" th:field="*{email}">
+					<input type="email" class="form-control" id="email" th:field="*{email}">
 					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 				</fieldset>
 			</div>
