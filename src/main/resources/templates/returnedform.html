@@ -11,7 +11,9 @@
 
    <header th:insert="layout/layout.html :: header"></header>
    <div th:replace="layout/layout.html :: menu"></div>
-   <h1>Returned form</h1>
+   <div class="container">
+      <h1>Returned Form</h1>
+
    <form action="" th:object="${returned}" th:action="@{/returned/save}"
       method="POST" class="form-horizontal" >
       
@@ -62,11 +64,13 @@
       <div class="form-group">
          <div class="col-sm-offset-2 col-sm-10">
             <fieldset>
-               <button type="submit" class="btn btn-default">Save</button>
+               <button type="submit" class="btn btn-default" onclick="alert('Successfully Saved!')">Save</button>
+               <a th:href="@{/inventory/list}" type="submit" style="float: right" class="btn btn-default">Back to Inventory List</a>
             </fieldset>
          </div>
       </div>
    </form>
+   </div>
    <div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>

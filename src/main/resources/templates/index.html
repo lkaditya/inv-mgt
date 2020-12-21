@@ -47,16 +47,16 @@ function myFunction() {
 		<button type="submit" hidden=true></button>
 		</fieldset>
 	</form>
-  <table class="table table-bordered table-hover" id="myTable" style="margin-top: 20px">
+  <table class="table table-bordered table-hover" id="myTable" style="margin-top: 20px" >
  <tr>
-   <th>Inventory Id</th>
-   <th>Product Name</th>
-   <th>Quantity on hand</th>
-   <th>Wholesale</th>
-   <th>Price of retail</th>   
-   <th>Price of partner</th>
-   <th>Reorder level</th>
-   <th>Actions</th>
+   <th>INVENTORY ID</th>
+   <th>PRODUCT NAME</th>
+   <th>QUANTITY on HAND</th>
+   <th>WHOLESALE</th>
+   <th>PRICE OF RETAIL</th>
+   <th>PRICE OF PARTNER</th>
+   <th>REORDER LEVEL</th>
+   <th>ACTIONS</th>
  </tr>
  <tr th:each="inventory:${ilist}">
    <td th:text="${inventory.id}">ID</td>
@@ -67,13 +67,14 @@ function myFunction() {
    <td th:text="${inventory.pop}">ID</td>
    <td th:text="${inventory.rol}">ID</td>
    <td><a href="Editinventory.html"
-		th:href="@{/inventory/edit/}+${inventory.id}">Edit /</a>
+		th:href="@{/inventory/edit/}+${inventory.id}">Edit</a>
+       /
 		<a href="Editinventory.html"
-   		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
-		
+   		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete</a>
+		/
 		<a href="Returninventory.html"
-           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return/</a>
-        
+           th:href="@{'/returned/showform/?id='+${inventory.id}}">Return</a>
+        /
         <a href="arbitrary.html"
 		th:href="@{'/inventory/add?inventoryid='+${inventory.id}}">Add To Cart</a>
 	</td>

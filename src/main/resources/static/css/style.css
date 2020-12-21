@@ -54,7 +54,7 @@ abbr {
 /* specific divs */
 .page-wrapper { 
 	background: url(http://csszengarden.com/001/zen-bg.jpg) no-repeat top left; 
-	padding: 0 175px 0 110px;  
+	padding: 0 175px 0 110px;
 	margin: 0; 
 	position: relative;
 	}
@@ -113,11 +113,16 @@ header {
 	margin-bottom: 40px;
 	}
 
-footer { 
-	text-align: center; 
+footer {
+	text-align: center;
+	height: 80px;
+	margin-top: -25px;
+	opacity: 0.5;
 	}
-footer a:link, footer a:visited { 
-	margin-right: 20px; 
+footer a:link, footer a:visited {
+	height: 80px;
+	margin-top: -25px;
+	opacity: 0.5;
 	}
 
 .sidebar {

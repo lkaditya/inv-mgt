@@ -8,7 +8,13 @@
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Listing</h1>
+
+  <div>
+    <a style="font-size: xxx-large">Product Listing</a>
+    <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"
+       style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
+       role="button">+</a>
+  </div>
 
   <form action="/catalogue/findByFilter"  method="post" style="float: left">
     <span>Product Name</span>
@@ -20,7 +26,6 @@
     <input class="btn btn-default" type="submit" value="filter">
   </form>
 
-  <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
 
   <table  class="table table-bordered table-hover">
  <tr>
@@ -32,7 +37,7 @@
    <th>SUPPLIER PHONE</th>
    <th>SUPPLIER EMAIL</th>
    <th>BRAND</th>
-   <th>Action</th>
+   <th>ACTIONS</th>
  </tr>
  <tr th:each="product:${products}">
    <td th:text="${product.id}">ID</td> 

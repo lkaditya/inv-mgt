@@ -10,21 +10,23 @@
 	<header th:insert="layout/layout.html :: header"> </header>
 	<div th:replace="layout/layout.html :: menu"></div>
 
-	<h1>Suppliers Listing</h1>
+	<div>
+		<a style="font-size: xxx-large">Suppliers Listing</a>
+		<a th:href="@{/admin/addsupplier}" class="btn btn-primary btn-lg"
+		   style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
+		   role="button">+</a>
+	</div>
 	<!-- Add Hyperlink -->
-	<a href="AddSupplier.html" th:href="@{/admin/addsupplier}"class="btn btn-primary btn-lg" role="button">Add Supplier</a>
 
-	<h2>Supplier List</h2>
 	<table class="table table-bordered table-hover">
 		<tr >
-			<th >Supplier Id</th>
-			<th >Supplier Name</th>
-			<th >Supplier Address</th>
-			<th >Supplier phone</th>
-			<th >Supplier email</th>
-		    <th >Supplier MOQ</th>
-			<th >Edit Supplier</th>   
-			<th >Delete Supplier</th>   
+			<th >SUPPLIER ID</th>
+			<th >SUPPLIER NAME</th>
+			<th >SUPPLIER ADDRESS</th>
+			<th >SUPPLIER PHONE</th>
+			<th >SUPPLIER EMAIL</th>
+		    <th >SUPPLIER MOQ</th>
+			<th >ACTIONS</th>
 		</tr>
 		<tr th:each=" supplier:${suppliers}">
 			<td th:text=${supplier.id}>Id</td>
@@ -34,8 +36,9 @@
 			<td th:text=${supplier.email}>Supplier Email</td>
 			<td th:text=${supplier.MOQ}>Supplier Mini.Order.Quantity</td>
 			<td><a href="EditSupplier.html"
-				th:href="@{/admin/editsupplier/}+${supplier.id}">Edit</a></td>
-			<td><a href="DeleteSupplier.html"
+				th:href="@{/admin/editsupplier/}+${supplier.id}">Edit</a>
+				/
+			<a href="DeleteSupplier.html"
 				th:href="@{/admin/deletesupplier/}+${supplier.id}">Delete</a></td>
 		</tr>
 	</table>

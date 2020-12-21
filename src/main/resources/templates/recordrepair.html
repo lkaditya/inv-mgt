@@ -8,7 +8,9 @@
 <body>
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-  <h1>Record List</h1>
+  <div>
+	  <a style="font-size: xxx-large">Record Listing</a>
+  </div>
 
 	<form action="" th:object="${filter}" th:action="@{/repair/filter}"
 		method="post" class="form-horizontal">
@@ -34,11 +36,10 @@
 
 	<table class="table table-bordered table-hover">
 		<tr>
-			<th>RepairOrderId</th>
-			<th>Customer</th>
-			<th>Date</th>
-			<th>Edit</th>
-			<th>Delete</th>
+			<th>REPAIR ORDER ID</th>
+			<th>CUSTOMER</th>
+			<th>DATE</th>
+			<th>ACTIONS</th>
 		</tr>
 		<tr th:each="rep:${repairlist}">
 			<td><a href="RepairDetails.html"
@@ -46,12 +47,13 @@
 			<td th:text="${rep.customer.name}">ID</td>
 			<td th:text="${rep.repairDate}">ID</td>
 			<td><a href="EditRepair.html"
-				th:href="@{/repair/edit/}+${rep.repairId}">Edit</a></td>
-			<td><a href="DeleteRepair.html"
+				th:href="@{/repair/edit/}+${rep.repairId}">Edit</a>
+				/
+			<a href="DeleteRepair.html"
 				th:href="@{/repair/delete/}+${rep.repairId}">Delete</a></td>
 		</tr>
 	</table>
-	
+
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>
