@@ -80,9 +80,16 @@ public class ReturnedController {
 		//Product x= catalogueInterface.findById(returned.getInventory().getProduct().getId());
 		inventory=invservice.findInventoryById(InventoryId).get();
 		returned.setInventory(inventory);
-//		if (inventory.getQoh()<20){
-//			mailService.sendSimpleMail("test","send email....");
-//		}
+		if (inventory.getQoh()<20){
+			String message=inventory.getProduct().getProductName()+" needs to be reordered.";
+			message+="\n The quantity now is "+inventory.getQoh();
+			message+="\n The minimum available quantity is "+inventory.getRol();
+			message+="\n Please reorder to "+inventory.getProduct().getSupplier().getSupplierName();
+			message+="\n with email= "+inventory.getProduct().getSupplier().getEmail();
+			message+="\n with minimum order= "+inventory.getProduct().getSupplier().getMOQ();
+			
+			mailService.sendSimpleMail("Reorder Reminder",message);
+		}
 
 		rservice.save(returned);
 		return "redirect:/returned/list";
