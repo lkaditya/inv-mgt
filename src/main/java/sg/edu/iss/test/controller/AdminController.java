@@ -164,14 +164,15 @@ public class AdminController {
 		{
 			User u = userServices.findUserByUserName(user.getUserName());
 			session.setAttribute("usession", u);
-			return "welcome";
+			return "redirect:/inventory/list";
 		}
 		else
 			return "login";
 	}
 	
 	@RequestMapping(path = "/logout")
-	public String logout() {
+	public String logout(HttpSession session) {
+		session.removeAttribute("usession");
 		return "logout";
 	}
 	

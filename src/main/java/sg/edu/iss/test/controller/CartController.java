@@ -58,7 +58,7 @@ public class CartController {
 	
 	@RequestMapping(value="/show")
 	public String showCart(Model model,HttpSession session) {
-		User user=(User)session.getAttribute("user");
+		User user=(User)session.getAttribute("usession");
 		String username=user.getUserName();
 		Cart c= cartservice.showAllCartByUserName(username);
 		if(c!=null) {
