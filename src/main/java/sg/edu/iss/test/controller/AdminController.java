@@ -146,28 +146,5 @@ public class AdminController {
 		productServices.deleteProduct(productServices.findProductById(id));
 		return "forward:/admin/viewproducts";
 	}
-	@RequestMapping(path = "/login")
-	public String login(Model model) {
-		User u = new User();
-		model.addAttribute("user", u);
-		return "login";
-	}
-	
-	@RequestMapping(path = "/authenticate")
-	public String authenticate(@ModelAttribute("user") User user, Model model, HttpSession session) {
-		if(userServices.authenticate(user)) 
-		{
-			User u = userServices.findUserByUserName(user.getUserName());
-			session.setAttribute("usession", u);
-			return "redirect:/inventory/list";
-		}
-		else
-			return "login";
-	}
-	
-	@RequestMapping(path = "/logout")
-	public String logout(HttpSession session) {
-		session.removeAttribute("usession");
-		return "logout";
-	}
+
 }
