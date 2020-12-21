@@ -1,6 +1,7 @@
 package sg.edu.iss.test.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -35,4 +36,18 @@ public class SupplierServiceImplementation implements SupplierService {
    public long totalSupplier() {
 	   return sRepository.count();
    }
+
+    @Override
+    public List<Supplier> findAll() {
+        List<Supplier> suppliers = sRepository.findAll();
+        return suppliers;
+    }
+
+    @Override
+    public Supplier findSupplierByName(String name) {
+        Supplier supplierBySupplierName = sRepository.findSupplierBySupplierName(name);
+        return supplierBySupplierName;
+    }
+
+
 }

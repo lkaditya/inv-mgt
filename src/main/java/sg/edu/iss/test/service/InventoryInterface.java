@@ -15,6 +15,6 @@ public interface InventoryInterface {
 	void returnInventory(Inventory inventory);
 	public List<Inventory> findInventoryByKeyword(String keyword);
 	public Inventory findInventoryByProductName(String name);
-	
+	public Inventory findByid(long id);
 
 }

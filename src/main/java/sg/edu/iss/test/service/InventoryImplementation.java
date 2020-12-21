@@ -62,6 +62,12 @@ public class InventoryImplementation implements InventoryInterface  {
 	}
 
 	@Override
+	public Inventory findByid(long id) {
+		Inventory inventory = irepo.findById(id).orElse(null);
+		return inventory;
+	}
+
+	@Override
 	public List<Inventory> findInventoryByKeyword(String keyword) {
 		return irepo.findInventoryByKeyword(keyword);
 	}

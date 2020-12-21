@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductQuery;
+import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.service.CatalogueImplementation;
 import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.SupplierService;
 
 @Controller
 @RequestMapping("/catalogue")
@@ -24,7 +26,10 @@ public class CatalogueController {
 	public void setCatalogue(CatalogueImplementation catalogue) {
 		this.cservice = catalogue;
 	}
-	
+
+	@Autowired
+	private SupplierService supplierService;
+
 	@RequestMapping(value = "/showform", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		Product product = new Product();
@@ -34,10 +39,17 @@ public class CatalogueController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+
 		cservice.save(product);
 		return "redirect:/catalogue/findByFilter";
 	}
-
+	@RequestMapping("/saveSupplier")
+	public String saveSupplier(@ModelAttribute("supplier")Supplier supplier,BindingResult bindingResult,Model model){
+		supplierService.saveSupplier(supplier);
+		long id = supplier.getId();
+		model.addAttribute("supplierId",id);
+		return "catalogueform";
+	}
 
 	@RequestMapping("/findByFilter")
 	public String findProduct(ProductQuery productQuery,Model model, @RequestParam(value = "page", defaultValue = "0") Integer page,

@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductQuery;
+import sg.edu.iss.test.model.Supplier;
+import sg.edu.iss.test.repo.BrandRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.SupplierRepository;
 
@@ -25,13 +27,25 @@ public class CatalogueImplementation implements CatalogueInterface  {
 	
 	@Autowired
 	ProductRepository prepo;
-	
+	@Autowired
+	SupplierService supplierService;
 	@Autowired
 	SupplierRepository srepo;
-	
+	@Autowired
+	BrandRepository brandRepository;
 	@Transactional
 	public void save(Product product) {
+
+		String supplierName = product.getSupplier().getSupplierName();
+		Supplier supplier = supplierService.findSupplierByName(supplierName);
+		if (supplier!=null){
+			product.setSupplier(supplier);
+		}else {
+			srepo.save(product.getSupplier());
+		}
+		brandRepository.save(product.getBrand());
 		prepo.save(product);
+
 	}
 	
 	@Transactional(timeout = 30, readOnly = true)

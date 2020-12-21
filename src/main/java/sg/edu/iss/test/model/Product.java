@@ -21,9 +21,9 @@ public class Product {
     @OneToOne(cascade = {CascadeType.ALL})  
     @JoinColumn(name="inventory_id")
 	private Inventory inventory;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
 	private Supplier supplier;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne
 	private Brand brand;
 	public Product(String productName, String productDescription, String productType, String productCategory,
 			String productSubCategory, Inventory inventory, Supplier supplier, Brand brand) {
@@ -36,8 +36,5 @@ public class Product {
 		this.inventory = inventory;
 		this.supplier = supplier;
 		this.brand = brand;
-
 	}
-	
-	
 }
