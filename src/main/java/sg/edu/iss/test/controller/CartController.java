@@ -24,12 +24,7 @@ import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.model.User;
-import sg.edu.iss.test.service.CartImplementation;
-import sg.edu.iss.test.service.CartService;
-import sg.edu.iss.test.service.CustomerInterface;
-import sg.edu.iss.test.service.InventoryInterface;
-import sg.edu.iss.test.service.ProductService;
-import sg.edu.iss.test.service.ProductUsageService;
+import sg.edu.iss.test.service.*;
 
 @Controller
 @RequestMapping("/cart")
@@ -54,8 +49,10 @@ public class CartController {
 	
 	@Autowired
 	private InventoryInterface inventoryservice;
-	
-	
+
+	@Autowired
+	private MailService mailService;
+
 	@RequestMapping(value="/show")
 	public String showCart(Model model,HttpSession session) {
 		User user=(User)session.getAttribute("usession");
@@ -117,6 +114,16 @@ public class CartController {
 				long currentAmount=a.getQoh();
 				long rem=currentAmount-i.getQuantity(); 
 				a.setQoh(rem);
+				if (a.getQoh()<20){
+					String message=a.getProduct().getProductName()+" needs to be reordered.";
+					message+="\n The quantity now is "+a.getQoh();
+					message+="\n The minimum available quantity is "+a.getRol();
+					message+="\n Please reorder to "+a.getProduct().getSupplier().getSupplierName();
+					message+="\n with email= "+a.getProduct().getSupplier().getEmail();
+					message+="\n with minimum order= "+a.getProduct().getSupplier().getMOQ();
+
+					mailService.sendSimpleMail("Reorder Reminder",message);
+				}
 				inventoryservice.saveInventory(a);
 			}else {
 				List<ProductUsage> group=uservice.showProductUsagesByCartId(obj.getCart().getId());

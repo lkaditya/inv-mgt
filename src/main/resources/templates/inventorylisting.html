@@ -35,7 +35,7 @@ function myFunction() {
   <div th:replace="layout/layout.html :: menu" ></div>
   <div>
       <a style="font-size: xxx-large">Inventory Listing</a>
-      <a th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"
+      <a th:if="${session.usession.role eq 'ADMIN'}"  th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"
          style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
          role="button">+</a>
   </div>
@@ -66,12 +66,12 @@ function myFunction() {
    <td th:text="${inventory.por}">ID</td>
    <td th:text="${inventory.pop}">ID</td>
    <td th:text="${inventory.rol}">ID</td>
-   <td><a href="Editinventory.html"
+   <td><a href="Editinventory.html"  th:if="${session.usession.role eq 'ADMIN'}"
 		th:href="@{/inventory/edit/}+${inventory.id}">Edit /</a>
-		<a href="Editinventory.html"
+		<a href="Editinventory.html"  th:if="${session.usession.role eq 'ADMIN'}"
    		th:href="@{'/inventory/delete?productID='+${inventory.product.id}}">Delete /</a>
 		
-		<a href="Returninventory.html"
+		<a href="Returninventory.html"  th:if="${session.usession.role eq 'ADMIN'}"
            th:href="@{'/returned/showform/?id='+${inventory.id}}">Return/</a>
         
         <a href="arbitrary.html"

@@ -53,8 +53,7 @@ function myFunction() {
    <th>QUANTITY</th>
    <th>REASON</th>
    <th>SUPPLIER</th>
-   <th>ACTIONS</th>
-
+   <th th:if="${session.usession.role eq 'ADMIN'}"  >ACTIONS</th>
  </tr>
  <tr th:each="returned:${rlist}">
    <td th:text="${returned.id}">ID</td>
@@ -62,7 +61,7 @@ function myFunction() {
    <td th:text="${returned.qt}">ID</td>
    <td th:text="${returned.reason}">ID</td>
    <td th:text="${returned.inventory.product.supplier.supplierName}">ID</td>
-     <td>
+     <td th:if="${session.usession.role eq 'ADMIN'}"  >
          <a href="Editreturned.html"
             th:href="@{/returned/delete/}+${returned.id}">Delete </a>
      </td>
