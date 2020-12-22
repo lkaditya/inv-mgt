@@ -54,20 +54,20 @@ INSERT INTO inventory VALUES(10,40,44,300,30,37);
 
 
 INSERT INTO product VALUES(1,"Brake",  "Brake pad, Rear Axle, prepared for wear indicator",   "RIDEX Brake Pad","Brake pad","Car",1,1,1);
-INSERT INTO product VALUES(2,"Engine","Lead-acid battery, Capacity: 50Ah","TAB Starter Battery ","Battery","Car",2,2,2);
+INSERT INTO product VALUES(2,"Engine","Lead-acid battery, Capacity: 50Ah","TAB Starter Battery","Battery","Car",2,2,2);
 
 INSERT INTO product VALUES(3,"Tyre","Passenger Car Tyre, 135/70 TR15 TL 70T HANK H740 KINERGY 4S", "Hankook Kinergy 4S H740 Tyre","All season","Car",3,3,3);
 
 INSERT INTO product VALUES(4,"Damping" , "Rear Axle, Gas Pressure, Twin-Tube, Top pin, Bottom Pin","RIDEX Shock Absorber","Shock Absorber","Car",4,4,4);
-INSERT INTO product VALUES(5,"Interior","Brake pedal Pad,75/60/12mm","FEBI BILSTEIN Brake Pedal Pad  ","Pedal","Car",5,5,5);
-INSERT INTO product VALUES(6,"Engine"," Active sensor, Hall Sensor","RIDEX Sensor, camshaft position  ","Senor","Car",6,6,6);
+INSERT INTO product VALUES(5,"Interior","Brake pedal Pad,75/60/12mm","FEBI BILSTEIN Brake Pedal Pad","Pedal","Car",5,5,5);
+INSERT INTO product VALUES(6,"Engine"," Active sensor, Hall Sensor","RIDEX Sensor, camshaft position","Senor","Car",6,6,6);
 
-INSERT INTO product VALUES(7,"Interior","Seat Cover, Black/Grey, Polyester, Front ","WALSER Seat cover  ","Car Seat Cover","Car",7,7,7);
+INSERT INTO product VALUES(7,"Interior","Seat Cover, Black/Grey, Polyester, Front ","WALSER Seat cover","Car Seat Cover","Car",7,7,7);
 
 
-INSERT INTO product VALUES(8,"Engine","5W-30, 1l, Part Synthetic Oil ","K2 TEXAR, FUEL ECONOMY Engine Oil ","Engine Oil","Motorcycle",8,8,8);
+INSERT INTO product VALUES(8,"Engine","5W-30, 1l, Part Synthetic Oil ","K2 TEXAR, FUEL ECONOMY Engine Oil","Engine Oil","Motorcycle",8,8,8);
 INSERT INTO product VALUES(9,"Tyre ","Truck tyre, Maxxis Mecotra 3 ME3 155/65 R14 75T","Maxxis Mecotra 3  Tyre","All season","Truck",9,9,9);
-INSERT INTO product VALUES(10,"Engine","Crankshaft, Timing End, FPM (fluoride rubber)","REINZ Shaft Seal, crankshaft ","Crankshaft","Truck",10,10,10);
+INSERT INTO product VALUES(10,"Engine","Crankshaft, Timing End, FPM (fluoride rubber)","REINZ Shaft Seal, crankshaft","Crankshaft","Truck",10,10,10);
 
 
 INSERT INTO `inventory`.`customer` VALUES (1, 98765431, 'Esther');
