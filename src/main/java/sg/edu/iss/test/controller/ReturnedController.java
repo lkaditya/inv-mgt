@@ -80,7 +80,7 @@ public class ReturnedController {
 		//Product x= catalogueInterface.findById(returned.getInventory().getProduct().getId());
 		inventory=invservice.findInventoryById(InventoryId).get();
 		returned.setInventory(inventory);
-		if (inventory.getQoh()<20){
+		if (inventory.getQoh()<inventory.getRol()){
 			String message=inventory.getProduct().getProductName()+" needs to be reordered.";
 			message+="\n The quantity now is "+inventory.getQoh();
 			message+="\n The minimum available quantity is "+inventory.getRol();

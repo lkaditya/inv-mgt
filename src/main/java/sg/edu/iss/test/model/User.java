@@ -20,6 +20,7 @@ public class User {
     private String userName;
     private String password;
     private String role;
+    private String email;
 
     public User(String userName, String password) {
         super();
@@ -37,6 +38,14 @@ public class User {
 	public void setUser(@Valid User user) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public User(String userName, String password, String role, String email) {
+		super();
+		this.userName = userName;
+		this.password = password;
+		this.role = role;
+		this.email = email;
 	}
 
     //hz test 2
