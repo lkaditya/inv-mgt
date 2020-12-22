@@ -35,4 +35,10 @@ public class SupplierServiceImplementation implements SupplierService {
    public long totalSupplier() {
 	   return sRepository.count();
    }
+   
+   @Override
+   public Supplier findSupplierByName(String name) {
+       Supplier supplierBySupplierName = sRepository.findSupplierBySupplierName(name);
+       return supplierBySupplierName;
+   }
 }
