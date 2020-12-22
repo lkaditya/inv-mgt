@@ -23,14 +23,14 @@
    <th>CUSTOMER NAME</th>
    <th>MOBILES NUMBER</th>
    <!-- <th>Repair Order List</th> -->
-   <th th:if="${session.usession.role eq 'ADMIN'}"  >ACTIONS</th>
+   <th>ACTIONS</th>
  </tr>
  <tr th:each="customer:${clist}">
 	  
 	<td th:text="${customer.customerId}">customerId</td>
 	<td th:text="${customer.name}">name</td>
 	<td th:text="${customer.mobile}">mobile</td> 
-	<td th:if="${session.usession.role eq 'ADMIN'}"  >
+	<td>
 		<a href="customeredit.html" th:href="@{/customer/edit/}+${customer.customerId}">Edit </a>
         /
 		<a href="customerdelete.html" th:href="@{'/customer/delete?customerId='+${customer.customerId}}">Delete </a>
