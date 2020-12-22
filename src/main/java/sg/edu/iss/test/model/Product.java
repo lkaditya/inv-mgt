@@ -48,6 +48,10 @@ public class Product {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public String getProductName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

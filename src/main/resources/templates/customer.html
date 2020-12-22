@@ -9,25 +9,29 @@
 
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
-   <h1>Customer Listing</h1>
-     <a th:href="@{/customer/customerform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add Customer</a>
+  <div>
+      <a style="font-size: xxx-large">Customer Listing</a>
+      <a th:href="@{/customer/customerform}" class="btn btn-primary btn-lg"
+         style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
+         role="button" th:if="${session.usession.role eq 'ADMIN'}" >+</a>
+  </div>
 
 <table class="table table-bordered table-hover">
  <tr>
-   <th>Customer Id</th>
-   <th>Customer Name</th>
-   <th>Mobile Number</th>
+   <th>CUSTOMER ID</th>
+   <th>CUSTOMER NAME</th>
+   <th>MOBILES NUMBER</th>
    <!-- <th>Repair Order List</th> -->
-   <th>Action</th>
+   <th th:if="${session.usession.role eq 'ADMIN'}"  >ACTIONS</th>
  </tr>
  <tr th:each="customer:${clist}">
 	  
 	<td th:text="${customer.customerId}">customerId</td>
 	<td th:text="${customer.name}">name</td>
 	<td th:text="${customer.mobile}">mobile</td> 
-	<td>
+	<td th:if="${session.usession.role eq 'ADMIN'}"  >
 		<a href="customeredit.html" th:href="@{/customer/edit/}+${customer.customerId}">Edit </a>
-		/
+        /
 		<a href="customerdelete.html" th:href="@{'/customer/delete?customerId='+${customer.customerId}}">Delete </a>
 	</td>
 	

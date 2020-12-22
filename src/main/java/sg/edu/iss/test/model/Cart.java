@@ -40,4 +40,9 @@ public class Cart {
 		this.usage.add(p);
 	}
 
+	public Object getCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

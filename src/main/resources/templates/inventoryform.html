@@ -11,7 +11,8 @@
 
 	<header th:insert="layout/layout.html :: header"></header>
 	<div th:replace="layout/layout.html :: menu"></div>
-	<h1>Inventory form</h1>
+	<div class="container">
+		<h1>Inventory Form</h1>
 	<form action="#" th:object="${inventory}" th:action="@{/inventory/save}"
 		method="POST" class="form-horizontal" >
 		<fieldset>
@@ -72,7 +73,9 @@
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
 				<fieldset>
-					<button type="submit" class="btn btn-default">Save</button>
+					<button type="submit" class="btn btn-default" onclick="alert('Successfully Saved!')">Save</button>
+					&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+					<a th:href="@{/inventory/list}" type="submit" class="btn btn-default" style="float: right" >Back to Inventory</a>
 				</fieldset>
 			</div>
 		</div>
@@ -80,6 +83,7 @@
 
 
 	</form>
+	</div>
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>
 </html>

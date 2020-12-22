@@ -8,9 +8,9 @@
 </head>
 <body>
 	<header th:insert="layout/layout.html :: header"> </header>
-	<div th:replace="layout/layout.html :: menu"></div>   
-
-	<h1>Product Form</h1>
+	<div th:replace="layout/layout.html :: menu"></div>
+	<div class="container">
+		<h1>Products Form</h1>
 	<form action="#" th:object="${product}" th:action="@{/admin/saveproduct}"
 		method="post">
 		<fieldset>
@@ -45,6 +45,7 @@
 		</fieldset>
 
 	</form>
+	</div>
 	<br />
 	<div th:replace="layout/layout.html :: footer"></div>
 </body>

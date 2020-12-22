@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.*;
+import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,12 +37,11 @@ public class User {
         this.password = password;
         this.role = role;
     }
-
 	public User() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
-
-    //hz test 2
-
-}
+	public void setUser(@Valid User user) {
+		// TODO Auto-generated method stub
+	}
+	}
