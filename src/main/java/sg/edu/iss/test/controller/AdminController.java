@@ -111,9 +111,19 @@ public class AdminController {
 		return "forward:/admin/viewsuppliers";
 	}
 	@RequestMapping(value = "/deletesupplier/{id}")
-	public String deleteSupplier(@PathVariable("id") Long id) {
-		supplierServices.deleteSupplier(supplierServices.findSupplierById(id));
-		return "forward:/admin/viewsuppliers";
+	public String deleteSupplier(@PathVariable("id") Long id, Model model) {
+		
+		String supplierName = supplierServices.findSupplierById(id).getSupplierName();
+		List<Product> p = productServices.findProductBySupName(supplierName);
+		if (p.size()>0){
+			  model.addAttribute("msg","Can not delete! There are still products under this supplier!");
+			  model.addAttribute("url","/admin/viewsuppliers");
+		      return "erro";
+		}else {
+			supplierServices.deleteSupplier(supplierServices.findSupplierById(id));
+			return "forward:/admin/viewsuppliers";
+		}	
+		
 	}
 	
 	//====================================================================

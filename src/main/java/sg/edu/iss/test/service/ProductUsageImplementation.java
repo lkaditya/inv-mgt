@@ -116,4 +116,9 @@ public class ProductUsageImplementation implements ProductUsageService{
 		return produserepo.findProductUsageByCartId(id);
 	}
 
+	@Override
+	   public List<ProductUsage> findProductUsageByProId(Long pid) {
+	       List<ProductUsage> productUsageByPid = produserepo.findProductUsageByPid(pid);
+	       return productUsageByPid;
+	   }
 }

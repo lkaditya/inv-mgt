@@ -20,12 +20,14 @@ import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
+import sg.edu.iss.test.model.Returned;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.InventoryImplementation;
 import sg.edu.iss.test.service.InventoryInterface;
 import sg.edu.iss.test.service.ProductService;
 import sg.edu.iss.test.service.ProductUsageService;
+import sg.edu.iss.test.service.ReturnedInterface;
 import sg.edu.iss.test.service.UserService;
 
 @Controller
@@ -45,10 +47,14 @@ public class InventoryController {
 	@Autowired
 	private CartService cartservice;
 	
+	@Autowired
+	private ProductUsageService uservice;
 	
 	@Autowired
 	private ProductUsageService puservice;
 	
+	@Autowired
+	private ReturnedInterface rservice;
 	
 	@Autowired
 	private UserService userservice;
@@ -96,10 +102,18 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String deleteInventory(Long productID) {
-
-		iservice.deleteInventory(productID);
-		return "redirect:/inventory/list";
+	public String deleteInventory(Long productID, Model model) {
+		List<Returned> r = rservice.findReturnedByProId(productID);
+		List<ProductUsage> u = uservice.findProductUsageByProId(productID);
+		if (r.size()>0 || u.size()>0){
+			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
+			  model.addAttribute("url","/inventory/list");
+		      return "erro";
+		}else {
+			iservice.deleteInventory(productID);
+			return "redirect:/inventory/list";
+		}	
+		
 	}
 	
 	//link when hidden search button is clicked

@@ -1,17 +1,26 @@
 package sg.edu.iss.test.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import sg.edu.iss.test.model.Product;
-import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductQuery;
+import sg.edu.iss.test.model.ProductUsage;
+import sg.edu.iss.test.model.Returned;
 import sg.edu.iss.test.service.CatalogueImplementation;
 import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.ProductUsageService;
+import sg.edu.iss.test.service.ReturnedInterface;
 
 @Controller
 @RequestMapping("/catalogue")
@@ -19,6 +28,12 @@ public class CatalogueController {
 	
 	@Autowired
 	private CatalogueInterface cservice;
+	
+	@Autowired
+	private ReturnedInterface rservice;
+	
+	@Autowired
+	private ProductUsageService uservice;
 	
 	@Autowired
 	public void setCatalogue(CatalogueImplementation catalogue) {
@@ -67,8 +82,17 @@ public class CatalogueController {
 
 	@RequestMapping("/delete/{id}")
 	public String deleteProduct(@PathVariable("id") Long id, Model model){
-		cservice.delete(id);
-		return "redirect:/catalogue/findByFilter";
+		List<Returned> r = rservice.findReturnedByProId(id);
+		List<ProductUsage> u = uservice.findProductUsageByProId(id);
+		if (r.size()>0 || u.size()>0){
+			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
+			  model.addAttribute("url","/catalogue/findByFilter");
+		      return "erro";
+		}else {
+			cservice.delete(id);
+			return "redirect:/catalogue/findByFilter";
+		}	
+		
 	}
 
 }

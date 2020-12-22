@@ -14,4 +14,5 @@ public interface ReturnedInterface {
 	public void delete(Returned returned);
 	public Returned findById(Long id);
 	public Inventory update( Long qt, Long id );
+	public List<Returned> findReturnedByProId(Long pid);
 }

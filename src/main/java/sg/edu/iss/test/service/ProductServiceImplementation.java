@@ -1,6 +1,7 @@
 package sg.edu.iss.test.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -37,4 +38,9 @@ private ProductRepository prepo;
 		
 	}
 
+	@Override
+	   public List<Product> findProductBySupName(String name) {
+	       List<Product> productBySupplierName = prepo.findProductBySupplierName(name);
+	       return productBySupplierName;
+	   }
 }

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<title>Error Page</title>
+</head>
+
+<body>
+  
+  <p></p>
+  <p></p>
+  <p style="text-align:center; font-size:200%" th:text="${msg}"/>
+  <p style="text-align:center; font-size:150%"><a th:href="@{${url}}">Go Back</a></p>
+  
+</body>
+</html>
+

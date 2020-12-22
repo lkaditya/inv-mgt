@@ -26,7 +26,7 @@ public interface ProductUsageService {
 	public RepairOrder findRepairOrderById(Long id);
 	public List<ProductUsage> showProductUsagesByCartId(Long id);
 	
-	
+	public List<ProductUsage> findProductUsageByProId(Long pid);
 	
 	
 

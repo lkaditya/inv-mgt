@@ -61,7 +61,11 @@ public class ReturnedImplementation implements ReturnedInterface {
 		return inventory;
 	}
 	
-
+	@Override
+	   public List<Returned> findReturnedByProId(Long pid) {
+	       List<Returned> returnedByPid = rrepo.findReturnedByPid(pid);
+	       return returnedByPid;
+	   }
 	
 
 }

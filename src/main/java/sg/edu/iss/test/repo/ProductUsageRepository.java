@@ -27,6 +27,7 @@ public interface ProductUsageRepository extends JpaRepository<ProductUsage, Long
 	@Query("Select x From ProductUsage x where x.cart.id=:id")
 	List<ProductUsage> findProductUsageByCartId(@Param ("id") Long id);
 
-
+	@Query("select x from ProductUsage as x where x.product.id=:pid")
+    public List<ProductUsage> findProductUsageByPid(@Param("pid") Long pid);
 
 }
