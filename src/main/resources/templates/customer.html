@@ -15,7 +15,8 @@
          style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
          role="button" th:if="${session.usession.role eq 'ADMIN'}" >+</a>
   </div>
-
+  <h2 th:utext="'Welcome '+${session.usession.userName}"
+      style ="text-align:right;margin-top: -35px;color: #6678b1;margin-right: 20px">Welcome</h2>
 <table class="table table-bordered table-hover">
  <tr>
    <th>CUSTOMER ID</th>

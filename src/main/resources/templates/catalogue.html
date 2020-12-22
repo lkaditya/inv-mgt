@@ -26,10 +26,9 @@
     <input type="text" name="brandName" >
     <input class="btn btn-default" type="submit" value="filter">
   </form>
-
-
-  <a th:if="${session.usession.role eq 'ADMIN'}" th:href="@{/catalogue/showform}" class="btn btn-primary btn-lg"  style="float: right" role="button">Add</a>
-
+  <h2 th:utext="'Welcome '+${session.usession.userName}"
+      style ="text-align:right;margin-top: -15px;color: #6678b1;margin-right: 20px">Welcome</h2>
+<br>
   <table  class="table table-bordered table-hover">
  <tr>
    <th>ID</th>
