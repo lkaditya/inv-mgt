@@ -13,7 +13,7 @@
       <a style="font-size: xxx-large">Customer Listing</a>
       <a th:href="@{/customer/customerform}" class="btn btn-primary btn-lg"
          style=" margin-right: 15px; margin-bottom: 20px; width: 50px ;height: 50px; border-radius: 50%; font-size: 25px; "
-         role="button" th:if="${session.usession.role eq 'ADMIN'}" >+</a>
+         role="button" >+</a>
   </div>
   <h2 th:utext="'Welcome '+${session.usession.userName}"
       style ="text-align:right;margin-top: -35px;color: #6678b1;margin-right: 20px">Welcome</h2>

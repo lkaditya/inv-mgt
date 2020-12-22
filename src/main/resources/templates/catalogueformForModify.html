@@ -68,52 +68,36 @@
 					</fieldset>
 				</div>
 			</div>
+
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="supName">Supplier Name:</label>
+				<label class="control-label col-sm-2" for="sel1">Supplier:</label>
 				<div class="col-sm-10">
 					<fieldset>
-						<input type="text" class="form-control" id="supName" th:field="*{supplier.supplierName}">
+						<select class="form-control" id="sel1" th:field="*{supplier.supplierName}" >
+
+							<option th:each="name:${suppliers}" th:value="${name.supplierName}" th:text="${name.supplierName}">
+							</option>
+						</select>
 					</fieldset>
 				</div>
 			</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="supAdd">Supplier Address:</label>
-				<div class="col-sm-10">
-					<fieldset>
-						<input type="text" class="form-control" id="supAdd" th:field="*{supplier.supplierAddress}">
-					</fieldset>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="supPh">Supplier Phone:</label>
-				<div class="col-sm-10">
-					<fieldset>
-						<input type="text" class="form-control" id="supPh" th:field="*{supplier.phone}">
-					</fieldset>
-				</div>
-			</div>
 
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="supEmail">Supplier Email:</label>
-				<div class="col-sm-10">
-					<fieldset>
-						<input type="email" class="form-control" id="supEmail" th:field="*{supplier.email}">
-					</fieldset>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="control-label col-sm-2" for="supMOQ">Supplier MOQ:</label>
-				<div class="col-sm-10">
-					<fieldset>
-						<input type="text" class="form-control" id="supMOQ" th:field="*{supplier.MOQ}">
-					</fieldset>
-				</div>
-			</div>
 
 			<!--		//brand-->
 
+<!--			<div class="form-group">-->
+<!--				<label class="control-label col-sm-2" for="sel1">Brand:</label>-->
+<!--				<div class="col-sm-10">-->
+<!--					<fieldset>-->
+<!--						<select class="form-control" id="sel1" th:field="*{brand.brandName}" >-->
+
+<!--							<option th:each="name:${brands}" th:value="${name.brandName}" th:text="${name.brandName}">-->
+<!--							</option>-->
+<!--						</select>-->
+<!--					</fieldset>-->
+<!--				</div>-->
+<!--			</div>-->
 			<div class="form-group">
 				<label class="control-label col-sm-2" for="brand">Brand Name:</label>
 				<div class="col-sm-10">
@@ -122,6 +106,8 @@
 					</fieldset>
 				</div>
 			</div>
+
+
 
 			<!--     inventory-->
 			<div class="form-group">
@@ -172,7 +158,7 @@
 			<div class="form-group">
 				<div class="col-sm-offset-2 col-sm-10">
 					<fieldset>&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
-						<button th:href="@{/catalogue/findByFilter}" type="submit" style="float: left"  class="btn btn-default">Back to Product</button>
+						<button th:href="@{/catalogue/findByFilter}"  style="float: left"  class="btn btn-default">Back to Product</button>
 						<button type="submit" class="btn btn-default" style="float: right" onclick="alert('Successfully Saved!')">Save</button>
 
 
