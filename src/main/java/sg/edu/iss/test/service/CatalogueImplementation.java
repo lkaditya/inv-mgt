@@ -3,7 +3,12 @@ package sg.edu.iss.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import ch.qos.logback.classic.spi.EventArgUtil;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,12 +18,13 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import sg.edu.iss.test.model.Brand;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductQuery;
+import sg.edu.iss.test.model.Supplier;
+import sg.edu.iss.test.repo.BrandRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.SupplierRepository;
-
-import javax.persistence.criteria.*;
 
 @Service
 public class CatalogueImplementation implements CatalogueInterface  {
@@ -27,10 +33,35 @@ public class CatalogueImplementation implements CatalogueInterface  {
 	ProductRepository prepo;
 	
 	@Autowired
+	SupplierService supplierService;
+	
+	@Autowired
 	SupplierRepository srepo;
+	
+	@Autowired
+	BrandService brandService;
+
+	@Autowired
+	BrandRepository brepo;
 	
 	@Transactional
 	public void save(Product product) {
+		String supplierName = product.getSupplier().getSupplierName();
+		Supplier supplier = supplierService.findSupplierByName(supplierName);
+		if (supplier!=null){
+		      product.setSupplier(supplier);
+		}else {
+		      srepo.save(product.getSupplier());
+		}
+		String brandName = product.getBrand().getBrandName();
+		Brand brand = brandService.findBrandByName(brandName);
+		if (brand!=null){
+		      product.setBrand(brand);
+		}else {
+		      brepo.save(product.getBrand());
+		}
+
+		
 		prepo.save(product);
 	}
 	
