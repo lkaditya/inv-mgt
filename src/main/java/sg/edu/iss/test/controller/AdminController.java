@@ -103,7 +103,7 @@ public class AdminController {
 	public String editSupplier(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("supplier", supplierServices.findSupplierById(id));
 		model.addAttribute("control","supplier");
-		return "supplier-form";
+		return "supplier-formForModify";
 	}
 	@RequestMapping(value = "/savesupplier")
 	public String saveSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, 
@@ -112,13 +112,22 @@ public class AdminController {
 			return "supplier-form";
 		}
 		Supplier supplier1 = supplierRepository.findSupplierBySupplierName(supplier.getSupplierName());
-		if (supplier!=null){
+		if (supplier1!=null){
 			supplierServices.saveSupplier(supplier1);
 		}else {
 			supplierServices.saveSupplier(supplier);
 		}
 
 		return "forward:/admin/viewsuppliers";
+	}
+	@RequestMapping(value = "/savesupplierforEdit")
+	public String saveSupplierforEdit(@ModelAttribute("supplier") @Valid Supplier supplier,
+	                     BindingResult bindingResult,  Model model) {
+	   if (bindingResult.hasErrors()) {
+	      return "supplier-form";
+	   }
+	      supplierServices.saveSupplier(supplier);
+	   return "forward:/admin/viewsuppliers";
 	}
 	@RequestMapping(value = "/deletesupplier/{id}")
 	public String deleteSupplier(@PathVariable("id") Long id, Model model) {
