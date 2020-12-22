@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
+import sg.edu.iss.test.repo.SupplierRepository;
 import sg.edu.iss.test.service.ProductServiceImplementation;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
 import sg.edu.iss.test.service.UserServiceImplementation;
@@ -41,6 +42,9 @@ public class AdminController {
 	private UserServiceImplementation userServices;
 	@Autowired
 	private ProductServiceImplementation productServices;
+
+	@Autowired
+	private SupplierRepository supplierRepository;
 
 	@RequestMapping(value = "/viewusers")
 	public String ListUsers(Model model) {
@@ -107,7 +111,13 @@ public class AdminController {
 		if (bindingResult.hasErrors()) {
 			return "supplier-form";
 		}
-		supplierServices.saveSupplier(supplier);
+		Supplier supplier1 = supplierRepository.findSupplierBySupplierName(supplier.getSupplierName());
+		if (supplier!=null){
+			supplierServices.saveSupplier(supplier1);
+		}else {
+			supplierServices.saveSupplier(supplier);
+		}
+
 		return "forward:/admin/viewsuppliers";
 	}
 	@RequestMapping(value = "/deletesupplier/{id}")

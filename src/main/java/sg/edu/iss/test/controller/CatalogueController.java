@@ -7,11 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import sg.edu.iss.test.model.Product;
-import sg.edu.iss.test.model.ObjectInput;
-import sg.edu.iss.test.model.ProductQuery;
+import sg.edu.iss.test.model.*;
+import sg.edu.iss.test.repo.BrandRepository;
+import sg.edu.iss.test.repo.SupplierRepository;
+import sg.edu.iss.test.service.BrandService;
 import sg.edu.iss.test.service.CatalogueImplementation;
 import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.SupplierService;
+
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping("/catalogue")
@@ -19,7 +23,19 @@ public class CatalogueController {
 	
 	@Autowired
 	private CatalogueInterface cservice;
-	
+
+	@Autowired
+	private SupplierService supplierService;
+
+	@Autowired
+	private SupplierRepository supplierRepository;
+
+	@Autowired
+	private BrandRepository brandRepository;
+
+	@Autowired
+	private BrandService brandService;
+
 	@Autowired
 	public void setCatalogue(CatalogueImplementation catalogue) {
 		this.cservice = catalogue;
@@ -29,11 +45,21 @@ public class CatalogueController {
 	public String showForm(Model model) {
 		Product product = new Product();
 		model.addAttribute("product", product);
+		ArrayList<Brand> allBrands = brandService.findAllBrands();
+		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
+		model.addAttribute("suppliers",allSuppliers);
+		model.addAttribute("brands",allBrands);
 		return "catalogueform";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+		String supplierName = product.getSupplier().getSupplierName();
+		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
+//		String brandName = product.getBrand().getBrandName();
+//		Brand brand = brandRepository.findBrandByBrandName(brandName);
+//		product.setBrand(brand);
+		product.setSupplier(supplier);
 		cservice.save(product);
 		return "redirect:/catalogue/findByFilter";
 	}
@@ -62,6 +88,10 @@ public class CatalogueController {
 	public String editProduct(@PathVariable("id") Long id, Model model){
 		Product product = cservice.findById(id);
 		model.addAttribute("product", product);
+		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
+		model.addAttribute("suppliers",allSuppliers);
+		ArrayList<Brand> allBrands = brandService.findAllBrands();
+		model.addAttribute("brands",allBrands);
 		return "catalogueformForModify";
 	}
 
