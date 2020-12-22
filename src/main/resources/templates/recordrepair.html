@@ -3,6 +3,15 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+	function myFunction(){
+		if(choice.value==="yes"){
+			alert("Successfully saved in D:/ReportUsage.csv")
+		}
+	}
+</script>
+
 <title>Record List</title>
 </head>
 <body>
@@ -19,17 +28,20 @@
 			placeholder="yyyy-MM-dd" required> 
 		<span> EndDate: </span> 
 		<input type="text" th:field="*{end}" placeholder="yyyy-MM-dd" required>
-		<span> Generate Report: </span> 
-		<select th:field="*{reportstate}">
+
+		<span> Generate Report: </span>
+		<select th:field="*{reportstate}" id="choice">
 		<option th:value="'no'" th:text="No"></option>
 		<option th:value="'yes'" th:text="Yes"></option>
 		</select>
-		<button type="submit">Filter</button>
+
+		<button type="submit" onclick="myFunction()" >Filter</button>
 		<p th:if="${#fields.hasErrors('start')}" th:errors="*{start}"></p>
 		<p th:if="${#fields.hasErrors('end')}" th:errors="*{end}"></p>
 	</form>
-
-	<form action="" th:object="${filter}" th:action="@{/repair/search}" method="post" class="form-horizontal" style="float: right">
+  <h2 th:utext="'Welcome '+${session.usession.userName}"
+	  style ="text-align:right;margin-top: -50px;color: #6678b1;margin-right: 20px">Welcome</h2>
+	<form action="" th:object="${filter}" th:action="@{/repair/search}" method="post" class="form-horizontal" style="float: right; margin-bottom: 10px">
 		<fieldset>
 			Search: <input type="text" th:field="*{keyword}" placeholder="search keyword here" required >
 		</fieldset>

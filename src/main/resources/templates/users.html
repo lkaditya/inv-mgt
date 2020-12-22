@@ -6,7 +6,6 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<header th:insert="layout/layout.html :: header"> </header>
@@ -19,7 +18,8 @@
 		   role="button" th:if="${session.usession.role eq 'ADMIN'}">+</a>
 	</div>
 	<!-- Add Hyperlink -->
-
+	<h2 th:utext="'Welcome '+${session.usession.userName}"
+		style ="text-align:right;margin-top: -35px;color: #6678b1;margin-right: 20px">Welcome</h2>
 	
 	<table class="table table-bordered table-hover">
 		<tr >
