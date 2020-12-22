@@ -9,12 +9,13 @@
   <header th:insert="layout/layout.html :: header"></header>
   <div th:replace="layout/layout.html :: menu" ></div>
   <div>
+	  <span style="font-size: xxx-large; color: steelblue" th:utext="'No.'+${repairrecord.repairId}"> </span>
+	  &nbsp;
 	  <a href="RepairDetails.html"
 		 th:href="@{/repair/showrecord}"
-			  style="font-size: xxx-large">Record List
+			  style="font-size: xxx-large">Record Details
 		  </a>
-		  <span style="font-size: xxx-large" th:utext="'>'+${repairrecord.repairId}"> </span>
-  </div>
+
 
 	<form action="" th:object="${filter}" th:action="@{/repair/detailsearch/}+${repairrecord.repairId}" method="post" class="form-horizontal" style="float: right">
 		<fieldset>
