@@ -60,7 +60,7 @@ INSERT INTO product VALUES(3,"Tyre","Passenger Car Tyre, 135/70 TR15 TL 70T HANK
 
 INSERT INTO product VALUES(4,"Damping" , "Rear Axle, Gas Pressure, Twin-Tube, Top pin, Bottom Pin","RIDEX Shock Absorber","Shock Absorber","Car",4,4,4);
 INSERT INTO product VALUES(5,"Interior","Brake pedal Pad,75/60/12mm","FEBI BILSTEIN Brake Pedal Pad  ","Pedal","Car",5,5,5);
-INSERT INTO product VALUES(6,"Engine"," Active sensor, Hall Sensor","RIDEX Sensor, camshaft position  ","Senor","Car",6,6,6);
+INSERT INTO product VALUES(6,"Engine"," Active sensor, Hall Sensor","RIDEX Sensor, camshaft position  ","Sensor","Car",6,6,6);
 
 INSERT INTO product VALUES(7,"Interior","Seat Cover, Black/Grey, Polyester, Front ","WALSER Seat cover  ","Car Seat Cover","Car",7,7,7);
 
