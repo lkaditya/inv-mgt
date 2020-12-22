@@ -147,9 +147,6 @@ public class AdminController {
 		productServices.deleteProduct(productServices.findProductById(id));
 		return "forward:/admin/viewproducts";
 	}
-<<<<<<< HEAD
-
-=======
 	//=================================================================
 	
 	@RequestMapping(path = "/login")
@@ -176,5 +173,4 @@ public class AdminController {
 		session.removeAttribute("usession");
 		return "logout";
 	}
->>>>>>> refs/heads/master
 }
