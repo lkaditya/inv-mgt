@@ -41,12 +41,15 @@ function myFunction() {
   </div>
   	<a href="#" th:href="@{/cart/show}" style="margin-left: 15px; font-size: 16px">Link To Cart</a>&nbsp; &nbsp;&nbsp; &nbsp; <a>|</a>
     <a href="#" th:href="@{/returned/list}" style="margin-left: 15px; font-size: 16px"> Link To Returned List</a>
+
 	<form  th:action="@{/inventory/search}" method="post" class="form-horizontal" style="float: left">
 		<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for inventory.." title="Type in a name">
 		<fieldset>
 		<button type="submit" hidden=true></button>
 		</fieldset>
 	</form>
+  <h2 th:utext="'Welcome '+${session.usession.userName}"
+      style ="text-align:right;margin-top: -35px;color: #6678b1;margin-right: 20px">Welcome</h2>
   <table class="table table-bordered table-hover" id="myTable" style="margin-top: 20px">
  <tr>
    <th>Inventory Id</th>

@@ -17,7 +17,8 @@
 		   role="button" th:if="${session.usession.role eq 'ADMIN'}">+</a>
 	</div>
 	<!-- Add Hyperlink -->
-
+	<h2 th:utext="'Welcome '+${session.usession.userName}"
+		style ="text-align:right;margin-top: -35px;color: #6678b1;margin-right: 20px">Welcome</h2>
 	<table class="table table-bordered table-hover">
 		<tr >
 			<th >SUPPLIER ID</th>
