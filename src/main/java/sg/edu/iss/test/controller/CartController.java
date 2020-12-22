@@ -66,6 +66,8 @@ public class CartController {
 			model.addAttribute("usages",usageform);
 		}else {
 			ObjectInput usageform= new ObjectInput();
+			List<ProductUsage> group= new ArrayList<ProductUsage>();
+			usageform.setUsages(group);
 			usageform.setCart(new Cart());
 			model.addAttribute("usages",usageform);	
 		}
