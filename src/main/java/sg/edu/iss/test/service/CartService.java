@@ -13,4 +13,5 @@ public interface CartService {
 	public void save(Cart cart);
 	public void delete(Cart cart);
 	public Cart findCartById(Long id);
+	public List<Cart> findCartByUsrId(Long uid);
 }

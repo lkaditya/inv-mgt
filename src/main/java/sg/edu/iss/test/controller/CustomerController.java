@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Customer;
+import sg.edu.iss.test.model.RepairOrder;
+import sg.edu.iss.test.repo.RepairOrderRepository;
 import sg.edu.iss.test.service.CustomerImplementation;
 import sg.edu.iss.test.service.CustomerService;
 
@@ -23,6 +25,9 @@ public class CustomerController {
 
 	@Autowired
 	CustomerService cservice;
+	
+	@Autowired
+	RepairOrderRepository repairrepo;
 	
 	@Autowired
 	public void setCustomerImplementation(CustomerImplementation cimpl) {
@@ -66,9 +71,17 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String deleteCustomer(Long customerId) {
-		cservice.deleteCustomer(customerId);
-		return "redirect:/customer/viewcustomers";
+	public String deleteCustomer(Long customerId, Model model) {
+		List<RepairOrder> re = repairrepo.findRepairOrderByCid(customerId);
+		if (re.size()>0){
+			  model.addAttribute("msg","Can not delete! There are still repair order under the customer!");
+			  model.addAttribute("url","/customer/viewcustomers");
+		      return "erro";
+		}else {
+			cservice.deleteCustomer(customerId);
+			return "redirect:/customer/viewcustomers";
+		}
+		
 	}
 }
 	

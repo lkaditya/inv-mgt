@@ -17,7 +17,8 @@ public interface RepairOrderRepository extends JpaRepository<RepairOrder, Long> 
 	@Query("select x from RepairOrder x where x.repairDate like CONCAT('%',:key,'%') or x.customer.name like CONCAT('%',:key,'%') or x.repairId like CONCAT('%',:key,'%')")
 	List<RepairOrder> findRepairOrderByKeyword(@Param("key")String key);
 	
-
+	@Query("select x from RepairOrder as x where x.customer.customerId=:cid")
+    public List<RepairOrder> findRepairOrderByCid(@Param("cid") Long cid);
 	
 
 }
