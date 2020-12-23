@@ -27,7 +27,7 @@ import sg.edu.iss.test.repo.ProductRepository;
 import sg.edu.iss.test.repo.SupplierRepository;
 
 @Service
-public class CatalogueImplementation implements CatalogueInterface  {
+public class CatalogueImplementation implements CatalogueService {
 	
 	@Autowired
 	ProductRepository prepo;
@@ -93,12 +93,7 @@ public class CatalogueImplementation implements CatalogueInterface  {
 				}
 				Predicate[] p=new Predicate[list.size()];
 				return cb.and(list.toArray(p));
-//				Predicate p1=cb.like(productName.as(String.class),"%"+productQuery.getProductName()+"%");
-//				Predicate p2=cb.like(supplierName.as(String.class),"%"+productQuery.getSupplierName()+"%");
-//				Predicate p3=cb.like(brandName.as(String.class),"%"+productQuery.getBrandName()+"%");
-//
-//				cb.and(p1,p2,p3).var
-//				return and;
+
 			}
 		};
 

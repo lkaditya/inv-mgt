@@ -35,7 +35,6 @@ public class User {
     }
 
 	public void setUser(@Valid User user) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -46,7 +45,6 @@ public class User {
 		this.role = role;
 		this.email = email;
 	}
-	
-    //hz test 2
+
 
 }

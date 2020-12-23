@@ -30,7 +30,6 @@ public class MailServiceImpl implements MailService {
         List<User> us=urepo.findAll();
         for(User u : us) {      
 	        if(u.getRole().equals("ADMIN")) {
-	        	//mailMessage.setFrom("gdipsa51@gmail.com");
 	        	String sender = env.getProperty("spring.mail.username");
 	            mailMessage.setFrom(sender);
 	            String target = u.getEmail();

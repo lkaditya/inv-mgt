@@ -10,7 +10,7 @@ import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.repo.CustomerRepository;
 
 @Service
-public class CustomerImplementation implements CustomerInterface {
+public class CustomerImplementation implements CustomerService {
 
 	@Autowired
 	CustomerRepository crepo;

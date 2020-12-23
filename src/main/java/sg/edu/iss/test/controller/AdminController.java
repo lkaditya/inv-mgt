@@ -18,7 +18,7 @@ import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.SupplierRepository;
-import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.CatalogueService;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
 import sg.edu.iss.test.service.UserServiceImplementation;
 
@@ -33,7 +33,7 @@ public class AdminController {
 	private UserServiceImplementation userServices;
 
 	@Autowired
-	private CatalogueInterface catalogueInterface;
+	private CatalogueService catalogueInterface;
 
 	@Autowired
 	private SupplierRepository supplierRepository;

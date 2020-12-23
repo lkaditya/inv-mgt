@@ -19,19 +19,19 @@ import java.util.Optional;
 @RequestMapping("/returned")
 public class ReturnedController {
 	@Autowired
-	private ReturnedInterface rservice;
+	private ReturnedService rservice;
 	
 	@Autowired
 	public void setReturned(ReturnedImplementation returned) {
 		this.rservice = returned;
 	}
 
-	public void setCatalogueInterface(CatalogueInterface catalogueInterface) {
+	public void setCatalogueInterface(CatalogueService catalogueInterface) {
 		this.catalogueInterface = catalogueInterface;
 	}
 
 	@Autowired
-	private CatalogueInterface catalogueInterface;
+	private CatalogueService catalogueInterface;
 
 	public void setMailService(MailService mailService) {
 		this.mailService = mailService;
@@ -41,7 +41,7 @@ public class ReturnedController {
 	private MailService mailService;
 	
 	@Autowired
-	private InventoryInterface invservice;
+	private InventoryService invservice;
 
 
 	@RequestMapping(value = "/showform")
@@ -49,11 +49,9 @@ public class ReturnedController {
 		Returned returned = new Returned();
 		Inventory inv= invservice.findInventoryById(id).get();
 		returned.setInventory(inv);
-		//String supplierName = catalogueInterface.findById(id).getSupplier().getSupplierName();
 		String supplierName=inv.getProduct().getSupplier().getSupplierName();
 		System.out.println(supplierName);
 		model.addAttribute("returned", returned);
-		//do we need this two below??
 		model.addAttribute("name",supplierName);
 		model.addAttribute("InventoryId",id);
 		model.addAttribute("control","inventory");

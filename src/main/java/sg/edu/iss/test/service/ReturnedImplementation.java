@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ReturnedImplementation implements ReturnedInterface {
+public class ReturnedImplementation implements ReturnedService {
 	
 	@Autowired
     ProductRepository prepo;
@@ -36,7 +36,6 @@ public class ReturnedImplementation implements ReturnedInterface {
 
 	@Override
 	public Optional<Returned> findReturnedById(Long id) {
-		// TODO Auto-generated method stub
 		Optional<Returned> byId = rrepo.findById(id);
 		return byId;
 	}

@@ -37,18 +37,7 @@ public class ProductUsage {
 	@Override
 	public String toString() {
 		return productUsageId + ", " + product.getProductName().replace(",", "-") + ", " + quantity;
-//		return "ProductUsage [productUsageId=" + productUsageId + ", product=" + product.getProductName() + ", quantity=" + quantity
-//				+ ", date=" + rep.getRepairDate()+ "]";
+
+
 	}
-
-//	public String escapeSpecialCharacters(String data) {
-//	    String escapedData = data.replaceAll("\\R", " ");
-//	    if (data.contains(",") || data.contains("\"") || data.contains("'")) {
-//	        data = data.replace("\"", "\"\"");
-//	        escapedData = "\"" + data + "\"";
-//	    }
-//	    return escapedData;
-//	}
-	
-
 }

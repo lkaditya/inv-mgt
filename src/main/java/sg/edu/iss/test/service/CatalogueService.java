@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductQuery;
 
-public interface CatalogueInterface {
+public interface CatalogueService {
 
 	public void save(Product product);
 	public List<Product> list();

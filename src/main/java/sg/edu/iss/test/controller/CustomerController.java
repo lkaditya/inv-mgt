@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.service.CustomerImplementation;
-import sg.edu.iss.test.service.CustomerInterface;
+import sg.edu.iss.test.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
 	@Autowired
-	CustomerInterface cservice;
+	CustomerService cservice;
 	
 	@Autowired
 	public void setCustomerImplementation(CustomerImplementation cimpl) {

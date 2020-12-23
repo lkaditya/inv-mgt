@@ -33,7 +33,7 @@ public class CartController {
 	private CartService cartservice;
 	
 	@Autowired
-	private CustomerInterface custservice;
+	private CustomerService custservice;
 	
 	@Autowired
 	public void setInventory(CartImplementation cart) {
@@ -44,10 +44,10 @@ public class CartController {
 	private ProductUsageService uservice;
 
 	@Autowired
-	private CatalogueInterface catalogueInterface;
+	private CatalogueService catalogueInterface;
 
 	@Autowired
-	private InventoryInterface inventoryservice;
+	private InventoryService inventoryservice;
 
 	@Autowired
 	private MailService mailService;

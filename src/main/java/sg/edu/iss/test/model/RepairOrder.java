@@ -31,12 +31,4 @@ private List<ProductUsage> productUsageList;
 @NotNull
 private LocalDate repairDate;
 
-
-
-
-
-
-
-
-
 }

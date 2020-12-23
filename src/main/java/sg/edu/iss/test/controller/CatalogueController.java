@@ -24,9 +24,9 @@ import sg.edu.iss.test.repo.BrandRepository;
 import sg.edu.iss.test.repo.SupplierRepository;
 import sg.edu.iss.test.service.BrandService;
 import sg.edu.iss.test.service.CatalogueImplementation;
-import sg.edu.iss.test.service.CatalogueInterface;
+import sg.edu.iss.test.service.CatalogueService;
 import sg.edu.iss.test.service.ProductUsageService;
-import sg.edu.iss.test.service.ReturnedInterface;
+import sg.edu.iss.test.service.ReturnedService;
 import sg.edu.iss.test.service.SupplierService;
 
 @Controller
@@ -34,7 +34,7 @@ import sg.edu.iss.test.service.SupplierService;
 public class CatalogueController {
 	
 	@Autowired
-	private CatalogueInterface cservice;
+	private CatalogueService cservice;
 
 	@Autowired
 	private SupplierService supplierService;
@@ -49,7 +49,7 @@ public class CatalogueController {
 	private BrandService brandService;
 
 	@Autowired
-	private ReturnedInterface rservice;
+	private ReturnedService rservice;
 	
 	@Autowired
 	private ProductUsageService uservice;

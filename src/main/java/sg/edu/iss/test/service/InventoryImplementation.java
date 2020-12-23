@@ -12,7 +12,7 @@ import sg.edu.iss.test.repo.InventoryRepository;
 import sg.edu.iss.test.repo.ProductRepository;
 
 @Service
-public class InventoryImplementation implements InventoryInterface  {
+public class InventoryImplementation implements InventoryService {
 	
 	@Autowired
 	ProductRepository prepo;
@@ -46,7 +46,6 @@ public class InventoryImplementation implements InventoryInterface  {
 	@Override
 	public void deleteInventory(long productId) {
 		prepo.deleteById(productId);
-//		irepo.deleteById(inventoryId);
 		
 	}
 

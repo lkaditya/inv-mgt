@@ -21,17 +21,16 @@ import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.model.ObjectInput;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
-import sg.edu.iss.test.service.CustomerInterface;
+import sg.edu.iss.test.service.CustomerService;
 import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageService;
 
 @Controller
 @RequestMapping("/repair")
 public class RepairOrderController {
-	
-	//To-Do: put the customer interface for editting the the repair order
+
 	@Autowired
-	private CustomerInterface custservice;
+	private CustomerService custservice;
 	
 	@Autowired
 	private ProductUsageService uservice;
@@ -145,7 +144,7 @@ public class RepairOrderController {
 	@RequestMapping(value="/save",method=RequestMethod.POST)
 	public String saveRecord(@Valid @ModelAttribute("repairrecord") RepairOrder rep,BindingResult bindingResult,Model model) {
 		if(bindingResult.hasErrors()) {
-			//currently it is denying when the date is null or 
+			//currently it is denying when the date is null
 			model.addAttribute("customers",custservice.listAllCustomerNames());
 			return "recordrepairform";
 		}

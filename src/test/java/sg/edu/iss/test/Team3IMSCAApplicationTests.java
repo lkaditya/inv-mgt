@@ -132,6 +132,4 @@ class Team3IMSCAApplicationTests {
 		Inventory a= invrepo.findInventoryByName("Crankcase");
 		System.out.println(a.getQoh());
 	}
-	
-
 }

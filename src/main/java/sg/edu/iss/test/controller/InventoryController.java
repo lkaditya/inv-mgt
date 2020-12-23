@@ -30,10 +30,10 @@ public class InventoryController {
 
 
 	@Autowired
-	private CatalogueInterface catalogueInterface;
+	private CatalogueService catalogueInterface;
 
 	@Autowired
-	private InventoryInterface iservice;
+	private InventoryService iservice;
 	
 	@Autowired
 	public void setInventory(InventoryImplementation inventory) {
@@ -47,7 +47,7 @@ public class InventoryController {
 	private ProductUsageService puservice;
 	
 	@Autowired
-	private ReturnedInterface rservice;
+	private ReturnedService rservice;
 	
 	@Autowired
 	private UserService userservice;
@@ -140,7 +140,6 @@ public class InventoryController {
 			LocalDate now=LocalDate.now();
 			c1.setDate(now);
 			c1.setUser(user);
-			//c1.addToCart(pu);
 			cartservice.save(c1);
 			
 			Product p=catalogueInterface.findById(inventoryid);
@@ -149,8 +148,7 @@ public class InventoryController {
 			pu.setQuantity(1);
 			pu.setCart(c1);
 			puservice.addProductUsage(pu);
-			
-			//Cart c2=cartservice.showAllCartByUserName(user.getUserName());
+
 			c1.addToCart(pu);
 			cartservice.save(c1);
 			return "redirect:/inventory/list";

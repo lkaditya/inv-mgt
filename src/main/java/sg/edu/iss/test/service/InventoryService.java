@@ -6,7 +6,7 @@ import java.util.Optional;
 import sg.edu.iss.test.model.Inventory;
 
 
-public interface InventoryInterface {
+public interface InventoryService {
 
 	public void saveInventory(Inventory inventory);
 	public List<Inventory> list();

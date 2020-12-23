@@ -56,7 +56,6 @@
 
 	<h2 th:if="${#lists.size(usages.usages)==0}"> Cart is Empty </h2>
 
-	<!--div th:with="usagelist=${usages.usages}"-->
 	<table class="table table-bordered table-hover" id="myTable" style="margin-top: 20px"
 		   th:unless="${#lists.size(usages.usages)==0}">
 		<tr>
@@ -78,7 +77,6 @@
 		</tr>
 
 	</table>
-	<!--/div-->
 	<fieldset>
 		<button type="submit" th:unless="${#lists.size(usages.usages)==0}">Save to repair order</button>
 	</fieldset>
