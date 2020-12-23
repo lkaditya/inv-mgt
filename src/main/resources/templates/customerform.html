@@ -11,7 +11,7 @@
 	<div th:replace="layout/layout.html :: menu"></div>
 	<div class="container">
 		<h1>Add Customer Form</h1>
-	<form action="#" th:object="${customer}" th:action="@{/customer/save}" method="POST" class="form-horizontal">
+	<form action="#" th:object="${Customer}" th:action="@{/customer/save}" method="POST" class="form-horizontal">
 	
 		<fieldset>
 			<input type="hidden" th:field="*{customerId}" />

@@ -40,14 +40,18 @@ public class CustomerController {
 	@RequestMapping(value = "/customerform", method = RequestMethod.GET)
 	public String add(Model model) {
 		Customer customer = new Customer();
-		model.addAttribute("customer", customer);
-		model.addAttribute("control","customer");
+		model.addAttribute("Customer", customer);
+		model.addAttribute("control","Customer");
 		return "customerform";
 	}
 	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("Customer") Customer customer, 
+			BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			return "customerform";
+		}
 		cservice.createCustomer(customer);
 		return "redirect:/customer/viewcustomers";
 	}

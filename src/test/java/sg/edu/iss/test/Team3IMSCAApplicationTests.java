@@ -66,13 +66,13 @@ class Team3IMSCAApplicationTests {
 	
 	@Test
 	void loadCustomers() {
-		Customer a=new Customer("Alpha","34562283");
+		Customer a=new Customer("Alpha",34562283);
 		cusrepo.save(a);
-		Customer b=new Customer("Beta","84349210");
+		Customer b=new Customer("Beta",84349210);
 		cusrepo.save(b);
-		Customer c=new Customer("Charlie","23894012");
+		Customer c=new Customer("Charlie",23894012);
 		cusrepo.save(c);
-		Customer d=new Customer("Delta","99749329");
+		Customer d=new Customer("Delta",99749329);
 		cusrepo.save(d);	
 	}
 	
