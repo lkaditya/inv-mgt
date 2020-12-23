@@ -32,6 +32,7 @@ public class LoginController {
             return "redirect:/inventory/list";
         }
         else
+        	model.addAttribute("errormsg","wrong username or password");
             return "index";
     }
 

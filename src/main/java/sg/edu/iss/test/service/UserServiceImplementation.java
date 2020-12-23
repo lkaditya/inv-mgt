@@ -47,7 +47,7 @@ public class UserServiceImplementation implements UserService {
 	@Override
 	public boolean authenticate(User user) {
 		User dbuser = userRepository.findUserByUserName(user.getUserName());
-		if (dbuser.getUserName().equals(user.getUserName()) && dbuser.getPassword().equals(user.getPassword()))
+		if (dbuser!=null && dbuser.getUserName().equals(user.getUserName()) && dbuser.getPassword().equals(user.getPassword()))
 			return true;
 		else
 			return false;
