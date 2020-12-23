@@ -2,6 +2,8 @@ package sg.edu.iss.test.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +47,7 @@ public class CustomerController {
 	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("Customer") Customer customer, BindingResult bindingResult, Model model) {
 		cservice.createCustomer(customer);
 		return "redirect:/customer/viewcustomers";
 	}

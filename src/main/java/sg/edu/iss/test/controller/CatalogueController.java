@@ -3,6 +3,8 @@ package sg.edu.iss.test.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -71,7 +73,7 @@ public class CatalogueController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 		String supplierName = product.getSupplier().getSupplierName();
 		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
 		product.setSupplier(supplier);
