@@ -13,7 +13,4 @@ public interface CartService {
 	public void save(Cart cart);
 	public void delete(Cart cart);
 	public Cart findCartById(Long id);
-
-	
-
 }

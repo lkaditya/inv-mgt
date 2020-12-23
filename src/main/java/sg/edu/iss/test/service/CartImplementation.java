@@ -42,8 +42,4 @@ public class CartImplementation implements CartService {
 	public Cart findCartById(Long id) {
 		return cartrepo.findById(id).get();
 	}
-
-
-
-
 }
