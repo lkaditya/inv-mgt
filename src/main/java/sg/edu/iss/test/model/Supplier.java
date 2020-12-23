@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.*;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Supplier {
 	private String supplierName;
 	private String supplierAddress;
 	private String phone;
+	@Email
 	private String email;
 	//minimum order quantity 
 	private String MOQ;
