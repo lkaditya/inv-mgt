@@ -17,7 +17,7 @@
       method="POST" class="form-horizontal" >
       
       <fieldset>
-         <input type="hidden" name="InventoryId" th:value="${InventoryId}"  />
+         <input type="hidden" name="inventoryId" th:value="${inventoryId}"  />
          <input type="hidden" th:field="*{id}" />
          <input type="hidden" th:field="*{inventory.product.id}" />
       </fieldset>
@@ -28,7 +28,7 @@
          <div class="col-sm-10">
             <fieldset>
                <input type="text" class="form-control" id="pro" th:field="*{Inventory.Product.productName}">
-               <p th:if="${#fields.hasErrors('Inventory.Product.productName')}" th:errors="*{Inventory.Product.productName}"></p>
+               <p th:if="${#fields.hasErrors('inventory.product.productName')}" th:errors="*{inventory.product.productName}"></p>
             </fieldset>
          </div>
       </div>

@@ -29,7 +29,7 @@
 			<fieldset>
 				<select class="form-control" id="sel1" th:field="*{customer.name}" >
 
-					<option th:each="name:${Customer}" th:value="${name}" th:text="${name}">
+					<option th:each="name:${customer}" th:value="${name}" th:text="${name}">
 					</option>
 				</select>
 			</fieldset>

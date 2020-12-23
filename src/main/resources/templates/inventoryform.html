@@ -12,7 +12,7 @@
 	<div th:replace="layout/layout.html :: menu"></div>
 	<div class="container">
 		<h1>Inventory Form</h1>
-	<form action="#" th:object="${Inventory}" th:action="@{/inventory/save}"
+	<form action="#" th:object="${inventory}" th:action="@{/inventory/save}"
 		method="POST" class="form-horizontal" >
 		<fieldset>
 			<input type="hidden" th:field="*{id}" />
