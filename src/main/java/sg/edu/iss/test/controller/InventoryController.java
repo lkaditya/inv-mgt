@@ -59,7 +59,7 @@ public class InventoryController {
 		model.addAttribute("ilist", ilist);
 		ObjectInput f = new ObjectInput();
 		model.addAttribute("filter", f);
-		model.addAttribute("control","product");
+		model.addAttribute("control","Product");
 		
 		return "inventoryform";
 	}
@@ -92,15 +92,15 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String deleteInventory(Long productID, Model model) {
-		List<Returned> r = rservice.findReturnedByProId(productID);
-		List<ProductUsage> u = puservice.findProductUsageByProId(productID);
+	public String deleteInventory(Long id, Model model) {
+		List<Returned> r = rservice.findReturnedByProId(id);
+		List<ProductUsage> u = puservice.findProductUsageByProId(id);
 		if (r.size()>0 || u.size()>0){
 			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
 			  model.addAttribute("url","/inventory/list");
 		      return "erro";
 		}else {
-			iservice.deleteInventory(productID);
+			iservice.deleteInventory(id);
 			return "redirect:/inventory/list";
 		}	
 		

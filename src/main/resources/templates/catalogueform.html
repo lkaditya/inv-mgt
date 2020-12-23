@@ -13,16 +13,16 @@
 	<div th:replace="layout/layout.html :: menu"></div>
 	<div class="container">
 	<h1>Add New Product</h1>
-	<form action="" th:object="${product}" th:action="@{/catalogue/save}"
+	<form action="" th:object="${Product}" th:action="@{/catalogue/save}"
 		method="POST" class="form-horizontal">
 		<fieldset>
 			<input type="hidden" th:field="*{id}" />
 			<input type="hidden"
-				th:field="*{supplier.id}" />
+				th:field="*{Supplier.id}" />
 			<input type="hidden"
-				   th:field="*{brand.id}" />
+				   th:field="*{Brand.id}" />
 			<input type="hidden"
-				   th:field="*{inventory.id}" />
+				   th:field="*{Inventory.id}" />
 	   </fieldset>
 
 		<div class="form-group">
@@ -83,7 +83,7 @@
 				<fieldset>
 					<select class="form-control" id="sel1" th:field="*{supplier.supplierName}" >
 
-						<option th:each="name:${suppliers}" th:value="${name.supplierName}" th:text="${name.supplierName}">
+						<option th:each="name:${Suppliers}" th:value="${name.supplierName}" th:text="${name.supplierName}">
 						</option>
 					</select>
 				</fieldset>

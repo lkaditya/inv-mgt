@@ -40,15 +40,15 @@ public class AdminController {
 
 	@RequestMapping(value = "/viewusers")
 	public String ListUsers(Model model) {
-		model.addAttribute("users", userServices.findAllUsers());
-		model.addAttribute("control","user");
+		model.addAttribute("Users", userServices.findAllUsers());
+		model.addAttribute("control","User");
 		return "users";
 	}
 
 	@RequestMapping(value = "/adduser")
 	public String addUser(Model model) {
 		model.addAttribute("user", new User());
-		model.addAttribute("control","user");
+		model.addAttribute("control","User");
 		return "user-form";
 	}
 
@@ -61,10 +61,10 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value = "/saveuser")
-	public String saveUser(@ModelAttribute("user") @Valid User user, 
+	public String saveUser(@ModelAttribute("User") @Valid User user, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
-			model.addAttribute("control","user");
+			model.addAttribute("control","User");
 			return "user-form";
 		}
 		 userServices.saveUser(user);
@@ -81,24 +81,24 @@ public class AdminController {
 	
 	@RequestMapping(value = "/viewsuppliers")
 	public String listsuppliers(Model model) {
-		model.addAttribute("suppliers", supplierServices.findAllSuppliers());
-		model.addAttribute("control","supplier");
+		model.addAttribute("Suppliers", supplierServices.findAllSuppliers());
+		model.addAttribute("control","Supplier");
 		return "suppliers";
 	}
 	@RequestMapping(value = "/addsupplier")
 	public String addSupplier(Model model) {
-		model.addAttribute("supplier", new Supplier());
-		model.addAttribute("control","supplier");
+		model.addAttribute("Supplier", new Supplier());
+		model.addAttribute("control","Supplier");
 		return "supplier-form";
 	}
 	@RequestMapping(value = "/editsupplier/{id}")
 	public String editSupplier(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("supplier", supplierServices.findSupplierById(id));
-		model.addAttribute("control","supplier");
+		model.addAttribute("Supplier", supplierServices.findSupplierById(id));
+		model.addAttribute("control","Supplier");
 		return "supplier-formForModify";
 	}
 	@RequestMapping(value = "/savesupplier")
-	public String saveSupplier(@ModelAttribute("supplier") @Valid Supplier supplier, 
+	public String saveSupplier(@ModelAttribute("Supplier") @Valid Supplier supplier, 
 			BindingResult bindingResult,  Model model) {
 		if (bindingResult.hasErrors()) {
 			return "supplier-form";
@@ -113,7 +113,7 @@ public class AdminController {
 		return "forward:/admin/viewsuppliers";
 	}
 	@RequestMapping(value = "/savesupplierforEdit")
-	public String saveSupplierforEdit(@ModelAttribute("supplier") @Valid Supplier supplier,
+	public String saveSupplierforEdit(@ModelAttribute("Supplier") @Valid Supplier supplier,
 	                     BindingResult bindingResult,  Model model) {
 	   if (bindingResult.hasErrors()) {
 	      return "supplier-form";

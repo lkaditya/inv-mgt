@@ -57,7 +57,7 @@ public class RepairOrderController {
 	public String showSpecificRecord(@PathVariable("id") Long id,Model model) {
 	
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
-		model.addAttribute("productusage",uservice.findRepairOrderById(id).getProductUsageList());
+		model.addAttribute("ProductUsage",uservice.findRepairOrderById(id).getProductUsageList());
 		ObjectInput f= new ObjectInput();
 		model.addAttribute("filter",f);
 		model.addAttribute("control","record");

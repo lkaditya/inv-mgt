@@ -64,7 +64,7 @@ public class CatalogueController {
 	@RequestMapping(value = "/showform", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		Product product = new Product();
-		model.addAttribute("product", product);
+		model.addAttribute("Product", product);
 		ArrayList<Brand> allBrands = brandService.findAllBrands();
 		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
 		model.addAttribute("suppliers",allSuppliers);
@@ -73,7 +73,7 @@ public class CatalogueController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("Product") Product product, BindingResult bindingResult, Model model) {
 		String supplierName = product.getSupplier().getSupplierName();
 		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
 		product.setSupplier(supplier);
@@ -92,11 +92,11 @@ public class CatalogueController {
 		}
 		Page<Product> productByFliter = cservice.findProductByFliter(page,size,productQuery);
 		System.out.println(productByFliter);
-		model.addAttribute("products",productByFliter);
+		model.addAttribute("Product",productByFliter);
 		model.addAttribute("pageCount",productByFliter.getTotalPages()-1);
 		model.addAttribute("condition", productQuery);
 		model.addAttribute("size", size);
-		model.addAttribute("control", "product");
+		model.addAttribute("control", "Product");
 		return "catalogue";
 	}
 
@@ -104,7 +104,7 @@ public class CatalogueController {
 	@RequestMapping("/edit/{id}")
 	public String editProduct(@PathVariable("id") Long id, Model model){
 		Product product = cservice.findById(id);
-		model.addAttribute("product", product);
+		model.addAttribute("Product", product);
 		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
 		model.addAttribute("suppliers",allSuppliers);
 		ArrayList<Brand> allBrands = brandService.findAllBrands();

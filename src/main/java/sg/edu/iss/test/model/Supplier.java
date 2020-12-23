@@ -22,6 +22,7 @@ public class Supplier {
 	private long id;
 	private String supplierName;
 	private String supplierAddress;
+	@Digits(integer=6, fraction=0)
 	private String phone;
 	@Email
 	private String email;

@@ -11,7 +11,7 @@
 	<div th:replace="layout/layout.html :: menu"></div>
 	<div class="container">
 		<h1>Products Form</h1>
-	<form action="#" th:object="${product}" th:action="@{/admin/saveproduct}"
+	<form action="#" th:object="${Product}" th:action="@{/admin/saveproduct}"
 		method="post">
 		<fieldset>
 			<input type="hidden" th:field="*{id}">
