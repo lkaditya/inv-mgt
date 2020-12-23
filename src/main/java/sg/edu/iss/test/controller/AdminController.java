@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,11 +12,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import sg.edu.iss.test.model.Cart;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.SupplierRepository;
+import sg.edu.iss.test.service.CartService;
 import sg.edu.iss.test.service.CatalogueService;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
 import sg.edu.iss.test.service.UserServiceImplementation;
@@ -34,6 +34,9 @@ public class AdminController {
 
 	@Autowired
 	private CatalogueService catalogueInterface;
+	
+	@Autowired
+	private CartService cartService;
 
 	@Autowired
 	private SupplierRepository supplierRepository;
@@ -72,10 +75,19 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "/deleteuser/{id}")
-	public String deleteuser(@PathVariable("id") Long id) {
+	public String deleteuser(@PathVariable("id") Long id, Model model) {
 		User user = userServices.findUserById(id);
-		userServices.deleteUser(user);
-		return "forward:/admin/viewusers";
+		
+		List<Cart> c = cartService.findCartByUsrId(id);
+		if (c.size()>0){
+			  model.addAttribute("msg","Can not delete! There is still cart under the user!");
+			  model.addAttribute("url","/admin/viewusers");
+		      return "erro";
+		}else {
+			userServices.deleteUser(user);
+			return "forward:/admin/viewusers";
+		}
+		
 	}
     
 	
