@@ -74,9 +74,6 @@ public class CatalogueController {
 	public String save(@ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
 		String supplierName = product.getSupplier().getSupplierName();
 		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
-//		String brandName = product.getBrand().getBrandName();
-//		Brand brand = brandRepository.findBrandByBrandName(brandName);
-//		product.setBrand(brand);
 		product.setSupplier(supplier);
 		cservice.save(product);
 		return "redirect:/catalogue/findByFilter";

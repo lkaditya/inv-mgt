@@ -14,4 +14,7 @@ public interface CatalogueInterface {
 	public Product findById(long id);
 	public void delete(long id);
 	public void edit(long id);
+	public List<Product> findProductBySupName(String Sup_Name);
+
+
 }

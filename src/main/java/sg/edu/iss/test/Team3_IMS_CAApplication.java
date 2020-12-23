@@ -4,10 +4,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EtoeApplication {
+public class Team3_IMS_CAApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EtoeApplication.class, args);
+		SpringApplication.run(Team3_IMS_CAApplication.class, args);
 	}
 
 }

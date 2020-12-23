@@ -22,20 +22,16 @@ import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.Returned;
 import sg.edu.iss.test.model.User;
-import sg.edu.iss.test.service.CartService;
-import sg.edu.iss.test.service.InventoryImplementation;
-import sg.edu.iss.test.service.InventoryInterface;
-import sg.edu.iss.test.service.ProductService;
-import sg.edu.iss.test.service.ProductUsageService;
-import sg.edu.iss.test.service.ReturnedInterface;
-import sg.edu.iss.test.service.UserService;
+import sg.edu.iss.test.service.*;
 
 @Controller
 @RequestMapping("/inventory")
 public class InventoryController {
-	
+
+
 	@Autowired
-	private ProductService proservice;
+	private CatalogueInterface catalogueInterface;
+
 	@Autowired
 	private InventoryInterface iservice;
 	
@@ -46,9 +42,6 @@ public class InventoryController {
 	
 	@Autowired
 	private CartService cartservice;
-	
-	@Autowired
-	private ProductUsageService uservice;
 	
 	@Autowired
 	private ProductUsageService puservice;
@@ -72,7 +65,7 @@ public class InventoryController {
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
-		Product x= proservice.findProductById(inventory.getProduct().getId());
+		Product x= catalogueInterface.findById(inventory.getProduct().getId());
 		inventory.setProduct(x);
 		iservice.saveInventory(inventory);
 		return "redirect:/inventory/list";
@@ -82,10 +75,6 @@ public class InventoryController {
 	public String list(Model model,HttpSession session) {
 		List<Inventory> ilist = iservice.list();
 		//TODO: later need to replace this when the login done
-		//String username="sharon";
-		//User u=userservice.findUserByUserName(username);
-		//session.setAttribute("user", u);
-		//----------------------------------------------------
 		model.addAttribute("ilist", ilist);
 		model.addAttribute("control","inventory");
 		return "inventorylisting";
@@ -104,7 +93,7 @@ public class InventoryController {
 	@RequestMapping(value = "/delete")
 	public String deleteInventory(Long productID, Model model) {
 		List<Returned> r = rservice.findReturnedByProId(productID);
-		List<ProductUsage> u = uservice.findProductUsageByProId(productID);
+		List<ProductUsage> u = puservice.findProductUsageByProId(productID);
 		if (r.size()>0 || u.size()>0){
 			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
 			  model.addAttribute("url","/inventory/list");
@@ -131,7 +120,7 @@ public class InventoryController {
 		Cart c=cartservice.showAllCartByUserName(user.getUserName());
 		//assuming the cart is 1 per user regardless of customer
 		if(c!=null) {
-			Product p=proservice.findProductById(inventoryid);
+			Product p=catalogueInterface.findById(inventoryid);
 			ProductUsage existing= puservice.showCartProductUsageByProductName(p);
 			if(existing!=null) {
 				existing.setQuantity(existing.getQuantity()+1);
@@ -154,7 +143,7 @@ public class InventoryController {
 			//c1.addToCart(pu);
 			cartservice.save(c1);
 			
-			Product p=proservice.findProductById(inventoryid);
+			Product p=catalogueInterface.findById(inventoryid);
 			ProductUsage pu= new ProductUsage ();
 			pu.setProduct(p);
 			pu.setQuantity(1);

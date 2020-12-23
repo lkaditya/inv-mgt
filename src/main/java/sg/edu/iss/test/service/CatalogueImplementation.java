@@ -121,6 +121,12 @@ public class CatalogueImplementation implements CatalogueInterface  {
 	public void edit(long id) {
 
 	}
+
+	@Override
+	public List<Product> findProductBySupName(String Sup_Name) {
+		List<Product> productBySupplierName = prepo.findProductBySupplierName(Sup_Name);
+		return productBySupplierName;
+	}
 }
 
 

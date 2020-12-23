@@ -16,7 +16,6 @@ import sg.edu.iss.test.model.Inventory;
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
-import sg.edu.iss.test.model.RoleType;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.CartRepository;
 import sg.edu.iss.test.repo.CustomerRepository;
@@ -28,7 +27,7 @@ import sg.edu.iss.test.service.ProductUsageImplementation;
 import sg.edu.iss.test.service.ProductUsageService;
 
 @SpringBootTest
-class EtoeApplicationTests {
+class Team3IMSCAApplicationTests {
 	@Autowired
 	UserRepository urepo;
 	@Autowired

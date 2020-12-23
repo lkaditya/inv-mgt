@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -43,10 +42,10 @@ public class CartController {
 	
 	@Autowired
 	private ProductUsageService uservice;
-	
+
 	@Autowired
-	private ProductService proservice;
-	
+	private CatalogueInterface catalogueInterface;
+
 	@Autowired
 	private InventoryInterface inventoryservice;
 
@@ -106,7 +105,7 @@ public class CartController {
 				long productid=i.getProduct().getId();
 				i.setRep(rep);
 				i.setQuantity(quantity);
-				Product pro=proservice.findProductById(productid);
+				Product pro=catalogueInterface.findById(productid);
 				i.setProduct(pro);
 				i.setCart(null);
 				uservice.addProductUsage(i);

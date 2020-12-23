@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Customer;
 import sg.edu.iss.test.model.ObjectInput;
-import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.ProductUsage;
 import sg.edu.iss.test.model.RepairOrder;
 import sg.edu.iss.test.service.CustomerInterface;
@@ -85,14 +84,10 @@ public class RepairOrderController {
 			usagelist.add("Repair Order ID, Customer, Date, Product Usage ID, Product Used, Quantity Used");
 			for(RepairOrder ro:group) {
 				for(ProductUsage pu:ro.getProductUsageList()) {
-//					for(Product p: pu.getProductList()) {
-//						
-//					}
 					usagelist.add(String.valueOf(ro.getRepairId()) + ", " + ro.getCustomer().getName() + ", " + String.valueOf(ro.getRepairDate()) + ", " + pu.toString());
 				}
 			}
 			try {
-//				textWriter(usagelist);
 				textWriterCSV(usagelist);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -105,14 +100,7 @@ public class RepairOrderController {
 		
 		return "recordrepair";
 	}
-	
-//	public void textWriter(List<String> content) throws IOException {
-//		FileWriter writer = new FileWriter("D:/ReportUsage.txt"); 
-//		for(String str: content) {
-//		  writer.write(str + System.lineSeparator());
-//		}
-//		writer.close();
-//	}
+
 	
 	public void textWriterCSV(List<String> content) throws IOException {
 		FileWriter writer = new FileWriter("D:/ReportUsage.csv"); 
@@ -123,16 +111,6 @@ public class RepairOrderController {
 	}
 	
 
-	
-//	public void givenDataArray_whenConvertToCSV_thenOutputCreated() throws IOException {
-//	    File csvOutputFile = new File("D:/ReportUsageCSV.txt");
-//	    try (PrintWriter pw = new PrintWriter(csvOutputFile)) {
-//	        dataLines.stream()
-//	          .map(this::convertToCSV)
-//	          .forEach(pw::println);
-//	    }
-//	    assertTrue(csvOutputFile.exists());
-//	}
 	
 	//link when hidden search button is clicked
 	@RequestMapping(value="/search",method=RequestMethod.POST)

@@ -1,33 +1,24 @@
 package sg.edu.iss.test.controller;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Supplier;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.repo.SupplierRepository;
-import sg.edu.iss.test.service.ProductServiceImplementation;
+import sg.edu.iss.test.service.CatalogueInterface;
 import sg.edu.iss.test.service.SupplierServiceImplementation;
 import sg.edu.iss.test.service.UserServiceImplementation;
 
@@ -40,8 +31,9 @@ public class AdminController {
 	private SupplierServiceImplementation supplierServices;
 	@Autowired
 	private UserServiceImplementation userServices;
+
 	@Autowired
-	private ProductServiceImplementation productServices;
+	private CatalogueInterface catalogueInterface;
 
 	@Autowired
 	private SupplierRepository supplierRepository;
@@ -133,7 +125,7 @@ public class AdminController {
 	public String deleteSupplier(@PathVariable("id") Long id, Model model) {
 		
 		String supplierName = supplierServices.findSupplierById(id).getSupplierName();
-		List<Product> p = productServices.findProductBySupName(supplierName);
+		List<Product> p = catalogueInterface.findProductBySupName(supplierName);
 		if (p.size()>0){
 			  model.addAttribute("msg","Can not delete! There are still products under this supplier!");
 			  model.addAttribute("url","/admin/viewsuppliers");
@@ -144,38 +136,6 @@ public class AdminController {
 		}	
 		
 	}
-	
-	//====================================================================
-	//TODO need to be deleted (including products.html and product-form.html as it is duplicated from catalogue controller????
-	@RequestMapping(value = "/viewproducts")
-	public String list(Model model) {
-		model.addAttribute("products", productServices.findALLProducts());
-		return "products";
-	}
-	@RequestMapping(value = "/addproduct")
-	public String addForm(Model model) {
-		model.addAttribute("product", new Product());
-		return "product-form";
-	}
-	@RequestMapping(value = "/editproduct/{id}")
-	public String editForm(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("product", productServices.findProductById(id));
-		return "product-form";
-	}
-	@RequestMapping(value = "/saveproduct")
-	public String saveProduct(@ModelAttribute("product") @Valid Product product, 
-			BindingResult bindingResult,  Model model) {
-		if (bindingResult.hasErrors()) {
-			return "product-form";
-		}
-		productServices.saveProduct(product);
-		return "forward:/admin/viewproducts";
-	}
-	@RequestMapping(value = "/deleteproduct/{id}")
-	public String deleteProduct(@PathVariable("id") Long id) {
-		productServices.deleteProduct(productServices.findProductById(id));
-		return "forward:/admin/viewproducts";
-	}
-	//=================================================================
+
 
 }

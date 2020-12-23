@@ -1,9 +1,6 @@
 package sg.edu.iss.test.controller;
 
 import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import sg.edu.iss.test.model.Customer;
-import sg.edu.iss.test.model.Inventory;
-import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.CustomerImplementation;
 import sg.edu.iss.test.service.CustomerInterface;
 
@@ -69,7 +64,5 @@ public class CustomerController {
 		cservice.deleteCustomer(customerId);
 		return "redirect:/customer/viewcustomers";
 	}
-	
-	
 }
 	

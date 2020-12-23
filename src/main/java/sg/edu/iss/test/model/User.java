@@ -8,7 +8,6 @@ import javax.validation.Valid;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import sg.edu.iss.test.model.RoleType;
 
 @Data
 @Entity

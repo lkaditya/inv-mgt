@@ -7,15 +7,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import sg.edu.iss.test.model.Inventory;
-import sg.edu.iss.test.model.Product;
 import sg.edu.iss.test.model.Returned;
-import sg.edu.iss.test.service.CatalogueInterface;
-import sg.edu.iss.test.service.InventoryInterface;
-import sg.edu.iss.test.service.MailService;
-import sg.edu.iss.test.service.ReturnedImplementation;
-import sg.edu.iss.test.service.ReturnedInterface;
+import sg.edu.iss.test.service.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -69,15 +63,10 @@ public class ReturnedController {
 	@RequestMapping(value = "/save")
 	public String save(@ModelAttribute("returned") Returned returned, BindingResult bindingResult, Model model) {
 		Long qt = returned.getQt();
-		
-		//Inventory inv=returned.getInventory();
 		Inventory inv=invservice.findInventoryById(returned.getInventory().getProduct().getId()).get();
-		//inv.setProduct(x);
 		Long InventoryId=inv.getId();
 		Inventory inventory = rservice.update(qt, InventoryId);
-		
-		
-		//Product x= catalogueInterface.findById(returned.getInventory().getProduct().getId());
+
 		inventory=invservice.findInventoryById(InventoryId).get();
 		returned.setInventory(inventory);
 		if (inventory.getQoh()<inventory.getRol()){

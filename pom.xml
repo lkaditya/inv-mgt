@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sg.edu.iss</groupId>
-	<artifactId>etoe</artifactId>
+	<artifactId>Team3_IMS_CA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>etoe</name>
-	<description>Demo project for Spring Boot foir SA51</description>
+	<name>Team3_IMS_CA</name>
+	<description>Demo project for Spring Boot for SA51</description>
 
 	<properties>
 		<java.version>11</java.version>
