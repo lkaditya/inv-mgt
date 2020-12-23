@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.Digits;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,16 +25,19 @@ public class Inventory {
 	private long qoh;
 	//reorder level
 	private long rol;
-	private String wholesale;
+	@Digits(integer=6, fraction=2)
+	private double wholesale;
 	//price of retail
-	private String por;
+	@Digits(integer=6, fraction=2)
+	private double por;
 	//price of partner
-	private String pop;
+	@Digits(integer=6, fraction=2)
+	private double pop;
     @OneToOne(mappedBy = "inventory")
     private Product product;
     @OneToMany(mappedBy="inventory")
     private Collection<Returned> returned;
-	public Inventory(long id, long qoh, long rol, String wholesale, String por, String pop, Product product,
+	public Inventory(long id, long qoh, long rol, @Digits(integer = 6, fraction = 2) double wholesale, @Digits(integer = 6, fraction = 2) double por, @Digits(integer = 6, fraction = 2) double pop, Product product,
 			Collection<Returned> returned) {
 		super();
 		this.id = id;
