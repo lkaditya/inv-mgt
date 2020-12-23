@@ -1,6 +1,7 @@
 package sg.edu.iss.test.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,15 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@Size(min=5, max=100)
 	private String productName;
+	@Size(min=5, max=100)
 	private String productDescription;
+	@Size(min=5, max=100)
 	private String productType;
+	@Size(min=5, max=100)
 	private String productCategory;
+	@Size(min=5, max=100)
 	private String productSubCategory;
     @OneToOne(cascade = {CascadeType.ALL})  
     @JoinColumn(name="inventory_id")
