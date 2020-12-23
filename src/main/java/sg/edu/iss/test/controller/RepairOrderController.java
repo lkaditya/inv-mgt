@@ -113,7 +113,7 @@ public class RepairOrderController {
 	
 	//link when hidden search button is clicked
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public String showRelevantRecord(@ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
+	public String showRelevantRecord(@Valid @ModelAttribute("filter") ObjectInput filter,BindingResult bindingResult,Model model) {
 		List<RepairOrder> group=uservice.showRepairOrderByKeyword(filter.getKeyword());
 		model.addAttribute("repairlist",group);
 		model.addAttribute("control","record");
@@ -123,7 +123,7 @@ public class RepairOrderController {
 	
 	//link when repair record is clicked
 	@RequestMapping(value="/detailsearch/{id}",method=RequestMethod.POST)
-	public String showUsageDetailRecord(@ModelAttribute("filter") ObjectInput filter,@PathVariable("id") Long id,BindingResult bindingResult,Model model) {
+	public String showUsageDetailRecord(@Valid @ModelAttribute("filter") ObjectInput filter,@PathVariable("id") Long id,BindingResult bindingResult,Model model) {
 		List<ProductUsage> group=uservice.showProductUsageByKeyword(filter.getKeyword());
 		model.addAttribute("repairrecord",uservice.findRepairOrderById(id));
 		model.addAttribute("productusage",group);

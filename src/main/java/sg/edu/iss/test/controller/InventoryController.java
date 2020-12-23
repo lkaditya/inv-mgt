@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,7 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
 		Product x= catalogueInterface.findById(inventory.getProduct().getId());
 		inventory.setProduct(x);
 		iservice.saveInventory(inventory);
@@ -107,7 +108,7 @@ public class InventoryController {
 	
 	//link when hidden search button is clicked
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public String showRelevantInventory(@ModelAttribute("keyword") String keyword, Model model) {
+	public String showRelevantInventory(@Valid @ModelAttribute("keyword") String keyword, Model model) {
 		List<Inventory> ilist =iservice.findInventoryByKeyword(keyword);
 		model.addAttribute("ilist",ilist);	
 		model.addAttribute("control","inventory");

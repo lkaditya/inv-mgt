@@ -18,11 +18,11 @@ public class Product {
 	private String productName;
 	@Size(min=5, max=100)
 	private String productDescription;
-	@Size(min=5, max=100)
+	@Size(min=2, max=100)
 	private String productType;
-	@Size(min=5, max=100)
+	@Size(min=2, max=100)
 	private String productCategory;
-	@Size(min=5, max=100)
+	@Size(min=2, max=100)
 	private String productSubCategory;
     @OneToOne(cascade = {CascadeType.ALL})  
     @JoinColumn(name="inventory_id")
