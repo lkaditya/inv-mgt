@@ -20,15 +20,14 @@ public class Customer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long customerId;
-	@NotEmpty
-	@Size (min=5, max=50)
+	@NotEmpty(message = "Name must not be empty")
 	private String name;
-	@Pattern(regexp="\\d{8}")
+	@Pattern(regexp="\\d{8}", message = "Phone number must be 8 digits")
 	private String mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
 
-	public Customer(String name, @Pattern(regexp = "\\d{8}") String mobile, List<RepairOrder> orders) {
+	public Customer( String name, @Pattern(regexp = "\\d{8}") String mobile, List<RepairOrder> orders) {
 		super();
 		this.name = name;
 		this.mobile = mobile;

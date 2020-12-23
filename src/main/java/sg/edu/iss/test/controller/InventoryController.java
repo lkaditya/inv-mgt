@@ -49,9 +49,7 @@ public class InventoryController {
 	
 	@Autowired
 	private ReturnedService rservice;
-	
-	@Autowired
-	private UserService userservice;
+
 	
 	@RequestMapping(value = "/showform", method = RequestMethod.POST)
 	public String showForm(Model model) {
@@ -78,7 +76,6 @@ public class InventoryController {
 	@RequestMapping(value = "/list")
 	public String list(Model model,HttpSession session) {
 		List<Inventory> ilist = iservice.list();
-		//TODO: later need to replace this when the login done
 		model.addAttribute("ilist", ilist);
 		model.addAttribute("control","inventory");
 		return "inventorylisting";

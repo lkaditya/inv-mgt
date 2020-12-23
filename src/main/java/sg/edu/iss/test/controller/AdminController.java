@@ -116,7 +116,7 @@ public class AdminController {
 	public String saveSupplierforEdit(@ModelAttribute("supplier") @Valid Supplier supplier,
 	                     BindingResult bindingResult,  Model model) {
 	   if (bindingResult.hasErrors()) {
-	      return "supplier-form";
+	      return "supplier-formForModify";
 	   }
 	      supplierServices.saveSupplier(supplier);
 	   return "forward:/admin/viewsuppliers";

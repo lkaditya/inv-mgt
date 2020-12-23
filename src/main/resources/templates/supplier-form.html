@@ -24,7 +24,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="name" th:field="*{supplierName}" required>
-					<p th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}"></p>
+					<p  style="color: coral" th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -34,7 +34,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="Address" th:field="*{supplierAddress}">
-					<p th:if="${#fields.hasErrors('supplierAddress')}" th:errors="*{supplierAddress}"></p>
+					<p style="color: coral" th:if="${#fields.hasErrors('supplierAddress')}" th:errors="*{supplierAddress}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -44,7 +44,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="phone" th:field="*{phone}">
-					<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
+					<p style="color: coral" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -54,7 +54,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="email" class="form-control" id="email" th:field="*{email}">
-					<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+					<p style="color: coral" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
 				</fieldset>
 			</div>
 		</div>
@@ -64,7 +64,7 @@
 			<div class="col-sm-10">
 				<fieldset>
 					<input type="text" class="form-control" id="MOQ" th:field="*{MOQ}">
-					<p th:if="${#fields.hasErrors('MOQ')}" th:errors="*{MOQ}"></p>
+					<p style="color: coral" th:if="${#fields.hasErrors('MOQ')}" th:errors="*{MOQ}"></p>
 				</fieldset>
 			</div>
 		</div>

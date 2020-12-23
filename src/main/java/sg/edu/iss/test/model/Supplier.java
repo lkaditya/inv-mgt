@@ -20,9 +20,11 @@ public class Supplier {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	@NotEmpty(message = "Name must not be empty")
+	@Pattern(regexp = "[A-Za-z0-9 ]+", message="Supplier name can only consist of spaces and alphanumerical characters")
 	private String supplierName;
 	private String supplierAddress;
-	@Pattern(regexp="\\d{8}")
+	@Pattern(regexp="\\d{8}", message = "Phone number must be 8 digits")
 	private String phone;
 	@Email
 	private String email;
@@ -32,7 +34,8 @@ public class Supplier {
 	private Collection <Product>  products;
 	@ManyToMany(mappedBy ="suppliers")
 	private Collection <Brand> brand;
-	public Supplier(String supplierName, String supplierAddress,@Pattern(regexp="\\d{8}") String phone, String email, String mOQ,
+	public Supplier(@Pattern(regexp ="[A-Za-z0-9 ]+")String supplierName, String supplierAddress,
+					@Pattern(regexp="\\d{8}") String phone, String email, String mOQ,
 			Collection<Product> products, Collection<Brand> brand) {
 		super();
 		this.supplierName = supplierName;

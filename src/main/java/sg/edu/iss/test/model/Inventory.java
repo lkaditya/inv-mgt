@@ -27,19 +27,16 @@ public class Inventory {
 	private long qoh;
 	//reorder level
 	private long rol;
-	@Digits(integer=6, fraction=2)
 	private double wholesale;
 	//price of retail
-	@Digits(integer=6, fraction=2)
 	private double por;
 	//price of partner
-	@Digits(integer=6, fraction=2)
 	private double pop;
     @OneToOne(mappedBy = "inventory")
     private Product product;
     @OneToMany(mappedBy="inventory")
     private Collection<Returned> returned;
-	public Inventory(long id, long qoh, long rol, @Digits(integer = 6, fraction = 2) double wholesale, @Digits(integer = 6, fraction = 2) double por, @Digits(integer = 6, fraction = 2) double pop, Product product,
+	public Inventory(long id, long qoh, long rol,  double wholesale, double por, double pop, Product product,
 			Collection<Returned> returned) {
 		super();
 		this.id = id;
@@ -51,9 +48,5 @@ public class Inventory {
 		this.product = product;
 		this.returned = returned;
 	}
-    
-    
-    
-	
-	
+
 }

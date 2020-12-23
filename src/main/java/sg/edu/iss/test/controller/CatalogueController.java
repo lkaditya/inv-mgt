@@ -45,9 +45,6 @@ public class CatalogueController {
 	private SupplierRepository supplierRepository;
 
 	@Autowired
-	private BrandRepository brandRepository;
-
-	@Autowired
 	private BrandService brandService;
 
 	@Autowired
@@ -85,6 +82,22 @@ public class CatalogueController {
 		cservice.save(product);
 		return "redirect:/catalogue/findByFilter";
 	}
+
+
+	@RequestMapping(value = "/saveforedit", method = RequestMethod.POST)
+	public String saveforedit(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
+			model.addAttribute("suppliers",allSuppliers);
+			return "catalogueformForModify";
+		}
+		String supplierName = product.getSupplier().getSupplierName();
+		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
+		product.setSupplier(supplier);
+		cservice.save(product);
+		return "redirect:/catalogue/findByFilter";
+	}
+
 
 
 	@RequestMapping("/findByFilter")

@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class User {
     private String password;
     private String role;
     @Email
+    @NotEmpty(message = "User email can not be empty")
     private String email;
 
     public User(String userName, String password) {

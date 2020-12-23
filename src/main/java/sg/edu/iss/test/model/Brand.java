@@ -20,13 +20,15 @@ public class Brand {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+
+	@NotEmpty(message = "Name must not be empty")
 	private String brandName;
 	@OneToMany(mappedBy = "brand")
 	private Collection <Product> products;
     @ManyToMany 
     private Collection<Supplier> suppliers;
     
-	public Brand(String brandName, Collection<Product> products, Collection<Supplier> suppliers) {
+	public Brand( String brandName, Collection<Product> products, Collection<Supplier> suppliers) {
 		super();
 		this.brandName = brandName;
 		this.products = products;
