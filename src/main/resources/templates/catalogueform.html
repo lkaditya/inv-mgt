@@ -13,16 +13,16 @@
 	<div th:replace="layout/layout.html :: menu"></div>
 	<div class="container">
 	<h1>Add New Product</h1>
-	<form action="" th:object="${Product}" th:action="@{/catalogue/save}"
+	<form action="" th:object="${product}" th:action="@{/catalogue/save}"
 		method="POST" class="form-horizontal">
 		<fieldset>
 			<input type="hidden" th:field="*{id}" />
 			<input type="hidden"
-				th:field="*{Supplier.id}" />
+				th:field="*{supplier.id}" />
 			<input type="hidden"
-				   th:field="*{Brand.id}" />
+				   th:field="*{brand.id}" />
 			<input type="hidden"
-				   th:field="*{Inventory.id}" />
+				   th:field="*{inventory.id}" />
 	   </fieldset>
 
 		<div class="form-group">
@@ -83,7 +83,7 @@
 				<fieldset>
 					<select class="form-control" id="sel1" th:field="*{supplier.supplierName}" >
 
-						<option th:each="name:${Suppliers}" th:value="${name.supplierName}" th:text="${name.supplierName}">
+						<option th:each="name:${suppliers}" th:value="${name.supplierName}" th:text="${name.supplierName}">
 						</option>
 					</select>
 				</fieldset>
@@ -96,7 +96,7 @@
       		<label class="control-label col-sm-2" for="brand">Brand Name:</label>
             	<div class="col-sm-10">
 				<fieldset>
-		    		<input type="text" class="form-control" id="brand" placeholder="Enter name" th:field="*{brand.brandName}">
+		    		<input type="text" class="form-control" id="brand" placeholder="Enter name" th:field="*{brand.brandName}" required>
 		    		<p th:if="${#fields.hasErrors('brand.brandName')}" th:errors="*{brand.brandName}"></p>
 				</fieldset>
 		    	</div>
@@ -107,7 +107,7 @@
       		<label class="control-label col-sm-2" for="qoh">Quantity on hand:</label>
             	<div class="col-sm-10">
 				<fieldset>
-		    		<input type="text" class="form-control" id="qoh" placeholder="Enter quantity" th:field="*{inventory.qoh}">
+		    		<input type="number" class="form-control" id="qoh" placeholder="Enter quantity" th:field="*{inventory.qoh}" min="0">
 				</fieldset>
 		    	</div>
     	</div>
@@ -116,7 +116,7 @@
       		<label class="control-label col-sm-2" for="rol">Reorder Level:</label>
             	<div class="col-sm-10">
 				<fieldset>
-		    		<input type="text" class="form-control" id="rol" placeholder="Enter quantity" th:field="*{inventory.rol}">
+		    		<input type="number" class="form-control" id="rol" placeholder="Enter quantity" th:field="*{inventory.rol}" min="0">
 				</fieldset>
 		    	</div>
     	</div>    	

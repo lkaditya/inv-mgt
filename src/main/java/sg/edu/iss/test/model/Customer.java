@@ -23,12 +23,12 @@ public class Customer {
 	@NotEmpty
 	@Size (min=5, max=50)
 	private String name;
-	@Digits(integer=8, fraction = 0)
-	private int mobile;
+	@Pattern(regexp="\\d{8}")
+	private String mobile;
 	@OneToMany(mappedBy="customer")
 	private List<RepairOrder>orders;
 
-	public Customer(String name, @Pattern(regexp = "\\d{8}") @Digits(integer = 8, fraction = 0) int mobile, List<RepairOrder> orders) {
+	public Customer(String name, @Pattern(regexp = "\\d{8}") String mobile, List<RepairOrder> orders) {
 		super();
 		this.name = name;
 		this.mobile = mobile;
@@ -36,7 +36,7 @@ public class Customer {
 
 	}
 	
-	public Customer(String name, @Pattern(regexp = "\\d{8}") @Digits(integer = 8, fraction = 0) int mobile) {
+	public Customer(String name, @Pattern(regexp = "\\d{8}") String mobile) {
 		super();
 		this.name = name;
 		this.mobile = mobile;

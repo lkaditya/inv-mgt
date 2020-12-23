@@ -59,13 +59,16 @@ public class InventoryController {
 		model.addAttribute("ilist", ilist);
 		ObjectInput f = new ObjectInput();
 		model.addAttribute("filter", f);
-		model.addAttribute("control","Product");
+		model.addAttribute("control","product");
 		
 		return "inventoryform";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String save(@Valid @ModelAttribute("inventory") Inventory inventory, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			return "inventoryform";
+		}
 		Product x= catalogueInterface.findById(inventory.getProduct().getId());
 		inventory.setProduct(x);
 		iservice.saveInventory(inventory);
@@ -92,15 +95,15 @@ public class InventoryController {
 	}
 	
 	@RequestMapping(value = "/delete")
-	public String deleteInventory(Long id, Model model) {
-		List<Returned> r = rservice.findReturnedByProId(id);
-		List<ProductUsage> u = puservice.findProductUsageByProId(id);
+	public String deleteInventory(Long productID, Model model) {
+		List<Returned> r = rservice.findReturnedByProId(productID);
+		List<ProductUsage> u = puservice.findProductUsageByProId(productID);
 		if (r.size()>0 || u.size()>0){
-			  model.addAttribute("msg","Can not delete! There are still return or product usage recording under this product!");
+			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
 			  model.addAttribute("url","/inventory/list");
 		      return "erro";
 		}else {
-			iservice.deleteInventory(id);
+			iservice.deleteInventory(productID);
 			return "redirect:/inventory/list";
 		}	
 		

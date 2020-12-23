@@ -71,7 +71,7 @@ public class CartController {
 			model.addAttribute("usages",usageform);	
 		}
 		model.addAttribute("control","inventory");
-		model.addAttribute("Customer",custservice.listAllCustomerNames());
+		model.addAttribute("customers",custservice.listAllCustomerNames());
 		return "cartpageform";
 	}	
 
@@ -79,7 +79,7 @@ public class CartController {
 	public String saverepair(@Valid @ModelAttribute("usages")ObjectInput obj,BindingResult bindingResult ,Model model) {
 		
 		if(bindingResult.hasErrors()) {
-			model.addAttribute("Customer",custservice.listAllCustomerNames());
+			model.addAttribute("customers",custservice.listAllCustomerNames());
 			return "cartpageform";
 		}
 		RepairOrder rep = new RepairOrder();

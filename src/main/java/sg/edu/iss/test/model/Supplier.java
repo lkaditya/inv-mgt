@@ -22,7 +22,7 @@ public class Supplier {
 	private long id;
 	private String supplierName;
 	private String supplierAddress;
-	@Digits(integer=6, fraction=0)
+	@Pattern(regexp="\\d{8}")
 	private String phone;
 	@Email
 	private String email;
@@ -32,7 +32,7 @@ public class Supplier {
 	private Collection <Product>  products;
 	@ManyToMany(mappedBy ="suppliers")
 	private Collection <Brand> brand;
-	public Supplier(String supplierName, String supplierAddress, String phone, String email, String mOQ,
+	public Supplier(String supplierName, String supplierAddress,@Pattern(regexp="\\d{8}") String phone, String email, String mOQ,
 			Collection<Product> products, Collection<Brand> brand) {
 		super();
 		this.supplierName = supplierName;

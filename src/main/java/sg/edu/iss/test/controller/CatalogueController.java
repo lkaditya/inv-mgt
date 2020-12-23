@@ -64,16 +64,21 @@ public class CatalogueController {
 	@RequestMapping(value = "/showform", method = RequestMethod.GET)
 	public String showForm(Model model) {
 		Product product = new Product();
-		model.addAttribute("Product", product);
+		model.addAttribute("product", product);
 		ArrayList<Brand> allBrands = brandService.findAllBrands();
 		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
 		model.addAttribute("suppliers",allSuppliers);
-		model.addAttribute("brands",allBrands);
+		//model.addAttribute("brands",allBrands);
 		return "catalogueform";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("Product") Product product, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) {
+		if(bindingResult.hasErrors()) {
+			ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
+			model.addAttribute("suppliers",allSuppliers);
+			return "catalogueform";
+		}
 		String supplierName = product.getSupplier().getSupplierName();
 		Supplier supplier = supplierRepository.findSupplierBySupplierName(supplierName);
 		product.setSupplier(supplier);
@@ -92,11 +97,11 @@ public class CatalogueController {
 		}
 		Page<Product> productByFliter = cservice.findProductByFliter(page,size,productQuery);
 		System.out.println(productByFliter);
-		model.addAttribute("Product",productByFliter);
+		model.addAttribute("products",productByFliter);
 		model.addAttribute("pageCount",productByFliter.getTotalPages()-1);
 		model.addAttribute("condition", productQuery);
 		model.addAttribute("size", size);
-		model.addAttribute("control", "Product");
+		model.addAttribute("control", "product");
 		return "catalogue";
 	}
 
@@ -104,7 +109,7 @@ public class CatalogueController {
 	@RequestMapping("/edit/{id}")
 	public String editProduct(@PathVariable("id") Long id, Model model){
 		Product product = cservice.findById(id);
-		model.addAttribute("Product", product);
+		model.addAttribute("product", product);
 		ArrayList<Supplier> allSuppliers = supplierService.findAllSuppliers();
 		model.addAttribute("suppliers",allSuppliers);
 		ArrayList<Brand> allBrands = brandService.findAllBrands();
@@ -117,7 +122,7 @@ public class CatalogueController {
 		List<Returned> r = rservice.findReturnedByProId(id);
 		List<ProductUsage> u = uservice.findProductUsageByProId(id);
 		if (r.size()>0 || u.size()>0){
-			  model.addAttribute("msg","Can not delete! There are still return or product usage recording under this product!");
+			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
 			  model.addAttribute("url","/catalogue/findByFilter");
 		      return "erro";
 		}else {

@@ -13,7 +13,7 @@
 	<div class="container">
 		<h1>Supplier Form</h1>
 
-	<form action="#" th:object="${Supplier}" th:action="@{/admin/savesupplier}"
+	<form action="#" th:object="${supplier}" th:action="@{/admin/savesupplier}"
 		method="post" class="form-horizontal">
 		<fieldset>
 			<input type="hidden" th:field="*{id}">
@@ -23,7 +23,7 @@
 			<label class="control-label col-sm-2" for="name">Supplier Name:</label>
 			<div class="col-sm-10">
 				<fieldset>
-					<input type="text" class="form-control" id="name" th:field="*{supplierName}">
+					<input type="text" class="form-control" id="name" th:field="*{supplierName}" required>
 					<p th:if="${#fields.hasErrors('supplierName')}" th:errors="*{supplierName}"></p>
 				</fieldset>
 			</div>

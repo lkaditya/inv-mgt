@@ -45,14 +45,14 @@ public class CustomerController {
 	@RequestMapping(value = "/customerform", method = RequestMethod.GET)
 	public String add(Model model) {
 		Customer customer = new Customer();
-		model.addAttribute("Customer", customer);
-		model.addAttribute("control","Customer");
+		model.addAttribute("customer", customer);
+		model.addAttribute("control","customer");
 		return "customerform";
 	}
 	
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("Customer") Customer customer, 
+	public String save(@Valid @ModelAttribute("customer") Customer customer, 
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			return "customerform";

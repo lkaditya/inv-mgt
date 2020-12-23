@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,7 @@ public class Inventory {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	//quantity on hand
+	@Min(0)
 	private long qoh;
 	//reorder level
 	private long rol;

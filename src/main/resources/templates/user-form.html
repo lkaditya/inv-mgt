@@ -21,7 +21,7 @@
 			<label class="control-label col-sm-2" for="name">User Name:</label>
 			<div class="col-sm-10">
 				<fieldset>
-					<input type="text" class="form-control" id="name" th:field="*{userName}">
+					<input type="text" class="form-control" id="name" th:field="*{userName}" required>
 					<p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></p>
 				</fieldset>
 			</div>
@@ -30,7 +30,7 @@
 			<label class="control-label col-sm-2" for="password">Password:</label>
 			<div class="col-sm-10">
 				<fieldset>
-					<input type="password" class="form-control" id="password" th:field="*{password}">
+					<input type="password" class="form-control" id="password" th:field="*{password}" required>
 					<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 				</fieldset>
 			</div>
