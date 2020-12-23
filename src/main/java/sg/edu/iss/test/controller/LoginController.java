@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sg.edu.iss.test.model.User;
 import sg.edu.iss.test.service.UserServiceImplementation;
@@ -40,4 +41,22 @@ public class LoginController {
         session.removeAttribute("usession");
         return "logout";
     }
+    
+	@RequestMapping(value = "/changepasswordform")
+    public String changePasswordForm(Model model) {
+        User u = new User();
+        model.addAttribute("user", u);
+		return "changepasswordform";
+	}
+	
+	@RequestMapping(value = "/changepassword")
+    public String changePassword(@ModelAttribute("user") User user, Model model) {
+		if(userServices.authenticate(user))
+        {
+			model.addAttribute("control","user");
+			userServices.saveUser(user);
+            return "index";
+        }
+		return "changepassword";
+	}
 }
