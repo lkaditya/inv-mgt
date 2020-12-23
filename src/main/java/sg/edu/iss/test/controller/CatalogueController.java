@@ -115,7 +115,7 @@ public class CatalogueController {
 		List<Returned> r = rservice.findReturnedByProId(id);
 		List<ProductUsage> u = uservice.findProductUsageByProId(id);
 		if (r.size()>0 || u.size()>0){
-			  model.addAttribute("msg","Can not delete! There are still return or repair recording under this product!");
+			  model.addAttribute("msg","Can not delete! There are still return or product usage recording under this product!");
 			  model.addAttribute("url","/catalogue/findByFilter");
 		      return "erro";
 		}else {
